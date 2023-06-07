@@ -3,8 +3,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const job_order = require('./job_order'); // Import the JobOrder model
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const port = 3000;
 
 // Connect to your MongoDB database

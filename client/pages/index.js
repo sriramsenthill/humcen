@@ -8,7 +8,7 @@ import AudienceOverview from "@/components/Dashboard/eCommerce/AudienceOverview"
 import VisitsByDay from "@/components/Dashboard/eCommerce/VisitsByDay";
 import Impressions from "@/components/Dashboard/eCommerce/Impressions";
 import ActivityTimeline from "@/components/Dashboard/eCommerce/ActivityTimeline";
-import RevenuStatus from "@/components/Dashboard/eCommerce/RevenuStatus";
+import Performance from "@/components/Dashboard/eCommerce/Performance";
 import SalesByCountries from "@/components/Dashboard/eCommerce/SalesByCountries";
 import NewCustomers from "@/components/Dashboard/eCommerce/NewCustomers";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
@@ -53,7 +53,7 @@ export default function eCommerce() {
             <RecentOrders />
 
               {/* RevenuStatus */}
-              <RevenuStatus />
+              <Performance />
               
             </Grid>
           </Grid>
