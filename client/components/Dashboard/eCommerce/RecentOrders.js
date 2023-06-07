@@ -110,7 +110,7 @@ async function fetchJobOrders() {
 
 function RecentOrders() {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [count, setCount] = useState(0);
   const [rows, setRows] = useState([]);
 
@@ -139,7 +139,6 @@ function RecentOrders() {
   return (
     <Card>
       <Box sx={{ p: 2 }}>
-        <Typography variant="h6">Recent Orders</Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
