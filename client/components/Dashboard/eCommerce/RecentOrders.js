@@ -139,6 +139,7 @@ function RecentOrders() {
   return (
     <Card>
       <Box sx={{ p: 2 }}>
+        <Typography variant="h5">Job Orders</Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>

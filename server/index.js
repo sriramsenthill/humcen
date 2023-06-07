@@ -10,7 +10,7 @@ app.use(cors());
 const port = 3000;
 
 // Connect to your MongoDB database
-mongoose.connect('mongodb+srv://sriram:password12345@humcen.iaiznbp.mongodb.net/partner?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://sriram:password12345@humcen.iaiznbp.mongodb.net/humcen?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
   })
