@@ -4,7 +4,7 @@
   margin-bottom: 15px;
 }
 .pageTitle h1 {
-  font-size: 17px;
+  font-size: 30px;
   margin: 0;
 }
 .pageTitle ul {
@@ -40,7 +40,7 @@
 
 @media only screen and (max-width: 767px) {
   .pageTitle h1 {
-    font-size: 15px;
+    font-size: 20px;
   }
   .pageTitle ul li {
     margin-right: 15px;
@@ -62,4 +62,30 @@
 [dir=rtl] .pageTitle ul li:before {
   left: -13px;
   right: auto;
+}
+
+.heading {
+  font-size: 20px;
+  margin-top: 40px; 
+  margin-bottom: 20px; 
+  text-align: left;
+}
+.emailheading {
+
+}
+.line {
+  border: none;
+  border-top: 2px solid #E0E0E0; 
+  margin: 20px 0; ;
+
+}
+.email {
+  color: #828282;
+  font-size: 16px;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  gap: 500px; /* Adjust the gap value to add spacing between the elements */
 }
