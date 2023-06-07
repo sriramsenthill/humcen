@@ -26,19 +26,8 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(undefined, options);
 }
 
-function getStatusColor(status) {
-  if (status === "In Progress") {
-    return "Gold"; // Set the color to yellow for "in progress" status
-  } else if (status === "Completed") {
-    return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
-    return "Red"; // Set the color to green for "completed" status
-  }
-  return ""; // Default color if the status value is not matched
-}
 
-function RecentOrder(props) {
+function MyIncomes(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
   const theme = useTheme();
 
@@ -100,7 +89,7 @@ function RecentOrder(props) {
   );
 }
 
-RecentOrder.propTypes = {
+MyIncomes.propTypes = {
   count: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
@@ -119,7 +108,14 @@ async function fetchJobOrders() {
   }
 }
 
-function RecentOrders() {
+function getPayStatusColor(payStatus) {
+    if (payStatus === "unpaid") {
+      return "red"; // Set the color to red for unpaid status
+    }
+    return "green"; // Set the color to green for paid status
+  }
+
+function MyIncome() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [count, setCount] = useState(0);
@@ -144,24 +140,25 @@ function RecentOrders() {
     setPage(0);
   };
 
+
+
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage);
 
   return (
     <Card>
       <Box sx={{ p: 2 }}>
-        <Typography variant="h5">Job Orders</Typography>
+        <Typography variant="h5">My Income</Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Job No</TableCell>
-                <TableCell>Service</TableCell>
+                <TableCell>Patent Service</TableCell>
                 <TableCell>Country</TableCell>
-                <TableCell>Submitted Date</TableCell>
+                <TableCell>Amount</TableCell>
                 <TableCell>Delivery Date</TableCell>
-                <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
+                <TableCell>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -172,13 +169,12 @@ function RecentOrders() {
                     <TableCell>{row._id.job_no}</TableCell>
                     <TableCell>{row.service}</TableCell>
                     <TableCell>{row.country}</TableCell>
-                    <TableCell>{formatDate(row.start_date)}</TableCell>
+                    <TableCell>{row.amount}</TableCell>
                     <TableCell>{formatDate(row.end_date)}</TableCell>
-                    <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
-                      {row.status}
+                    <TableCell style={{ color: getPayStatusColor(row.pay_status) }}>
+                     {row.pay_status}
                     </TableCell>
-                  </TableRow>
+                     </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
@@ -206,4 +202,4 @@ function RecentOrders() {
   );
 }
 
-export default RecentOrders;
+export default MyIncome;

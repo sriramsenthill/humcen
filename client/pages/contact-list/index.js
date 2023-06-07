@@ -5,13 +5,13 @@ import Typography from "@mui/material/Typography";
 import Link from 'next/link';
 import styles from '@/styles/PageTitle.module.css'
 import BestSellingProducts from "@/components/Dashboard/eCommerce/BestSellingProducts";
+import MyIncome from "@/components/MyIncome";
 
 export default function ContactList() {
   return (
     <>
       {/* Page title */}
       <div className={styles.pageTitle}>
-        <h1>My Income</h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>
@@ -19,7 +19,10 @@ export default function ContactList() {
           <li>My Income</li>
         </ul>
       </div>
-        <BestSellingProducts/>
+      <br></br>
+      <MyIncome/>
+      <br></br>
+
     </>
   );
 }
