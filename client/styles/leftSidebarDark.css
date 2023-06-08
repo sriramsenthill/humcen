@@ -1,5 +1,6 @@
 .leftsidebardark .LeftSidebarNav {
   background-color: var(--cardBg);
+  color: white;
   box-shadow: none;
 }
 .leftsidebardark .LeftSidebarNav .black-logo {

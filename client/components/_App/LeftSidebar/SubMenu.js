@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 const SidebarLabel = styled("span")(({ theme }) => ({
   position: "relative",
   top: "-3px",
+  color: "white"
 }));
 
 const SubMenu = ({ item }) => {
