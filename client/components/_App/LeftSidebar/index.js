@@ -8,9 +8,10 @@ import SubMenu from './SubMenu';
 import Link from 'next/link';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
+import Color from '@/components/UIElements/Checkbox/Color';
 
 const SidebarNav = styled("nav")(({ theme }) => ({
-  background: '#fff',
+  background: '#00002B',
   boxShadow: "0px 4px 20px rgba(47, 143, 232, 0.07)",
   width: '300px',
   padding: '30px 10px',
@@ -22,9 +23,9 @@ const SidebarNav = styled("nav")(({ theme }) => ({
   left: 0,
   transition: '350ms',
   zIndex: '10',
-  overflowY: 'auto'
+  overflowY: 'auto',
 }));
- 
+
 const SidebarWrap = styled("div")(({ theme }) => ({
   width: '100%'
 }));
@@ -46,7 +47,7 @@ const Sidebar = ({ toogleActive }) => {
             >
               <Link href='/'>
                 <img 
-                  src="/images/logo.png" alt="Logo" 
+                  src="/images/logo-white.png" alt="Logo" 
                   className='black-logo' 
                 />
 

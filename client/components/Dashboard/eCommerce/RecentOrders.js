@@ -33,7 +33,7 @@ function getStatusColor(status) {
     return "Green"; // Set the color to green for "completed" status
   }
   else if (status === "Pending") {
-    return "Red"; // Set the color to green for "completed" status
+    return "Red"; // Set the color to Red for "Pending" status
   }
   return ""; // Default color if the status value is not matched
 }
