@@ -30,20 +30,6 @@ export default function Tabs() {
         <Grid item xs={12} md={12} lg={12} xl={6}>
           {/* BasicTabs */}
           <BasicTabs />
-
-          {/* FixedTabs */}
-          <VerticalTabs />
-        </Grid>
-
-        <Grid item xs={12} md={12} lg={12} xl={6}>
-          {/* ExperimentalAPI */}
-          <ExperimentalAPI />
-
-          {/* IconTabs */}
-          <IconTabs />
-
-          {/* IconPosition */}
-          <IconPosition />
         </Grid>
       </Grid>
     </>

@@ -31,39 +31,12 @@ export default function eCommerce() {
           </li>
         </ul>
       </div>
-  
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
+
         <Grid item xs={12} md={12} lg={12} xl={8}>
 
-
-          <Grid
-            container
-            columnSpacing={{ xs: 1, sm: 2, md: 2 }}
-          >
-           
-
-            <Grid item xs={12} md={4}>
-              {/* Impressions */}
               <Impressions />
-
-
-            </Grid>
-
-            <Grid item xs={12} md={12}>
             <RecentOrders />
-
-              {/* RevenuStatus */}
-              <Performance />
-              
-            </Grid>
           </Grid>
-        </Grid>
-
-        <Grid item xs={12} md={12} lg={12} xl={4}>
-          {/* Ratings */}
-          <Ratings />
-        </Grid>
-      </Grid>
     </>
   );
 }

@@ -4,28 +4,29 @@ import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-const RoundedButtons = () => {
+const DisabledButtons = () => {
   return (
     <>
       <Button
         variant="contained"
         sx={{
+          border: "1px solid #68BDFD",
           textTransform: "capitalize",
           borderRadius: "30px",
           mt: "10px",
-          backgroundColor: "#2F80ED",
-          color: "#fff",
-          p: "12px 55px", // Increased button width
+          backgroundColor: "#DFF1FF",
+          color: "#BDBDBD",
+          p: "8px 23px", // Increased button width
           fontSize: "14px",
           fontWeight: "400", // Reduced font weight
           boxShadow: "none",
         }}
         className="mr-10px"
       >
-        View Details
+        Join Meeting
       </Button>
     </>
   );
 };
 
-export default RoundedButtons;
+export default DisabledButtons;
