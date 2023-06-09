@@ -32,31 +32,23 @@ export const SidebarData = [
 
   },
   {
-    title: "Job Order",
+    title: "Job Listing",
     path: "/email/inbox/",
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
-    title: "My Income",
+    title: "Patent History",
     path: "/contact-list/",
     icon: <PostAddIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
-    title: "Why Us?",
+    title: "Partners",
     path: "/projects/",
     icon: <CopyAllIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-  },
-  
-  {
-    title: "Help & Support",
-    path: "/ecommerce/products/",
-    icon: <ShoppingCartCheckoutIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },

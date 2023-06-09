@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Link from 'next/link';
 import styles from '@/styles/PageTitle.module.css'
 import BestSellingProducts from "@/components/Dashboard/eCommerce/BestSellingProducts";
-import MyIncome from "@/components/MyIncome";
+import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 
 export default function ContactList() {
   return (
@@ -16,11 +16,11 @@ export default function ContactList() {
           <li>
             <Link href="/">Dashboard</Link>
           </li>
-          <li>My Income</li>
+          <li>Patent History</li>
         </ul>
       </div>
       <br></br>
-      <MyIncome/>
+      <RecentOrders/>
       <br></br>
 
     </>

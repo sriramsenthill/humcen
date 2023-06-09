@@ -21,7 +21,7 @@ export default function eCommerce() {
     <>
       {/* Page title */}
       <div className={styles.pageTitle}>
-      <h1>Welcome Back, Daniel!</h1>
+      <h1>Hey Bibin Mathew!</h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>
@@ -31,6 +31,8 @@ export default function eCommerce() {
           </li>
         </ul>
       </div>
+      <p style={{ textAlign: 'left' }}>We have some quick updates for you today!</p>
+
   
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
         <Grid item xs={12} md={12} lg={12} xl={8}>
@@ -42,27 +44,30 @@ export default function eCommerce() {
           >
            
 
-            <Grid item xs={12} md={4}>
-              {/* Impressions */}
-              <Impressions />
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={4}>
+         {/* Impressions */}
+          <Impressions />
+         </Grid>
+         <Grid item xs={12} md={4}>
+          {/* Impressions */}
+          <Impressions />
+         </Grid>
+          <Grid item xs={12} md={4}>
+           {/* Impressions */}
+          <Impressions />
+          </Grid>
+           <Grid item xs={12} md={4}>
+             {/* Impressions */}
+             <Impressions />
+             </Grid>
+      </Grid>
 
-
-            </Grid>
-
-            <Grid item xs={12} md={12}>
-            <RecentOrders />
-
-              {/* RevenuStatus */}
-              <Performance />
-              
-            </Grid>
+            
           </Grid>
         </Grid>
 
-        <Grid item xs={12} md={12} lg={12} xl={4}>
-          {/* Ratings */}
-          <Ratings />
-        </Grid>
+       
       </Grid>
     </>
   );

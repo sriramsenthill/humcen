@@ -15,10 +15,9 @@ export default function Inbox() {
           <li>
             <Link href="/">Dashboard</Link>
           </li>
-          <li>Job Order</li>
+          <li>Job Listing</li>
         </ul>
       </div>
-      <RecentOrders/>
 
     </>
   );
