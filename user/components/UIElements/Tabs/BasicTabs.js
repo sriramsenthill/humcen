@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import { Typography } from "@mui/material";
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,56 +36,53 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
-export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+export default function BasicTabs({ no, items }) {
+  const [value, setValue] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <>
-      <Card
-        sx={{
-          boxShadow: "none",
-          borderRadius: "10px",
-          p: "25px",
-          mb: "15px",
-        }}
-      >
-        <Typography
-          as="h3"
+      {isMounted && (
+        <Card
           sx={{
-            fontSize: 18,
-            fontWeight: 500,
-            mb: '10px'
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "15px",
           }}
         >
-          Basic Tabs
-        </Typography>
-
-        <Box sx={{ width: '100%' }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
-            </Tabs>
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Current Projects" {...a11yProps(0)} />
+                <Tab label="Previous Projects" {...a11yProps(1)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+              <RecentOrders />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <RecentOrders />
+            </TabPanel>
           </Box>
-          <TabPanel value={value} index={0}>
-            Item One
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
-          </TabPanel>
-        </Box>
-      </Card>
+        </Card>
+      )}
     </>
   );
 }

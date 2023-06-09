@@ -6,6 +6,8 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import styles from "@/components/Dashboard/eCommerce/NewCustomers/NewCustomers.module.css";
+import Rating from "@mui/material/Rating";
+import styled from "@emotion/styled";
 
 const NewCustomersData = [
   {
@@ -17,6 +19,13 @@ const NewCustomersData = [
     order: "15 Orders",
   },
 ];
+
+const StyledRating = styled(Rating)({
+  "& .MuiRating-iconFilled": {
+    color: "#68BDFD",
+    fontSize: "10",
+  },
+});
 
 const NewCustomers = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -36,8 +45,19 @@ const NewCustomers = () => {
             <div className={styles.leftContent}>
               <img src={customer.image} alt="user" />
               <div>
-                <h3>{customer.name}</h3>
-                <p>{customer.userName}</p>
+                <p
+                  style={{
+                    fontFamily: "Inter",
+                    fontStyle: "normal",
+                    fontWeight: "500",
+                    fontSize: "14px",
+                    lineHeight: "130%",
+                    color: "#828282",
+                  }}
+                >
+                  {customer.name}
+                </p>
+                <StyledRating name="read-only" value="2.5" readOnly />
               </div>
             </div>
           </div>

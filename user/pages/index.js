@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import Grid from "@mui/material/Grid";
-import Link from 'next/link';
-import styles from '@/styles/PageTitle.module.css'
+import Link from "next/link";
+import styles from "@/styles/PageTitle.module.css";
 import Features from "@/components/Dashboard/eCommerce/Features";
 import Ratings from "@/components/Dashboard/eCommerce/Ratings";
 import AudienceOverview from "@/components/Dashboard/eCommerce/AudienceOverview";
@@ -15,28 +15,17 @@ import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 import TeamMembersList from "@/components/Dashboard/eCommerce/TeamMembersList";
 import BestSellingProducts from "@/components/Dashboard/eCommerce/BestSellingProducts";
 import LiveVisitsOnOurSite from "@/components/Dashboard/eCommerce/LiveVisitsOnOurSite";
+import BasicTabs from "@/components/UIElements/Tabs/BasicTabs";
 
 export default function eCommerce() {
   return (
     <>
       {/* Page title */}
-      <div className={styles.pageTitle}>
-      <h1>Welcome Back, Daniel!</h1>
-        <ul>
-          <li>
-            <Link href="/">Dashboard</Link>
-          </li>
-          <li>
-            home
-          </li>
-        </ul>
-      </div>
 
-        <Grid item xs={12} md={12} lg={12} xl={8}>
-
-              <Impressions />
-            <RecentOrders />
-          </Grid>
+      <Grid item xs={12} md={12} lg={12} xl={8}>
+        <Impressions />
+        <BasicTabs />
+      </Grid>
     </>
   );
 }

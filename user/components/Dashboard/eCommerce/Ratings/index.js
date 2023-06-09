@@ -7,6 +7,10 @@ import RatingsChart from "./RatingsChart";
 import NewCustomers from "../NewCustomers";
 import DisabledButtons from "@/components/UIElements/Buttons/DisabledButtons";
 import Rating from "@mui/material/Rating";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import PublicIcon from "@mui/icons-material/Public";
 
 const Ratings = () => {
   return (
@@ -46,26 +50,43 @@ const Ratings = () => {
 
         <Box
           sx={{
-            marginTop: "80px", // Adjust the top margin to create space below other elements
+            marginTop: "80px",
+            marginLeft: "-130px", // Adjust the top margin to create space below other elements
           }}
         >
-          <table style={{ width: "100%" }}>
+          <table
+            style={{
+              width: "130%",
+              fontFamily: "Inter",
+              fontStyle: "normal",
+              fontWeight: "600",
+              fontSize: "16px",
+              lineHeight: "150%",
+              letterSpacing: "-0.03em",
+              borderSpacing: "20px",
+            }}
+          >
             <thead>
-              <tr style={{ color: "#828282" }}>
-                <td style={{ width: "25%", textAlign: "left" }}>
-                  10:00am - 10.30am, Friday, May 5, 2023
+              <tr style={{ color: "#828282", fontWeight: "500" }}>
+                <td style={{ textAlign: "left" }}>
+                  <CalendarTodayIcon />
+                  &nbsp;10:00 a.m. - 10.30 a.m. <br /> Friday, May 5, 2023
                 </td>
-                <td style={{ width: "25%", textAlign: "left" }}>
-                  Web Conferencing link will be highlight before meeting
+                <td style={{ textAlign: "left" }}>
+                  <VideocamIcon />
+                  &nbsp;Web Conferencing link will be <br /> highlighted before
+                  meeting
                 </td>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style={{ width: "25%", textAlign: "left" }}>
-                  0:30 mintues
+              <tr style={{ color: "#828282", fontWeight: "500" }}>
+                <td style={{ textAlign: "left" }}>
+                  <AccessTimeIcon />
+                  0:30 minutes
                 </td>
-                <td style={{ width: "25%", textAlign: "left" }}>
+                <td style={{ textAlign: "left" }}>
+                  <PublicIcon />
                   India Standard Time
                 </td>
               </tr>

@@ -31,8 +31,7 @@ function getStatusColor(status) {
     return "Gold"; // Set the color to yellow for "in progress" status
   } else if (status === "Completed") {
     return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
+  } else if (status === "Pending") {
     return "Red"; // Set the color to Red for "Pending" status
   }
   return ""; // Default color if the status value is not matched
@@ -148,61 +147,63 @@ function RecentOrders() {
     rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage);
 
   return (
-    <Card>
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h5">Job Orders</Typography>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Job No</TableCell>
-                <TableCell>Service</TableCell>
-                <TableCell>Country</TableCell>
-                <TableCell>Submitted Date</TableCell>
-                <TableCell>Delivery Date</TableCell>
-                <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <TableRow key={row._id.job_no}>
-                    <TableCell>{row._id.job_no}</TableCell>
-                    <TableCell>{row.service}</TableCell>
-                    <TableCell>{row.country}</TableCell>
-                    <TableCell>{formatDate(row.start_date)}</TableCell>
-                    <TableCell>{formatDate(row.end_date)}</TableCell>
-                    <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
-                      {row.status}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={9} />
+    <Box>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Job No</TableCell>
+              <TableCell>Service</TableCell>
+              <TableCell>Country</TableCell>
+              <TableCell>Submitted Date</TableCell>
+              <TableCell>Delivery Date</TableCell>
+              <TableCell>Budget</TableCell>
+              <TableCell>Verification</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <TableRow key={row._id.job_no}>
+                  <TableCell>{row._id.job_no}</TableCell>
+                  <TableCell>{row.service}</TableCell>
+                  <TableCell>{row.country}</TableCell>
+                  <TableCell>{formatDate(row.start_date)}</TableCell>
+                  <TableCell>{formatDate(row.end_date)}</TableCell>
+                  <TableCell>{row.budget}</TableCell>
+                  <TableCell
+                    style={{
+                      color: getStatusColor(row.status),
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {row.status}
+                  </TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={9}
-                  count={count}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+              ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={9} />
               </TableRow>
-            </TableFooter>
-          </Table>
-        </TableContainer>
-      </Box>
-    </Card>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                colSpan={9}
+                count={count}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }
 
