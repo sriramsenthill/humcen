@@ -35,7 +35,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
-    backgroundColor: "#F5F7FA",
+    backgroundColor: "white",
     borderRadius: "30px",
     padding: theme.spacing(1.4, 0, 1.4, 2),
     // vertical padding + font size from searchIcon
@@ -51,11 +51,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchForm() {
+export default function SearchForm({ colorCom }) {
   return (
     <>
       <Search className="search-form">
-        <SearchIconWrapper sx={{display: { xs: 'none', sm: 'inline-flex' }}}>
+        <SearchIconWrapper sx={{ display: { xs: "none", sm: "inline-flex" } }}>
           <SearchIcon />
         </SearchIconWrapper>
 
