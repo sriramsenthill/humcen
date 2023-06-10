@@ -29,34 +29,18 @@ export const SidebarData = [
     icon: <LayersIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
-
   },
   {
-    title: "Job Order",
+    title: "My Patent",
     path: "/email/inbox/",
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
-    title: "My Income",
-    path: "/contact-list/",
-    icon: <PostAddIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-  },
-  {
-    title: "Why Us?",
+    title: "About Us",
     path: "/projects/",
     icon: <CopyAllIcon />,
-    iconClosed: <KeyboardArrowRightIcon />,
-    iconOpened: <KeyboardArrowDownIcon />,
-  },
-  
-  {
-    title: "Help & Support",
-    path: "/ecommerce/products/",
-    icon: <ShoppingCartCheckoutIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
@@ -89,5 +73,12 @@ export const SidebarData = [
         path: "/authentication/logout/",
       },
     ],
+  },
+  {
+    title: "Help & Support",
+    path: "/ecommerce/products/",
+    icon: <ShoppingCartCheckoutIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
   },
 ];
