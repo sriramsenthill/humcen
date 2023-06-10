@@ -110,8 +110,13 @@ async function fetchJobOrders() {
   try {
     const response = await fetch("http://localhost:3000/api/job_order");
     const data = await response.json();
-    console.log(data);
-    return data;
+    if (Array.isArray(data)) {
+      console.log(data);
+      return data;
+    } else {
+      console.error("Invalid data format: Expected an array");
+      return [];
+    }
   } catch (error) {
     console.error("Error fetching job orders:", error);
     return [];
