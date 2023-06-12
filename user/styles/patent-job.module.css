@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 10%;
+    flex-direction: column;
+
+    /* Adjust the height as per your needs */
+}
