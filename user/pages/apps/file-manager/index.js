@@ -1,39 +1,39 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styles from '@/styles/PageTitle.module.css';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import styles from "@/styles/PageTitle.module.css";
 import Grid from "@mui/material/Grid";
-import LeftSidebar from '@/components/Apps/FileManager/LeftSidebar';
-import MyDrive from '@/components/Apps/FileManager/MyDrive';
-import RecentFiles from '@/components/Apps/FileManager/RecentFiles';
-import Files from '@/components/Apps/FileManager/Files';
-import Card from '@/components/UIElements/Cards/Media';
+import LeftSidebar from "@/components/Apps/FileManager/LeftSidebar";
+import MyDrive from "@/components/Apps/FileManager/MyDrive";
+import RecentFiles from "@/components/Apps/FileManager/RecentFiles";
+import Files from "@/components/Apps/FileManager/Files";
+import Card from "@/components/UIElements/Cards/Media";
 
 const serviceList = [
   {
-    image: '/images/patent_consult.png',
+    image: "/images/patent_consult.png",
     title: "Patent Consultation",
     desc: "Maximize the value of your invention with expert Patent Consultation from Us",
-    link: "/apps/file-manager/consultation"
+    link: "/apps/file-manager/consultation",
   },
   {
-    image: '/images/patent_drafting.png',
+    image: "/images/patent_drafting.png",
     title: "Patent Drafting",
     desc: "Transform your ideas into strong patents with our expert Patent Drafting service",
-    link: "/apps/file-manager/drafting"
+    link: "/apps/file-manager/drafting",
   },
   {
-    image: '/images/patent_filing.png',
+    image: "/images/patent_filing.png",
     title: "Patent Filing",
     desc: "Secure your innovative ideas with our hassle-free patent filing service. Let us handle the complexities of the patent application process",
-    link: "/apps/file-manager/filing"
+    link: "/apps/file-manager/filing",
   },
   {
-    image: '/images/patent_search.png',
+    image: "/images/patent_search.png",
     title: "Patent Search",
     desc: "Uncover the potential of your invention with our in-depth Patent Search service.",
-    link: "/apps/file-manager/search"
-  }
+    link: "/apps/file-manager/search",
+  },
 ];
 
 export default function FileManager() {
@@ -48,9 +48,7 @@ export default function FileManager() {
           <li>
             <Link href="/">Dashboard</Link>
           </li>
-          <li>
-            My Patent Services
-          </li>
+          <li>My Patent Services</li>
         </ul>
       </div>
 
@@ -60,9 +58,11 @@ export default function FileManager() {
         columnSpacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 2 }}
       >
         {serviceList.map((service, index) => (
-          <Grid item xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
-            <Link href={service.link}>
-                <Card {...service} />
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
+            {" "}
+            {/* Adjusted the grid item width */}
+            <Link href={service.link} style={{ textDecoration: "none" }}>
+              <Card {...service} />
             </Link>
           </Grid>
         ))}
