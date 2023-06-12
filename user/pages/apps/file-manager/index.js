@@ -51,21 +51,12 @@ export default function FileManager() {
           <li>My Patent Services</li>
         </ul>
       </div>
-
       <Grid
         container
         rowSpacing={1}
         columnSpacing={{ xs: 1, sm: 1, md: 1, lg: 1, xl: 2 }}
       >
-        {serviceList.map((service, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={3} key={index}>
-            {" "}
-            {/* Adjusted the grid item width */}
-            <Link href={service.link} style={{ textDecoration: "none" }}>
-              <Card {...service} />
-            </Link>
-          </Grid>
-        ))}
+        {serviceList.map(Card)}
       </Grid>
     </>
   );

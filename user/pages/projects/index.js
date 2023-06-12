@@ -1,33 +1,37 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from '@/styles/PageTitle.module.css'
-import AllProjects from '@/components/Projects/AllProjects';
-import FileManager from 'pages/apps/file-manager';
-import Card from '@/components/UIElements/Cards/Media';
+import React from "react";
+import Link from "next/link";
+import styles from "@/styles/PageTitle.module.css";
+import AllProjects from "@/components/Projects/AllProjects";
+import FileManager from "pages/apps/file-manager";
+import Card from "@/components/UIElements/Cards/Media";
 import Grid from "@mui/material/Grid";
 
 const serviceList = [
   {
-    image: '/images/patent_consult.png',
+    image: "/images/patent_consult.png",
     title: "Patent Consultation",
-    desc: "Maximize the value of your invention with expert Patent Consultation from Us"
+    desc: "Maximize the value of your invention with expert Patent Consultation from Us",
+    link: "/apps/file-manager/consultation",
   },
   {
-    image: '/images/patent_drafting.png',
+    image: "/images/patent_drafting.png",
     title: "Patent Drafting",
-    desc: "Transform your ideas into strong patents with our expert Patent Drafting service"
+    desc: "Transform your ideas into strong patents with our expert Patent Drafting service",
+    link: "/apps/file-manager/drafting",
   },
   {
-    image: '/images/patent_filing.png',
+    image: "/images/patent_filing.png",
     title: "Patent Filing",
-    desc: "Secure your innovative ideas with our hassle-free patent filing service. Let us handle the complexities of the patent application process"
+    desc: "Secure your innovative ideas with our hassle-free patent filing service. Let us handle the complexities of the patent application process",
+    link: "/apps/file-manager/filing",
   },
   {
-    image: '/images/patent_search.png',
+    image: "/images/patent_search.png",
     title: "Patent Search",
-    desc: "Uncover the potential of your invention with our in-depth Patent Search service."
-  }
-]
+    desc: "Uncover the potential of your invention with our in-depth Patent Search service.",
+    link: "/apps/file-manager/search",
+  },
+];
 
 const Projects = () => {
   return (
@@ -42,12 +46,21 @@ const Projects = () => {
           <li>Why Us</li>
         </ul>
       </div>
-      <h2 style={{marginTop: 20}}>Unlock unparalleled opportunities as an IP professional by joining our IP marketplace.</h2>
+      <h2 style={{ marginTop: 20 }}>
+        Unlock unparalleled opportunities as an IP professional by joining our
+        IP marketplace.
+      </h2>
       <div>
-        <p style={{fontSize: 15}}>Experience direct access to a global demand, enjoy higher earnings potential, and embrace the freedom of a flexible work mode.<br/>Connect, collaborate, and thrive in a vibrant community of like-minded experts. Join us today and elevate your career in the world of intellectual property.</p>
+        <p style={{ fontSize: 15 }}>
+          Experience direct access to a global demand, enjoy higher earnings
+          potential, and embrace the freedom of a flexible work mode.
+          <br />
+          Connect, collaborate, and thrive in a vibrant community of like-minded
+          experts. Join us today and elevate your career in the world of
+          intellectual property.
+        </p>
       </div>
-      <br>
-      </br>
+      <br></br>
       <div className={styles.pageTitle}>
         <h1>Our Services</h1>
       </div>
@@ -60,7 +73,7 @@ const Projects = () => {
         {serviceList.map(Card)}
       </Grid>
     </>
-  )
-}
+  );
+};
 
 export default Projects;
