@@ -133,7 +133,7 @@ function RecentOrders() {
     const fetchData = async () => {
       const data = await fetchJobOrders();
       setCount(data.length);
-      setRows(data);
+      setRows(data.reverse()); // Reverse the data array to display in descending order
     };
 
     fetchData();
