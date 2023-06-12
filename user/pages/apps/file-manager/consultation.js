@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
+import style from '@/styles/PageTitle.module.css';
 import LeftSidebar from "@/components/Email/LeftSidebar";
 import EmailLists from "@/components/Email/EmailLists";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
@@ -11,7 +12,7 @@ import { styled } from "@mui/system"; // Import styled from "@mui/system" instea
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
-  width: "20%",
+  width: "18%",
   height: "60px",
   borderRadius: "100px",
   marginBottom: "30px",
@@ -28,12 +29,25 @@ export default function Inbox() {
   return (
     <>
       {/* Page title */}
+      <div className={style.pageTitle}>
+      <h1>Patent Consultation</h1>
+        <ul>
+          <li>
+            <Link href="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link href="/apps/file-manager">My Patent Services</Link>
+          </li>
+          <li>
+            Patent Consultation
+          </li>
+        </ul>
+      </div>
       <div className={styles.container}>
         <img
           src="/images/patent_consult.png"
           style={{ marginBottom: "10px" }}
         />
-        <h1>Patent Consultation</h1>
         <p
           style={{
             maxWidth: "60%",

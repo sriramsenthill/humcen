@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
+import style from '@/styles/PageTitle.module.css';
 import LeftSidebar from "@/components/Email/LeftSidebar";
 import EmailLists from "@/components/Email/EmailLists";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
@@ -28,9 +29,23 @@ export default function Inbox() {
   return (
     <>
       {/* Page title */}
+      <div className={style.pageTitle}>
+        <h1>Patent Filing</h1>
+        <ul>
+          <li>
+            <Link href="/">Dashboard</Link>
+          </li>
+          <li>
+            <Link href="/apps/file-manager">My Patent Services</Link>
+          </li>
+          <li>
+            Patent Filing
+          </li>
+        </ul>
+      </div>
+
       <div className={styles.container}>
         <img src="/images/patent_filing.png" style={{ marginBottom: "10px" }} />
-        <h1>Patent Consultation</h1>
         <p
           style={{
             maxWidth: "60%",
