@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import AllProjects from "@/components/Projects/AllProjects";
+import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,25 +65,20 @@ export default function BasicTabs() {
             mb: '10px'
           }}
         >
-          Basic Tabs
         </Typography>
 
         <Box sx={{ width: '100%' }}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-              <Tab label="Item One" {...a11yProps(0)} />
-              <Tab label="Item Two" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
+              <Tab label="On going atents" {...a11yProps(0)} />
+              <Tab label="Unassigned" {...a11yProps(1)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            Item One
+            <AllProjects/>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            Item Three
+            <RecentOrders></RecentOrders>
           </TabPanel>
         </Box>
       </Card>

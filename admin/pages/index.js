@@ -15,6 +15,7 @@ import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 import TeamMembersList from "@/components/Dashboard/eCommerce/TeamMembersList";
 import BestSellingProducts from "@/components/Dashboard/eCommerce/BestSellingProducts";
 import LiveVisitsOnOurSite from "@/components/Dashboard/eCommerce/LiveVisitsOnOurSite";
+import BasicTabs from "@/components/UIElements/Tabs/BasicTabs";
 
 export default function eCommerce() {
   return (
@@ -36,38 +37,26 @@ export default function eCommerce() {
   
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
         <Grid item xs={12} md={12} lg={12} xl={8}>
-
-
-          <Grid
-            container
-            columnSpacing={{ xs: 1, sm: 2, md: 2 }}
-          >
-           
-
-      <Grid container spacing={1}>
-        <Grid item xs={12} md={4}>
-         {/* Impressions */}
-          <Impressions />
-         </Grid>
-         <Grid item xs={12} md={4}>
-          {/* Impressions */}
-          <Impressions />
-         </Grid>
-          <Grid item xs={12} md={4}>
-           {/* Impressions */}
-          <Impressions />
-          </Grid>
-           <Grid item xs={12} md={4}>
-             {/* Impressions */}
-             <Impressions />
+          <Grid container columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={6} md={3}>
+                <Impressions />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Impressions />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Impressions />
+              </Grid>
+              <Grid item xs={12} sm={6} md={3}>
+                <Impressions />
              </Grid>
-      </Grid>
-
-            
+            </Grid>    
           </Grid>
-        </Grid>
-
-       
+          <Grid>
+              <BasicTabs />
+            </Grid> 
+        </Grid> 
       </Grid>
     </>
   );
