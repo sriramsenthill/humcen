@@ -7,9 +7,10 @@ import EmailLists from "@/components/Email/EmailLists";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 import SearchForm from "@/components/_App/TopNavbar/SearchForm";
 import styles from "@/styles/patent-job.module.css";
-import { Button, ButtonProps, Card } from "@mui/material";
-import { styled } from "@mui/system"; // Import styled from "@mui/system" instead of "@mui/material/styles"
+import { Button, ButtonProps, Card, InputLabel } from "@mui/material";
+import { styled } from "@mui/system";
 import { Route } from "react-router-dom";
+import DefaultSelect from "@/components/Forms/AdvancedElements/DefaultSelect";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -52,9 +53,15 @@ export default function Inbox() {
           lineHeight: "19px",
         }}
       >
-        Let’s get started with the basic details to create your project
+        Let's get started with the basic details to create your project
       </p>
-      <Card variant="outlined"></Card>
+      <Card variant="outlined">
+        <DefaultSelect />
+        <br />
+        <Button>India</Button>
+        <Button>United States</Button>
+        <Button>Germany</Button>
+      </Card>
       <Link
         href="/apps/file-manager/drafting-form"
         style={{ textDecoration: "none" }}

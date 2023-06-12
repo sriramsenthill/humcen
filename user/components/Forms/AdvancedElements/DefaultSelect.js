@@ -1,14 +1,13 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import { Typography } from "@mui/material";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function DefaultSelect() {
-
-  const [age, setAge] = React.useState('');
+  const [age, setAge] = React.useState("");
 
   const handleChange = (event) => {
     setAge(event.target.value);
@@ -29,14 +28,14 @@ export default function DefaultSelect() {
           sx={{
             fontSize: 18,
             fontWeight: 500,
-            mb: '10px'
+            mb: "10px",
           }}
         >
-          Default Select
+          Select your domain
         </Typography>
- 
+
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-label">Domain</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -44,9 +43,9 @@ export default function DefaultSelect() {
             label="Age"
             onChange={handleChange}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"Finance"}>Finance</MenuItem>
+            <MenuItem value={"Tech"}>Tech</MenuItem>
+            <MenuItem value={"Creativity"}>Creativity</MenuItem>
           </Select>
         </FormControl>
       </Card>
