@@ -14,7 +14,9 @@
   --transition: all ease .5s;
   --box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
 }
-
+.blue{
+  color: #00ACF6;
+}
 html, body {
   background-color: #F5F5F5 !important;
   font-family: var(--bodyFontFamily) !important;
