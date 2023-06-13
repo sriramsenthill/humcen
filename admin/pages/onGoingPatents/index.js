@@ -1,15 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '@/styles/Patents.module.css';
-import style from "@/styles/PageTitle.module.css";
+import style from '@/styles/PageTitle.module.css';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
+import { Box } from '@mui/material';
+import { useState } from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { jobData } from './patentData';
+import TrackOrder from '@/components/eCommerce/OrderDetails/TrackOrder';
+import AlternativeLabel from '@/components/UIElements/Stepper/AlternativeLabel';
+import Features from './Features';
+import CrossAssign from './CrossAssign';
+
 
 const PatentDeliveryStatus = ({ jobNumber }) => {
-  const job = jobData.find((job) => job.jobNumber === "DEF456");
+  const job = jobData.find((job) => job.jobNumber === 'DEF456');
 
   if (!job) {
     return <div>No job found with the provided job number.</div>;
@@ -26,68 +33,99 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
     status,
   } = job;
 
+  const [isComponentLoaded, setComponentLoaded] = useState(false);
+
+  const loadComponent = () => {
+    import('./CrossAssign').then(() => {
+      setComponentLoaded(true);
+    });
+  };
+
+
   return (
     <>
-        {/* Page title */}
-        <div className={style.pageTitle}>
-          <h1>Ongoing Patents</h1>
-          <ul>
-            <li>
-              <Link href="/">Dashboard</Link>
-            </li>
-            <li>Ongoing Patents</li>
-            <li>Delivery status</li>
-          </ul>
-        </div>
-      <h1>{jobName}</h1>
-      <Grid container spacing={2}>
-        <div className={styles.patentDeliveryStatus}>
-          <Grid container spacing={2}>
-            <Grid item xs={6} sm={4} md={2} >            
-              <div className={styles.field}>
-                <span className={styles.label}>Patent Type:</span>
-                <span>{patentType}</span>
-              </div>
-            </Grid>
-            <Grid item xs={6} sm={4} md={2} >
-              <div className={styles.field}>
-                <span className={styles.label}>Customer Name:</span>
-                <span>{customerName}</span>
-              </div>
-            </Grid>
-            <Grid item xs={6} sm={4} md={2} > 
-              <div className={styles.field}>
-                <span className={styles.label}>Partner Name:</span>
-                <span>{partnerName}</span>
-              </div>
-            </Grid>
-            <Grid item xs={6} sm={4} md={2} >
-              <div className={styles.field}>
-                <span className={styles.label}>Location:</span>
-                <span>{location}</span>
-              </div>
-            </Grid>
-            <Grid item xs={6} sm={4} md={2} >
-              <div className={styles.field}>
-                <span className={styles.label}>Budget:</span>
-                <span>{budget}</span>
-              </div>
-              </Grid>
-            <Grid item xs={6} sm={4} md={2} >
-              <div className={styles.field}>
-                <span className={styles.label}>Assigned:</span>
-                <span>{assigned}</span>
-              </div>
-            </Grid>
-            <Grid item xs={6} sm={4} md={2}>
-              <div className={styles.field}>
-                <span className={styles.label}>Status:</span>
-                <span>{status}</span>
-              </div>
-            </Grid>
+      {/* Page title */}
+      <div className={style.pageTitle}>
+        <h1>Ongoing Patents</h1>
+        <ul>
+          <li>
+            <Link href="/">Dashboard</Link>
+          </li>
+          <li>Ongoing Patents</li>
+          <li>Delivery status</li>
+        </ul>
+      </div>
+      <Card
+        sx={{
+          boxShadow: 'none',
+          borderRadius: '10px',
+          p: '25px',
+          mb: '15px',
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={6}>
+            <h1>Figma To Adobe XD: Design Patent</h1>
           </Grid>
-        </div>
-      </Grid>
+          <Grid item xs={12} sm={6} md={6} justifyContent="flex-end" textAlign="right">
+            <h2>
+              <span className={styles.label1}>Job no : </span>
+              {job.jobNumber}
+            </h2>
+          </Grid>
+        </Grid>
+        <Grid>
+          <table style={{ width: '100%', borderCollapse: 'collapse', padding: '10px' }}>
+            <tbody>
+              <tr>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Patent Type
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Customer Name
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Partner Name
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Location
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Budget
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Assigned
+                </td>
+                <td className={styles.label} style={{ padding: '10px' }}>
+                  Status
+                </td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px' }}>{patentType}</td>
+                <td style={{ padding: '10px' }}>{customerName}</td>
+                <td style={{ padding: '10px' }}>{partnerName}</td>
+                <td style={{ padding: '10px' }}>{location}</td>
+                <td style={{ padding: '10px' }}>{budget}</td>
+                <td style={{ padding: '10px' }}>{assigned}</td>
+                <td style={{ padding: '10px' }}>{status}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '10px' }}></td>
+                <td style={{ padding: '10px' }}><Link href="/">Mail</Link></td>
+                <td style={{ padding: '10px' }}><Link href="/">Mail</Link></td>
+                <td style={{ padding: '10px' }}></td>
+                <td style={{ padding: '10px' }}></td>
+                <td style={{ padding: '10px' }}></td>
+                <td style={{ padding: '10px' }}><Link href="#" onClick={loadComponent}>Cross-Assign</Link></td>
+              </tr>
+            </tbody>
+          </table>
+        </Grid>
+      </Card>
+        <div>  {isComponentLoaded && <CrossAssign />} </div>
+               {/* side stepper component */}
+      <Features />
+
     </>
   );
 };
