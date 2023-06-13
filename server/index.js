@@ -71,6 +71,24 @@ app.get('/api/admin', async (req, res) => {
   }
 });
 
+// Create a new job order
+app.post("/api/job_order", (req, res) => {
+  const jobOrderData = req.body;
+
+  // Create a new JobOrder instance using the received data
+  const jobOrder = new JobOrder(jobOrderData);
+
+  // Save the job order to the database
+  jobOrder.save()
+    .then((savedJobOrder) => {
+      res.status(200).json(savedJobOrder);
+    })
+    .catch((error) => {
+      console.error("Error creating job order:", error);
+      res.status(500).send("Error creating job order");
+    });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
