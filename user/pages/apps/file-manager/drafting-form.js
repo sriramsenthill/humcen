@@ -14,6 +14,9 @@ import DefaultSelect from "@/components/Forms/AdvancedElements/DefaultSelect";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import UploadMultipleFiles from "@/components/Forms/FileUploader/UploadMultipleFiles";
+import { Checkbox } from "@mui/material/Checkbox";
+import { FormControlLabel } from "@mui/material";
+import { CheckBox } from "@mui/icons-material";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -177,13 +180,184 @@ export default function Inbox() {
           </Typography>
           <UploadMultipleFiles />
         </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Keywords
+          </Typography>
+          <TextField
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            InputProps={{
+              style: { borderRadius: 8 },
+            }}
+          />
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Budget
+          </Typography>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            250-500$
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            500-1000$
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            1000-1500$
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            1500-2000$
+          </Button>
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Time of delivery
+          </Typography>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            1-2 days
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            3-5 days
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            5-7 days
+          </Button>
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <CheckBox /> I have read and agreed to the following policies - Humcen
+          Privacy Policy, Humcen Terms & Conditions, before proceeding.
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Link
+            href="/apps/file-manager/drafting-form"
+            style={{ textDecoration: "none" }}
+          >
+            <ColorButton sx={{ width: "15%" }}>Submit</ColorButton>
+          </Link>
+        </Card>
       </Card>
-      <Link
-        href="/apps/file-manager/drafting-form"
-        style={{ textDecoration: "none" }}
-      >
-        <ColorButton>Apply Now</ColorButton>
-      </Link>
     </>
   );
 }
