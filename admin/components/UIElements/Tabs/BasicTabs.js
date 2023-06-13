@@ -81,10 +81,10 @@ export default function BasicTabs({ no, items }) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-             <RecentUsers/>
+             <RecentPartners />
             </TabPanel>
             <TabPanel value={value} index={1}>
-             <RecentPartners />
+            <RecentUsers/>
             </TabPanel>
             <TabPanel value={value} index={2}>
               <RecentOrders />

@@ -181,7 +181,7 @@ function RecentPartners() {
                     <TableCell>{row.age}</TableCell>
                     <TableCell>{row.domain}</TableCell>
                     <TableCell>{row["Patent Agent"]}</TableCell>
-                    <TableCell>{row.cert_no}</TableCell>
+                    <TableCell>{row.cert_no || "To be assigned"}</TableCell>
                     <TableCell>{row.jurisdiction}</TableCell>
                     <TableCell>{row.city}</TableCell>
                     <TableCell>{row.state}</TableCell>
