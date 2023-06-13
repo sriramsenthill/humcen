@@ -6,6 +6,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
+import RecentPartners from "@/components/Dashboard/eCommerce/RecentPartner";
+import RecentUsers from "@/components/Dashboard/eCommerce/RecentUser";
+import RecentAdmins from "@/components/Dashboard/eCommerce/RecentAdmin";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -70,15 +73,24 @@ export default function BasicTabs({ no, items }) {
                 onChange={handleChange}
                 aria-label="basic tabs example"
               >
-                <Tab label="Current Projects" {...a11yProps(0)} />
-                <Tab label="Previous Projects" {...a11yProps(1)} />
+                <Tab label="Partners" {...a11yProps(0)} />
+                <Tab label="Users" {...a11yProps(1)} />
+                <Tab label="Recent Orders" {...a11yProps(2)} />
+                <Tab label="Admin" {...a11yProps(3)} />
+
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <RecentOrders />
+             <RecentUsers/>
             </TabPanel>
             <TabPanel value={value} index={1}>
+             <RecentPartners />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
               <RecentOrders />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+              <RecentAdmins />
             </TabPanel>
           </Box>
         </Card>

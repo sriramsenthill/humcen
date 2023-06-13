@@ -5,6 +5,7 @@ import AllProjects from '@/components/Projects/AllProjects';
 import FileManager from 'pages/apps/file-manager';
 import Card from '@/components/UIElements/Cards/Media';
 import Grid from "@mui/material/Grid";
+import RecentPartners from '@/components/Dashboard/eCommerce/RecentPartner';
 
 
 
@@ -21,7 +22,7 @@ const Projects = () => {
           <li>Partners</li>
         </ul>
       </div>
-      
+      <RecentPartners/>
     </>
   )
 }

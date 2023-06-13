@@ -31,14 +31,13 @@ function getStatusColor(status) {
     return "Gold"; // Set the color to yellow for "in progress" status
   } else if (status === "Completed") {
     return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
+  } else if (status === "Pending") {
     return "Red"; // Set the color to Red for "Pending" status
   }
   return ""; // Default color if the status value is not matched
 }
 
-function RecentOrder(props) {
+function RecentPartner(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
   const theme = useTheme();
 
@@ -100,26 +99,26 @@ function RecentOrder(props) {
   );
 }
 
-RecentOrder.propTypes = {
+RecentPartner.propTypes = {
   count: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
 };
 
-async function fetchJobOrders() {
+async function fetchPartnerData() {
   try {
-    const response = await fetch("http://localhost:3000/api/job_order");
+    const response = await fetch("http://localhost:3000/api/partner");
     const data = await response.json();
     console.log(data);
     return data;
   } catch (error) {
-    console.error("Error fetching job orders:", error);
+    console.error("Error fetching partner data:", error);
     return [];
   }
 }
 
-function RecentOrders() {
+function RecentPartners() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [count, setCount] = useState(0);
@@ -127,7 +126,7 @@ function RecentOrders() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchJobOrders();
+      const data = await fetchPartnerData();
       setCount(data.length);
       setRows(data);
     };
@@ -154,34 +153,50 @@ function RecentOrders() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Job No</TableCell>
-                <TableCell>Service</TableCell>
-                <TableCell>Country</TableCell>
-                <TableCell>Submitted Date</TableCell>
-                <TableCell>Delivery Date</TableCell>
-                <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
+                <TableCell>User ID</TableCell>
+                <TableCell>Full Name</TableCell>
+                <TableCell>Age</TableCell>
+                <TableCell>Domain</TableCell>
+                <TableCell>Patent Agent</TableCell>
+                <TableCell>Cert No</TableCell>
+                <TableCell>Jurisdiction</TableCell>
+                <TableCell>City</TableCell>
+                <TableCell>State</TableCell>
+                <TableCell>Zip Code</TableCell>
+                <TableCell>Tax ID No</TableCell>
+                <TableCell>LinkedIn Profile</TableCell>
+                <TableCell>Years of Experience</TableCell>
+                <TableCell>Expertise In</TableCell>
+                <TableCell>Can Handle</TableCell>
+                <TableCell>Jobs</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
-                  <TableRow key={row._id.job_no}>
-                    <TableCell>{row._id.job_no}</TableCell>
-                    <TableCell>{row.service}</TableCell>
-                    <TableCell>{row.country}</TableCell>
-                    <TableCell>{formatDate(row.start_date)}</TableCell>
-                    <TableCell>{formatDate(row.end_date)}</TableCell>
-                    <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
-                      {row.status}
-                    </TableCell>
+                  <TableRow key={row._id.userID}>
+                    <TableCell>{row._id.userID}</TableCell>
+                    <TableCell>{row.full_name}</TableCell>
+                    <TableCell>{row.age}</TableCell>
+                    <TableCell>{row.domain}</TableCell>
+                    <TableCell>{row["Patent Agent"]}</TableCell>
+                    <TableCell>{row.cert_no}</TableCell>
+                    <TableCell>{row.jurisdiction}</TableCell>
+                    <TableCell>{row.city}</TableCell>
+                    <TableCell>{row.state}</TableCell>
+                    <TableCell>{row.zip_code}</TableCell>
+                    <TableCell>{row.tax_ID_no}</TableCell>
+                    <TableCell>{row.linkedin_profile}</TableCell>
+                    <TableCell>{row.years_of_exp}</TableCell>
+                    <TableCell>{row.expertise_in}</TableCell>
+                    <TableCell>{row.can_handle}</TableCell>
+                    <TableCell>{row.jobs.join(", ")}</TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={9} />
+                  <TableCell colSpan={17} />
                 </TableRow>
               )}
             </TableBody>
@@ -189,7 +204,7 @@ function RecentOrders() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={9}
+                  colSpan={17}
                   count={count}
                   rowsPerPage={rowsPerPage}
                   page={page}
@@ -205,4 +220,4 @@ function RecentOrders() {
   );
 }
 
-export default RecentOrders;
+export default RecentPartners;

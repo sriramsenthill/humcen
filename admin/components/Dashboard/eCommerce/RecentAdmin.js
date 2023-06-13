@@ -21,24 +21,7 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import PropTypes from "prop-types";
 
-function formatDate(date) {
-  const options = { month: "long", day: "numeric", year: "numeric" };
-  return new Date(date).toLocaleDateString(undefined, options);
-}
-
-function getStatusColor(status) {
-  if (status === "In Progress") {
-    return "Gold"; // Set the color to yellow for "in progress" status
-  } else if (status === "Completed") {
-    return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
-    return "Red"; // Set the color to Red for "Pending" status
-  }
-  return ""; // Default color if the status value is not matched
-}
-
-function RecentOrder(props) {
+function RecentAdmin(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
   const theme = useTheme();
 
@@ -47,7 +30,10 @@ function RecentOrder(props) {
   };
 
   const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    onPageChange(
+      event,
+      Math.max(0, Math.ceil(count / rowsPerPage) - 1)
+    );
   };
 
   const handleNextButtonClick = (event) => {
@@ -65,7 +51,11 @@ function RecentOrder(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
+        {theme.direction === "rtl" ? (
+          <LastPageIcon />
+        ) : (
+          <FirstPageIcon />
+        )}
       </IconButton>
       <IconButton
         onClick={handlePrevButtonClick}
@@ -94,32 +84,36 @@ function RecentOrder(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
+        {theme.direction === "rtl" ? (
+          <FirstPageIcon />
+        ) : (
+          <LastPageIcon />
+        )}
       </IconButton>
     </Box>
   );
 }
 
-RecentOrder.propTypes = {
+RecentAdmin.propTypes = {
   count: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
 };
 
-async function fetchJobOrders() {
+async function fetchAdminData() {
   try {
-    const response = await fetch("http://localhost:3000/api/job_order");
+    const response = await fetch("http://localhost:3000/api/admin");
     const data = await response.json();
     console.log(data);
     return data;
   } catch (error) {
-    console.error("Error fetching job orders:", error);
+    console.error("Error fetching admin data:", error);
     return [];
   }
 }
 
-function RecentOrders() {
+function RecentAdmins() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [count, setCount] = useState(0);
@@ -127,7 +121,7 @@ function RecentOrders() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchJobOrders();
+      const data = await fetchAdminData();
       setCount(data.length);
       setRows(data);
     };
@@ -154,34 +148,34 @@ function RecentOrders() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Job No</TableCell>
-                <TableCell>Service</TableCell>
-                <TableCell>Country</TableCell>
-                <TableCell>Submitted Date</TableCell>
-                <TableCell>Delivery Date</TableCell>
-                <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Surname</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Phone</TableCell>
+                <TableCell>Preferences</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
-                  <TableRow key={row._id.job_no}>
-                    <TableCell>{row._id.job_no}</TableCell>
-                    <TableCell>{row.service}</TableCell>
-                    <TableCell>{row.country}</TableCell>
-                    <TableCell>{formatDate(row.start_date)}</TableCell>
-                    <TableCell>{formatDate(row.end_date)}</TableCell>
-                    <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
-                      {row.status}
+                  <TableRow key={row._id["$oid"]}>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.surname}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.phone}</TableCell>
+                    <TableCell>
+                      {Object.entries(row.pref).map(([key, value]) => (
+                        <Typography key={key}>
+                          {key}: {value.toString()}
+                        </Typography>
+                      ))}
                     </TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={9} />
+                  <TableCell colSpan={5} />
                 </TableRow>
               )}
             </TableBody>
@@ -189,7 +183,7 @@ function RecentOrders() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={9}
+                  colSpan={5}
                   count={count}
                   rowsPerPage={rowsPerPage}
                   page={page}
@@ -205,4 +199,4 @@ function RecentOrders() {
   );
 }
 
-export default RecentOrders;
+export default RecentAdmins;
