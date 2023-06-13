@@ -6,11 +6,10 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function DefaultSelect() {
-  const [age, setAge] = React.useState("");
-
+export default function DefaultSelect({ domain, onDomainChange }) {
   const handleChange = (event) => {
-    setAge(event.target.value);
+    const value = event.target.value;
+    onDomainChange(value);
   };
 
   return (
@@ -38,8 +37,8 @@ export default function DefaultSelect() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
-            label="Age"
+            value={domain}
+            label="Domain"
             onChange={handleChange}
           >
             <MenuItem value={"Finance"}>Finance</MenuItem>

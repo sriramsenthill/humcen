@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import style from "@/styles/PageTitle.module.css";
@@ -17,6 +17,10 @@ import UploadMultipleFiles from "@/components/Forms/FileUploader/UploadMultipleF
 import { Checkbox } from "@mui/material/Checkbox";
 import { FormControlLabel } from "@mui/material";
 import { CheckBox } from "@mui/icons-material";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -34,6 +38,31 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Inbox() {
+  const [name, setName] = useState("");
+  const [domain, setDomain] = useState("");
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [country, setCountry] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [] = useState("");
+
+  const handleDomainChange = (value) => {
+    setDomain(value);
+  };
+
+  const handleSubmit = (e) => {
+    console.log("submitted form");
+    console.log("Domain: ", domain);
+    console.log("Country: ", country);
+    console.log("Title: ", title);
+
+    setIsSubmitted(true);
+  };
+
+  const handleOk = () => {
+    setIsSubmitted(false);
+  };
+
   return (
     <>
       {/* Page title */}
@@ -61,303 +90,331 @@ export default function Inbox() {
       >
         Let's get started with the basic details to create your project
       </p>
-      <Card variant="outlined">
-        <DefaultSelect />
+      <form>
+        <Card variant="outlined">
+          <DefaultSelect domain={domain} onDomainChange={handleDomainChange} />
 
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
+          <Card
             sx={{
-              fontSize: 18,
-              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
               mb: "10px",
             }}
           >
-            Select your preferred country format
-          </Typography>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Select your preferred country format
+            </Typography>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                setCountry("India");
+              }}
+            >
+              <img
+                src="https://hatscripts.github.io/circle-flags/flags/in.svg"
+                width="24"
+              />
+              &nbsp;&nbsp;India
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                setCountry("United States");
+              }}
+            >
+              <img
+                src="https://hatscripts.github.io/circle-flags/flags/us.svg"
+                width="24"
+              />
+              &nbsp;&nbsp;United States
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+              onClick={() => {
+                setCountry("Germany");
+              }}
+            >
+              <img
+                src="https://hatscripts.github.io/circle-flags/flags/de.svg"
+                width="24"
+              />
+              &nbsp;&nbsp;Germany
+            </Button>
+          </Card>
+          <Card
+            sx={{
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
+              mb: "10px",
             }}
           >
-            <img
-              src="https://hatscripts.github.io/circle-flags/flags/in.svg"
-              width="24"
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Enter your proposed invention title
+            </Typography>
+            <TextField
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              value=""
+              autoComplete="name"
+              InputProps={{
+                style: { borderRadius: 8 },
+              }}
             />
-            &nbsp;&nbsp;India
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
+          </Card>
+          <Card
+            sx={{
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
+              mb: "10px",
             }}
           >
-            <img
-              src="https://hatscripts.github.io/circle-flags/flags/us.svg"
-              width="24"
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Upload your invention details
+            </Typography>
+            <UploadMultipleFiles />
+          </Card>
+          <Card
+            sx={{
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
+              mb: "10px",
+            }}
+          >
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Keywords
+            </Typography>
+            <TextField
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              InputProps={{
+                style: { borderRadius: 8 },
+              }}
             />
-            &nbsp;&nbsp;United States
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            <img
-              src="https://hatscripts.github.io/circle-flags/flags/de.svg"
-              width="24"
-            />
-            &nbsp;&nbsp;Germany
-          </Button>
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
+          </Card>
+          <Card
             sx={{
-              fontSize: 18,
-              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
               mb: "10px",
             }}
           >
-            Enter your proposed invention title
-          </Typography>
-          <TextField
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            autoComplete="name"
-            InputProps={{
-              style: { borderRadius: 8 },
-            }}
-          />
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Budget
+            </Typography>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              250-500$
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              500-1000$
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              1000-1500$
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              1500-2000$
+            </Button>
+          </Card>
+          <Card
             sx={{
-              fontSize: 18,
-              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
               mb: "10px",
             }}
           >
-            Upload your invention details
-          </Typography>
-          <UploadMultipleFiles />
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Time of delivery
+            </Typography>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              1-2 days
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              3-5 days
+            </Button>
+            <Button
+              style={{
+                background: "#68BDFD",
+                color: "white",
+                width: "15%",
+                marginRight: "2%",
+                height: "40px",
+                textTransform: "none",
+              }}
+            >
+              5-7 days
+            </Button>
+          </Card>
+          <Card
             sx={{
-              fontSize: 18,
-              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
               mb: "10px",
             }}
           >
-            Keywords
-          </Typography>
-          <TextField
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            autoComplete="name"
-            InputProps={{
-              style: { borderRadius: 8 },
-            }}
-          />
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
+            <CheckBox /> I have read and agreed to the following policies -
+            Humcen Privacy Policy, Humcen Terms & Conditions, before proceeding.
+          </Card>
+          <Card
             sx={{
-              fontSize: 18,
-              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "10px",
+              p: "25px",
               mb: "10px",
             }}
           >
-            Budget
-          </Typography>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            250-500$
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            500-1000$
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            1000-1500$
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            1500-2000$
-          </Button>
+            <Link
+              href="/apps/file-manager/drafting-form"
+              style={{ textDecoration: "none" }}
+            >
+              <ColorButton
+                sx={{ width: "15%" }}
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </ColorButton>
+            </Link>
+          </Card>
         </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Typography
-            as="h3"
-            sx={{
-              fontSize: 18,
-              fontWeight: 500,
-              mb: "10px",
-            }}
-          >
-            Time of delivery
-          </Typography>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            1-2 days
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            3-5 days
-          </Button>
-          <Button
-            style={{
-              background: "#68BDFD",
-              color: "white",
-              width: "15%",
-              marginRight: "2%",
-              height: "40px",
-              textTransform: "none",
-            }}
-          >
-            5-7 days
-          </Button>
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <CheckBox /> I have read and agreed to the following policies - Humcen
-          Privacy Policy, Humcen Terms & Conditions, before proceeding.
-        </Card>
-        <Card
-          sx={{
-            boxShadow: "none",
-            borderRadius: "10px",
-            p: "25px",
-            mb: "10px",
-          }}
-        >
-          <Link
-            href="/apps/file-manager/drafting-form"
-            style={{ textDecoration: "none" }}
-          >
-            <ColorButton sx={{ width: "15%" }}>Submit</ColorButton>
-          </Link>
-        </Card>
-      </Card>
+      </form>
+
+      <Dialog open={isSubmitted}>
+        <DialogTitle>Success</DialogTitle>
+        <DialogContent>
+          <p>Your form has been submitted successfully.</p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleOk}>OK</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
