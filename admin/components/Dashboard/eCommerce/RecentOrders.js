@@ -31,8 +31,7 @@ function getStatusColor(status) {
     return "Gold"; // Set the color to yellow for "in progress" status
   } else if (status === "Completed") {
     return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
+  } else if (status === "Pending") {
     return "Red"; // Set the color to Red for "Pending" status
   }
   return ""; // Default color if the status value is not matched
@@ -160,7 +159,13 @@ function RecentOrders() {
                 <TableCell>Submitted Date</TableCell>
                 <TableCell>Delivery Date</TableCell>
                 <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>User ID</TableCell>
+                <TableCell>User Name</TableCell>
+                <TableCell>Partner ID</TableCell>
+                <TableCell>Partner Name</TableCell>
+                <TableCell>Job Title</TableCell>
+                <TableCell>Job Description</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -177,11 +182,17 @@ function RecentOrders() {
                     <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
                       {row.status}
                     </TableCell>
+                    <TableCell>{row.userID || "To be assigned"}</TableCell>
+                    <TableCell>{row.userName || "To be assigned"}</TableCell>
+                    <TableCell>{row.partnerID || "To be assigned"}</TableCell>
+                    <TableCell>{row.partnerName || "To be assigned"}</TableCell>
+                    <TableCell>{row.job_title || "To be assigned"}</TableCell>
+                    <TableCell>{row.job_desc || "To be assigned"}</TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
-                  <TableCell colSpan={9} />
+                  <TableCell colSpan={13} />
                 </TableRow>
               )}
             </TableBody>
@@ -189,7 +200,7 @@ function RecentOrders() {
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[5, 10, 25]}
-                  colSpan={9}
+                  colSpan={13}
                   count={count}
                   rowsPerPage={rowsPerPage}
                   page={page}

@@ -189,13 +189,13 @@ function RecentUsers() {
                       {JSON.stringify(row.pref, null, 2)}
                     </TableCell>
                     <TableCell>{row.user_specific_data.tax_ID}</TableCell>
-                    <TableCell>{row.user_specific_data.website}</TableCell>
-                    <TableCell>{row.user_specific_data.ind_sec}</TableCell>
-                    <TableCell>{row.user_specific_data.emp_name}</TableCell>
+                    <TableCell>{row.user_specific_data.website || "To be assigned"}</TableCell>
+                    <TableCell>{row.user_specific_data.ind_sec || "To be assigned"}</TableCell>
+                    <TableCell>{row.user_specific_data.emp_name || "To be assigned"}</TableCell>
                     <TableCell>
-                      {row.user_specific_data.emp_surname}
+                      {row.user_specific_data.emp_surname || "To be assigned"}
                     </TableCell>
-                    <TableCell>{row.user_specific_data.emp_pos}</TableCell>
+                    <TableCell>{row.user_specific_data.emp_pos || "To be assigned"}</TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (

@@ -18,7 +18,7 @@ export default function Inbox() {
           <li>Job Listing</li>
         </ul>
       </div>
-
+      <RecentOrders/>
     </>
   );
 }
