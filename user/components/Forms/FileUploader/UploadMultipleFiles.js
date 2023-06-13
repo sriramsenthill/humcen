@@ -12,6 +12,7 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import Card from "@mui/material/Card";
 import { useDropzone } from "react-dropzone";
 import styles from "@/components/Forms/FileUploader/UploadMultipleFiles.module.css";
+import FileUploadIcon from "@mui/icons-material/FileUpload";
 
 const FileUploaderMultiple = () => {
   // ** State
@@ -26,13 +27,7 @@ const FileUploaderMultiple = () => {
 
   const renderFilePreview = (file) => {
     if (file.type.startsWith("image")) {
-      return (
-        <img
-          width={38}
-          alt={file.name}
-          src={URL.createObjectURL(file)}
-        />
-      );
+      return <img width={38} alt={file.name} src={URL.createObjectURL(file)} />;
     } else {
       return <FileCopyIcon />;
     }
@@ -45,24 +40,20 @@ const FileUploaderMultiple = () => {
   };
 
   const fileList = files.map((file) => (
-    <ListItem 
-      key={file.name} 
-      sx={{ 
-        border: '1px solid #eee',
-        justifyContent: 'space-between',
-        mt: '10px',
-        mb: '10px'
+    <ListItem
+      key={file.name}
+      sx={{
+        border: "1px solid #eee",
+        justifyContent: "space-between",
+        mt: "10px",
+        mb: "10px",
       }}
       className="dark-border"
     >
       <div className={styles.fileDetails}>
-        <div className={styles.filePreview}>
-          {renderFilePreview(file)}
-        </div>
+        <div className={styles.filePreview}>{renderFilePreview(file)}</div>
         <div>
-          <Typography className={styles.fileName}>
-            {file.name}
-          </Typography>
+          <Typography className={styles.fileName}>{file.name}</Typography>
         </div>
       </div>
       <IconButton onClick={() => handleRemoveFile(file)}>
@@ -87,51 +78,37 @@ const FileUploaderMultiple = () => {
           borderRadius: "10px",
           p: "25px",
           mb: "15px",
+          backgroundColor: "white",
         }}
       >
-        <Typography
-          as="h3"
-          sx={{
-            fontSize: 18,
-            fontWeight: 500,
-            mb: "15px",
-          }}
-        >
-          Upload Multiple Files
-        </Typography>
-
         <div {...getRootProps()} className={styles.dropzone}>
           <input {...getInputProps()} />
           <Box
             sx={{
               display: "flex",
-              flexDirection: ["column", "column", "row"],
               alignItems: "center",
+              backgroundColor: "white",
             }}
           >
-            <img 
-              width={300} 
-              alt="Upload img" 
-              src="/images/slider-img2.jpg" 
-              className={styles.thumbImage}
-            />
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                textAlign: ["center", "center", "inherit"],
+                width: "100%",
+                alignItems: "center",
+                backgroundColor: "white",
               }}
             >
+              <FileUploadIcon />
               <Typography variant="h5" fontWeight="500" mb={1}>
-                Drop files here or click to upload.
-              </Typography>
-
-              <Typography color="textSecondary">
-                Drop files here or click{" "}
-                <Link href="/" onClick={handleLinkClick}>
+                Drag & drop or{" "}
+                <Link
+                  href="/"
+                  onClick={handleLinkClick}
+                  style={{ textDecoration: "none", color: "#00ACF6" }}
+                >
                   browse
                 </Link>{" "}
-                thorough your machine
               </Typography>
             </Box>
           </Box>
@@ -146,8 +123,8 @@ const FileUploaderMultiple = () => {
                 variant="contained"
                 onClick={handleRemoveAllFiles}
                 sx={{
-                  textTransform: 'capitalize',
-                  color: '#fff !important'
+                  textTransform: "capitalize",
+                  color: "#fff !important",
                 }}
               >
                 Remove All

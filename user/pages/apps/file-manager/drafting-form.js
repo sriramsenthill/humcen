@@ -11,6 +11,9 @@ import { Button, ButtonProps, Card, InputLabel } from "@mui/material";
 import { styled } from "@mui/system";
 import { Route } from "react-router-dom";
 import DefaultSelect from "@/components/Forms/AdvancedElements/DefaultSelect";
+import { Typography } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import UploadMultipleFiles from "@/components/Forms/FileUploader/UploadMultipleFiles";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -57,10 +60,123 @@ export default function Inbox() {
       </p>
       <Card variant="outlined">
         <DefaultSelect />
-        <br />
-        <Button>India</Button>
-        <Button>United States</Button>
-        <Button>Germany</Button>
+
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Select your preferred country format
+          </Typography>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            <img
+              src="https://hatscripts.github.io/circle-flags/flags/in.svg"
+              width="24"
+            />
+            &nbsp;&nbsp;India
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            <img
+              src="https://hatscripts.github.io/circle-flags/flags/us.svg"
+              width="24"
+            />
+            &nbsp;&nbsp;United States
+          </Button>
+          <Button
+            style={{
+              background: "#68BDFD",
+              color: "white",
+              width: "15%",
+              marginRight: "2%",
+              height: "40px",
+              textTransform: "none",
+            }}
+          >
+            <img
+              src="https://hatscripts.github.io/circle-flags/flags/de.svg"
+              width="24"
+            />
+            &nbsp;&nbsp;Germany
+          </Button>
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Enter your proposed invention title
+          </Typography>
+          <TextField
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+            InputProps={{
+              style: { borderRadius: 8 },
+            }}
+          />
+        </Card>
+        <Card
+          sx={{
+            boxShadow: "none",
+            borderRadius: "10px",
+            p: "25px",
+            mb: "10px",
+          }}
+        >
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Upload your invention details
+          </Typography>
+          <UploadMultipleFiles />
+        </Card>
       </Card>
       <Link
         href="/apps/file-manager/drafting-form"

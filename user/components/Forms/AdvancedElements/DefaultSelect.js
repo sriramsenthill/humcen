@@ -20,7 +20,6 @@ export default function DefaultSelect() {
           boxShadow: "none",
           borderRadius: "10px",
           p: "25px",
-          mb: "15px",
         }}
       >
         <Typography
