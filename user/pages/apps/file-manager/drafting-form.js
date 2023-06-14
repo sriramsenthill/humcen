@@ -74,7 +74,7 @@ export default function Inbox() {
       keywords: keyword,
       budget: budget,
       time_of_delivery: time,
-      service_specific_files: files
+      service_specific_files: files,
     };
 
     try {
@@ -254,10 +254,8 @@ export default function Inbox() {
             >
               Upload your invention details
             </Typography>
-            <FileBase64
-      multiple={true}
-      onDone={getFiles}
-    />                  </Card>
+            <FileBase64 multiple={true} onDone={getFiles} />{" "}
+          </Card>
           <Card
             sx={{
               boxShadow: "none",
@@ -308,8 +306,8 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "250-500$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "250-500$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -323,8 +321,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "500-1000$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "500-1000$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -338,8 +336,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "1000-1500$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "1000-1500$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -353,8 +351,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "1500-2000$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "1500-2000$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -387,8 +385,8 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "1-2 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "1-2 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -402,8 +400,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "3-5 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "3-5 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -417,8 +415,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "5-7 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "5-7 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",

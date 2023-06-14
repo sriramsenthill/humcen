@@ -42,8 +42,11 @@ export default function Features() {
           <Stepper activeStep={3} alternativeLabel className="direction-ltr">
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-                <StepLabel>14th May 2023</StepLabel>
+                <StepLabel>
+                  {label}
+                  <br />
+                  14th May 2023
+                </StepLabel>
               </Step>
             ))}
           </Stepper>
