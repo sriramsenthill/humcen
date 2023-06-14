@@ -139,7 +139,7 @@ export default function Inbox() {
             <Button
               style={{
                 background: country === "India" ? "#68BDFD" : "#F8FCFF",
-                color: "white",
+                color: country === "India" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -158,7 +158,7 @@ export default function Inbox() {
             <Button
               style={{
                 background: country === "United States" ? "#68BDFD" : "#F8FCFF",
-                color: "white",
+                color: country === "United States" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -177,7 +177,7 @@ export default function Inbox() {
             <Button
               style={{
                 background: country === "Germany" ? "#68BDFD" : "#F8FCFF",
-                color: "white",
+                color: country === "Germany" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
