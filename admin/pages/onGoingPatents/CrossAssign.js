@@ -15,6 +15,7 @@ import styles from '@/styles/PageTitle.module.css';
 
 import dynamic from 'next/dynamic'
 import MemberSelect from '@/components/Projects/ProjectCreate/MemberSelect';
+import { Margin } from '@mui/icons-material';
 const RichTextEditor = dynamic(() => import('@mantine/rte'), {
   ssr: false,
 })
@@ -37,17 +38,6 @@ const CrossAssign = () => {
 
   return (
     <>
-      {/* Page title */}
-      <div className={styles.pageTitle}>
-        <h1>Project Create</h1>
-        <ul>
-          <li>
-            <Link href="/">Dashboard</Link>
-          </li>
-          <li>Project Create</li>
-        </ul>
-      </div>
-
       <Card
         sx={{
           boxShadow: "none",
@@ -56,20 +46,46 @@ const CrossAssign = () => {
           mb: "15px",
         }}
       >
-        <Typography
-          as="h3"
-          sx={{
-            fontSize: 18,
-            fontWeight: 500,
-            mb: '15px'
-          }}
-        >
-          Create Project
-        </Typography>
-
         <Box component="form" noValidate onSubmit={handleSubmit}>
           <Grid container alignItems="center" spacing={2}>
-            <Grid item xs={12} md={12} lg={12}>
+          <Grid xs={12} sm ={4}md={3} lg={3}>
+              <Typography
+                as="h5"
+                sx={{
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  mb: "12px",
+                  mt: "16.5px",
+                  ml: "16px"
+                }}
+              >
+                Select Reason
+              </Typography>
+              
+              <FormControl
+                 style={{
+                  borderRadius: "8px",marginLeft: "16px" ,width: "95%"
+                  }}
+                fullWidth 
+                variant="standard"
+                id="standard-required"
+
+               >
+                <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={priority}
+                  label="Select Reason"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>High</MenuItem>
+                  <MenuItem value={20}>Medium</MenuItem>
+                  <MenuItem value={30}>Low</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm ={6 }md={4} lg={4}>
               <Typography
                 as="h5"
                 sx={{
@@ -78,23 +94,23 @@ const CrossAssign = () => {
                   mb: "12px",
                 }}
               >
-                Project Name
+                Type Your Reason
               </Typography>
               <TextField
                 autoComplete="project-name"
                 name="projectName"
                 required
                 fullWidth
-                id="projectName"
-                label="Project Name"
+                variant="standard"
+                id="standard-required"
+                label="Your Reason"
                 autoFocus
-                InputProps={{
-                  style: { borderRadius: 8 },
-                }}
+                style={{
+                borderRadius: "8px",
+                  }}
               />
             </Grid>
-
-            <Grid item xs={12} md={12} lg={6}>
+            <Grid item xs={12} sm ={6 }md={4} lg={4}>
               <Typography
                 as="h5"
                 sx={{
@@ -103,14 +119,80 @@ const CrossAssign = () => {
                   mb: "12px",
                 }}
               >
-                Start Date
+                Any Notes for customer
+              </Typography>
+              <TextField
+                autoComplete="project-name"
+                name="projectName"
+                required
+                fullWidth
+                variant="standard"
+                id="standard-required"
+                label="Type Here"
+                autoFocus
+                style={{
+                borderRadius: "8px",
+                  }}
+              />
+            </Grid>
+            <Grid xs={12} sm ={4}md={3} lg={3}>
+              <Typography
+                as="h5"
+                sx={{
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  mb: "12px",
+                  mt: "16.5px",
+                  ml: "16px"
+                }}
+              >
+                Select Partner
+              </Typography>
+              
+              <FormControl
+                 style={{
+                  borderRadius: "8px",marginLeft: "16px" ,width: "95%"
+                  }}
+                fullWidth 
+                variant="standard"
+                id="standard-required"
+
+               >
+                <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={priority}
+                  label="New Assignee"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>High</MenuItem>
+                  <MenuItem value={20}>Medium</MenuItem>
+                  <MenuItem value={30}>Low</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} sm ={4}md={2} lg={2}>
+              <Typography
+                as="h5"
+                sx={{
+                  fontWeight: "500",
+                  fontSize: "14px",
+                  mb: "12px",
+                  mt: "17.4px"
+                }}
+              >
+                Delivery Date
               </Typography>
               <TextField
                 autoComplete="start-date"
                 name="startDate"
                 required
+                variant="standard"
+                id="standard-required"
                 fullWidth
-                id="startDate"
+                id="Delivery Date"
                 type="date"
                 autoFocus
                 InputProps={{
@@ -118,56 +200,45 @@ const CrossAssign = () => {
                 }}
               />
             </Grid>
-
-            <Grid item xs={12} md={12} lg={6}>
+            <Grid xs={12} sm ={4}md={2} lg={2}>
               <Typography
                 as="h5"
                 sx={{
                   fontWeight: "500",
                   fontSize: "14px",
                   mb: "12px",
+                  mt: "16.5px",
+                  ml: "16px"
                 }}
               >
-                End Date
-              </Typography>
-              <TextField
-                autoComplete="end-date"
-                name="endDate"
-                required
-                fullWidth
-                id="endDate"
-                type="date"
-                autoFocus
-                InputProps={{
-                  style: { borderRadius: 8 },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={12} md={12} lg={12}>
-              <Typography
-                as="h5"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "12px",
-                }}
-              >
-                Project Description
+                Select Reason
               </Typography>
               
-              <RichTextEditor
-                id="rte"
-                controls={[
-                  ['bold', 'italic', 'underline', 'link', 'image'],
-                  ['unorderedList', 'h1', 'h2', 'h3', 'h4'],
-                  ['sup', 'sub'],
-                  ['alignLeft', 'alignCenter', 'alignRight'],
-                ]}
-              />
+              <FormControl
+                 style={{
+                  borderRadius: "8px",marginLeft: "16px" ,width: "95%"
+                  }}
+                fullWidth 
+                variant="standard"
+                id="standard-required"
+
+               >
+                <InputLabel id="demo-simple-select-label">Priority</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={priority}
+                  label="Select Reason"
+                  onChange={handleChange}
+                >
+                  <MenuItem value={10}>High</MenuItem>
+                  <MenuItem value={20}>Medium</MenuItem>
+                  <MenuItem value={30}>Low</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
 
-            <Grid item xs={12} md={12} lg={6}>
+            <Grid item xs={12} sm ={6}md={4} lg={4}>
               <Typography
                 as="h5"
                 sx={{
@@ -183,6 +254,8 @@ const CrossAssign = () => {
                 name="budget"
                 required
                 fullWidth
+                variant="standard"
+                id="standard-required"
                 id="budget"
                 label="Enter rate"
                 autoFocus
@@ -192,88 +265,23 @@ const CrossAssign = () => {
               />
             </Grid>
 
-            <Grid item xs={12} md={12} lg={6}>
-              <Typography
-                as="h5"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "12px",
-                }}
-              >
-                Priority Status
-              </Typography>
-              
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Priority</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={priority}
-                  label="Priority"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={10}>High</MenuItem>
-                  <MenuItem value={20}>Medium</MenuItem>
-                  <MenuItem value={30}>Low</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-   
-            <Grid item xs={12} md={12} lg={6}>
-              <Typography
-                as="h5"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "12px",
-                }}
-              >
-                Categories
-              </Typography>
-              
-              {/* CategoriesSelect */}
-              <CategoriesSelect />
-            </Grid>
-
-            <Grid item xs={12} md={12} lg={6}>
-              <Typography
-                as="h5"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "12px",
-                }}
-              >
-                Members
-              </Typography>
-              
-              {/* MemberSelect */}
-              <MemberSelect />
-            </Grid>
-
-            <Grid item xs={12} textAlign="end">
+            <Grid item xs={12} textAlign="center">
               <Button
                 type="submit"
                 variant="contained"
                 sx={{
                   mt: 1,
                   textTransform: "capitalize",
-                  borderRadius: "8px",
+                  borderRadius: "60px",
                   fontWeight: "500",
-                  fontSize: "13px",
+                  fontSize: "15px",
                   padding: "12px 20px",
                   color: "#fff !important",
+                  width: "140px",
+                  height: "46px"
                 }}
               >
-                <AddIcon
-                  sx={{
-                    position: "relative",
-                    top: "-2px",
-                  }}
-                  className='mr-5px'
-                />{" "}
-                Create Project
+                Cross Assign
               </Button>
               <Button
                 type="submit"
@@ -282,11 +290,13 @@ const CrossAssign = () => {
                   ml: "10px",  
                   mt: 1,
                   textTransform: "capitalize",
-                  borderRadius: "8px",
-                  fontWeight: "500",
-                  fontSize: "13px",
+                  borderRadius: "60px",
+                  fontWeight: "550",
+                  fontSize: "15px",
                   padding: "12px 20px",
                   color: "#fff !important",
+                  width: "140px",
+                  height: "46px"
                 }}
               >
                 Cancel
