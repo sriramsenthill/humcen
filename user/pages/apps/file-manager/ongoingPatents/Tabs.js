@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
 import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
 
 function TabPanel(props) {
@@ -77,10 +76,10 @@ export default function BasicTabs({ no, items }) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <RecentOrders />
+              some text.
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <RecentOrders />
+              some other text.
             </TabPanel>
             <TabPanel value={value} index={2}>
               <TrackOrder />

@@ -71,3 +71,10 @@
 .timelineList .tList::after {
   background: var(--borderColor);
 }
+
+.list {
+  list-style-type: none;
+  display: flex;
+  gap: 500px;
+  /* Adjust the gap value to add spacing between the elements */
+}
