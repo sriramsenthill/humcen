@@ -7,6 +7,8 @@ const User = require('./user'); // Import the User model
 const cors = require('cors');
 
 const app = express();
+app.use(express.json());
+
 app.use(cors());
 const port = 3000;
 
@@ -74,7 +76,7 @@ app.get('/api/admin', async (req, res) => {
 // Create a new job order
 app.post("/api/job_order", (req, res) => {
   const jobOrderData = req.body;
-
+  console.log(jobOrderData);
   // Create a new JobOrder instance using the received data
   const jobOrder = new JobOrder(jobOrderData);
 

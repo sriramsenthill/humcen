@@ -38,26 +38,52 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Inbox() {
-  const [name, setName] = useState("");
   const [domain, setDomain] = useState("");
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
-  const [country, setCountry] = useState("");
+  const [title, setTitle] = useState(""); 
+  const [keyword, setKeyword] = useState(""); 
+  const [country, setCountry] = useState(""); // Initialize country state
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [] = useState("");
 
   const handleDomainChange = (value) => {
     setDomain(value);
   };
-
-  const handleSubmit = (e) => {
-    console.log("submitted form");
-    console.log("Domain: ", domain);
-    console.log("Country: ", country);
-    console.log("Title: ", title);
-
-    setIsSubmitted(true);
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value); // Update the title state on input change
   };
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value); // Update the title state on input change
+  };
+  
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const formData = {
+    domain: domain, // Use the actual domain value from the state
+    country : country,
+    job_title : title,
+    keywords : keyword
+
+
+  };
+
+  try {
+    const response = await fetch("http://localhost:3000/api/job_order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+    console.log("Form submitted successfully");
+    console.log(data); // handle the response data as needed
+    setIsSubmitted(true);
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+};
 
   const handleOk = () => {
     setIsSubmitted(false);
@@ -90,7 +116,7 @@ export default function Inbox() {
       >
         Let's get started with the basic details to create your project
       </p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Card variant="outlined">
           <DefaultSelect domain={domain} onDomainChange={handleDomainChange} />
 
@@ -122,7 +148,7 @@ export default function Inbox() {
                 textTransform: "none",
               }}
               onClick={() => {
-                setCountry("India");
+                setCountry("India"); // Update the country state on button click
               }}
             >
               <img
@@ -193,11 +219,11 @@ export default function Inbox() {
               id="name"
               label="Name"
               name="name"
-              value=""
               autoComplete="name"
               InputProps={{
                 style: { borderRadius: 8 },
               }}
+              onChange={handleTitleChange} // Provide the onChange event handler
             />
           </Card>
           <Card
@@ -247,6 +273,7 @@ export default function Inbox() {
               InputProps={{
                 style: { borderRadius: 8 },
               }}
+              onChange={handleKeywordChange} // Provide the onChange event handler
             />
           </Card>
           <Card
