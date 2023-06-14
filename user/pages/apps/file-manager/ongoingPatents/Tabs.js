@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
+import Verifications from "./Verification";
 import Invoice from "./Invoice";
 
 function TabPanel(props) {
@@ -81,7 +82,7 @@ export default function BasicTabs({ no, items }) {
               <Invoice />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              some other text.
+              <Verifications />
             </TabPanel>
             <TabPanel value={value} index={2}>
               <TrackOrder />
