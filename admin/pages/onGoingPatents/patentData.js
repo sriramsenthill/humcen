@@ -1,26 +1,23 @@
-export const jobData = [
-    {
-      jobNumber: "ABC123",
-      jobName: "Job ABC123",
-      patentType: "Utility Patent",
-      customerName: "John Doe",
-      partnerName: "Jane Smith",
-      location: "New York",
-      budget: "$10,000",
-      assigned: "John Smith",
-      status: "In Progress",
-    },
-    {
-      jobNumber: "DEF456",
-      jobName: "Job DEF456",
-      patentType: "Design Patent",
-      customerName: "Jane Doe",
-      partnerName: "John Smith",
-      location: "California",
-      budget: "$8,000",
-      assigned: "Jane Smith",
-      status: "Completed",
-    },
-    // Add more job objects as needed
-  ];
-  
+export let jobData = [];
+
+const fetchJobData = async () => {
+  try {
+    const response = await fetch("http://localhost:3000/api/job_order");
+    const data = await response.json();
+
+    // Find the specific job object you want to return
+    const specificJob = data.find((job) => job._id.job_no === 1014);
+
+    return specificJob;
+  } catch (error) {
+    console.error("Error fetching job order data:", error);
+    return null;
+  }
+};
+
+// Assign the fetched job data to the jobData array
+fetchJobData().then((specificJob) => {
+  if (specificJob) {
+    jobData = [specificJob];
+  }
+});

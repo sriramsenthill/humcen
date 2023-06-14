@@ -14,22 +14,22 @@ import AlternativeLabel from '@/components/UIElements/Stepper/AlternativeLabel';
 import Features from './Features';
 import CrossAssign from './CrossAssign';
 
-
-const PatentDeliveryStatus = ({ jobNumber }) => {
-  const job = jobData.find((job) => job.jobNumber === 'DEF456');
+const PatentDeliveryStatus = () => {
+  const job = jobData[0]; // Access the first job object in the jobData array
 
   if (!job) {
     return <div>No job found with the provided job number.</div>;
   }
 
   const {
-    jobName,
-    patentType,
-    customerName,
+    job_no,
+    start_date,
+    job_title,
+    service,
+    userName,
     partnerName,
-    location,
+    country,
     budget,
-    assigned,
     status,
   } = job;
 
@@ -41,6 +41,12 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
     });
   };
 
+  // Format the start_date
+  const formattedStartDate = new Date(start_date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 
   return (
     <>
@@ -65,12 +71,12 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={6}>
-            <h1>Figma To Adobe XD: Design Patent</h1>
+            <h1>{job_title}</h1>
           </Grid>
           <Grid item xs={12} sm={6} md={6} justifyContent="flex-end" textAlign="right">
             <h2>
               <span className={styles.label1}>Job no : </span>
-              {job.jobNumber}
+              {job._id.job_no}
             </h2>
           </Grid>
         </Grid>
@@ -101,31 +107,38 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: '10px' }}>{patentType}</td>
-                <td style={{ padding: '10px' }}>{customerName}</td>
+                <td style={{ padding: '10px' }}>{service}</td>
+                <td style={{ padding: '10px' }}>{userName}</td>
                 <td style={{ padding: '10px' }}>{partnerName}</td>
-                <td style={{ padding: '10px' }}>{location}</td>
+                <td style={{ padding: '10px' }}>{country}</td>
                 <td style={{ padding: '10px' }}>{budget}</td>
-                <td style={{ padding: '10px' }}>{assigned}</td>
+                <td style={{ padding: '10px' }}>{formattedStartDate}</td>
                 <td style={{ padding: '10px' }}>{status}</td>
               </tr>
               <tr>
                 <td style={{ padding: '10px' }}></td>
-                <td style={{ padding: '10px' }}><Link href="/">Mail</Link></td>
-                <td style={{ padding: '10px' }}><Link href="/">Mail</Link></td>
+                <td style={{ padding: '10px' }}>
+                  <Link href="/">Mail</Link>
+                </td>
+                <td style={{ padding: '10px' }}>
+                  <Link href="/">Mail</Link>
+                </td>
                 <td style={{ padding: '10px' }}></td>
                 <td style={{ padding: '10px' }}></td>
                 <td style={{ padding: '10px' }}></td>
-                <td style={{ padding: '10px' }}><Link href="#" onClick={loadComponent}>Cross-Assign</Link></td>
+                <td style={{ padding: '10px' }}>
+                  <Link href="#" onClick={loadComponent}>
+                    Cross-Assign
+                  </Link>
+                </td>
               </tr>
             </tbody>
           </table>
         </Grid>
       </Card>
-        <div>  {isComponentLoaded && <CrossAssign />} </div>
-               {/* side stepper component */}
+      <div>{isComponentLoaded && <CrossAssign />}</div>
+      {/* side stepper component */}
       <Features />
-
     </>
   );
 };

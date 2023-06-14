@@ -74,22 +74,41 @@ app.get('/api/admin', async (req, res) => {
 });
 
 // Create a new job order
-app.post("/api/job_order", (req, res) => {
-  const jobOrderData = req.body;
-  console.log(jobOrderData);
-  // Create a new JobOrder instance using the received data
-  const jobOrder = new JobOrder(jobOrderData);
+app.post("/api/job_order", async (req, res) => {
+  try {
+    const jobOrderData = req.body;
 
-  // Save the job order to the database
-  jobOrder.save()
-    .then((savedJobOrder) => {
-      res.status(200).json(savedJobOrder);
-    })
-    .catch((error) => {
-      console.error("Error creating job order:", error);
-      res.status(500).send("Error creating job order");
-    });
+    // Set default values
+    jobOrderData.service = "Patent Drafting";
+    jobOrderData.start_date = new Date();
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 7); // Add 7 days
+    jobOrderData.end_date = endDate;
+    jobOrderData.status = "In Progress";
+
+    // Fetch the latest job_no from the database
+    const latestJobOrder = await JobOrder.findOne()
+      .sort({ "_id.job_no": -1 })
+      .limit(1)
+      .exec();
+
+    // Increment the job_no and assign it to the new job
+    const newJobNo = latestJobOrder ? latestJobOrder._id.job_no + 1 : 1000;
+    jobOrderData._id = { job_no: newJobNo };
+
+    // Create a new JobOrder instance using the received data
+    const jobOrder = new JobOrder(jobOrderData);
+
+    // Save the job order to the database
+    const savedJobOrder = await jobOrder.save();
+
+    res.status(200).json(savedJobOrder);
+  } catch (error) {
+    console.error("Error creating job order:", error);
+    res.status(500).send("Error creating job order");
+  }
 });
+
 
 // Start the server
 app.listen(port, () => {

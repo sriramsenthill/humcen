@@ -3,7 +3,9 @@ const { v4: uuidv4 } = require('uuid');
 
 
 const jobOrderSchema = new mongoose.Schema({
-  _id: { type: String, default: uuidv4 },
+  _id: {
+    job_no: { type: Number }
+  },
   service: { type: String },
   country: { type: String },
   start_date: { type: Date },
