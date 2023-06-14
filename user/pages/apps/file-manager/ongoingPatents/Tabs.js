@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
+import Invoice from "./Invoice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,6 +62,7 @@ export default function BasicTabs({ no, items }) {
             borderRadius: "10px",
             p: "25px",
             mb: "15px",
+            width: "100%",
           }}
         >
           <Box sx={{ width: "100%" }}>
@@ -76,7 +78,7 @@ export default function BasicTabs({ no, items }) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              some text.
+              <Invoice />
             </TabPanel>
             <TabPanel value={value} index={1}>
               some other text.
