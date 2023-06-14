@@ -39,51 +39,49 @@ const ColorButton = styled(Button)(({ theme }) => ({
 
 export default function Inbox() {
   const [domain, setDomain] = useState("");
-  const [title, setTitle] = useState(""); 
-  const [keyword, setKeyword] = useState(""); 
-  const [country, setCountry] = useState(""); // Initialize country state
+  const [title, setTitle] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [country, setCountry] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleDomainChange = (value) => {
     setDomain(value);
   };
   const handleKeywordChange = (event) => {
-    setKeyword(event.target.value); // Update the title state on input change
+    setKeyword(event.target.value);
   };
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value); // Update the title state on input change
   };
-  
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const formData = {
-    domain: domain, // Use the actual domain value from the state
-    country : country,
-    job_title : title,
-    keywords : keyword
+    const formData = {
+      domain: domain, // Use the actual domain value from the state
+      country: country,
+      job_title: title,
+      keywords: keyword,
+    };
 
+    try {
+      const response = await fetch("http://localhost:3000/api/job_order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
+      const data = await response.json();
+      console.log("Form submitted successfully");
+      console.log(data); // handle the response data as needed
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
-
-  try {
-    const response = await fetch("http://localhost:3000/api/job_order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-    console.log("Form submitted successfully");
-    console.log(data); // handle the response data as needed
-    setIsSubmitted(true);
-  } catch (error) {
-    console.error("Error submitting form:", error);
-  }
-};
 
   const handleOk = () => {
     setIsSubmitted(false);
@@ -140,7 +138,7 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
+                background: country === "India" ? "#68BDFD" : "#F8FCFF",
                 color: "white",
                 width: "15%",
                 marginRight: "2%",
@@ -159,7 +157,7 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
+                background: country === "United States" ? "#68BDFD" : "#F8FCFF",
                 color: "white",
                 width: "15%",
                 marginRight: "2%",
@@ -178,7 +176,7 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
+                background: country === "Germany" ? "#68BDFD" : "#F8FCFF",
                 color: "white",
                 width: "15%",
                 marginRight: "2%",
