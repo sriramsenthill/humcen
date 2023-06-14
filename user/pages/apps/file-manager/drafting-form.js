@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import style from "@/styles/PageTitle.module.css";
@@ -21,6 +21,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import FileBase64 from "react-file-base64";
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -40,9 +41,17 @@ const ColorButton = styled(Button)(({ theme }) => ({
 export default function Inbox() {
   const [domain, setDomain] = useState("");
   const [title, setTitle] = useState("");
+  const [time, setTime] = useState("");
   const [keyword, setKeyword] = useState("");
   const [country, setCountry] = useState("");
+  const [budget, setBudget] = useState("");
+  const [files, setFiles] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const getFiles = (files) => {
+    setFiles(files);
+  };
 
   const handleDomainChange = (value) => {
     setDomain(value);
@@ -63,6 +72,9 @@ export default function Inbox() {
       country: country,
       job_title: title,
       keywords: keyword,
+      budget: budget,
+      time_of_delivery: time,
+      service_specific_files: files
     };
 
     try {
@@ -242,8 +254,10 @@ export default function Inbox() {
             >
               Upload your invention details
             </Typography>
-            <UploadMultipleFiles />
-          </Card>
+            <FileBase64
+      multiple={true}
+      onDone={getFiles}
+    />                  </Card>
           <Card
             sx={{
               boxShadow: "none",
@@ -301,6 +315,9 @@ export default function Inbox() {
                 height: "40px",
                 textTransform: "none",
               }}
+              onClick={() => {
+                setBudget("250-500$");
+              }}
             >
               250-500$
             </Button>
@@ -312,6 +329,9 @@ export default function Inbox() {
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("500-1000$");
               }}
             >
               500-1000$
@@ -325,6 +345,9 @@ export default function Inbox() {
                 height: "40px",
                 textTransform: "none",
               }}
+              onClick={() => {
+                setBudget("1000-1500$");
+              }}
             >
               1000-1500$
             </Button>
@@ -336,6 +359,9 @@ export default function Inbox() {
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("1500-2000$");
               }}
             >
               1500-2000$
@@ -368,6 +394,9 @@ export default function Inbox() {
                 height: "40px",
                 textTransform: "none",
               }}
+              onClick={() => {
+                setTime("1-2 days");
+              }}
             >
               1-2 days
             </Button>
@@ -380,6 +409,9 @@ export default function Inbox() {
                 height: "40px",
                 textTransform: "none",
               }}
+              onClick={() => {
+                setTime("3-5 days");
+              }}
             >
               3-5 days
             </Button>
@@ -391,6 +423,9 @@ export default function Inbox() {
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setTime("5-7 days");
               }}
             >
               5-7 days
