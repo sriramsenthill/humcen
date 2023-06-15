@@ -8,11 +8,10 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { jobData } from "./patentData";
+import { jobData } from "../ongoingPatents/patentData";
 import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
 import AlternativeLabel from "@/components/UIElements/Stepper/AlternativeLabel";
-import Features from "./Features";
-import BasicTabs from "./Tabs";
+import CustomizedAccordions from "./PaymentAccordion";
 
 const PatentDeliveryStatus = ({ jobNumber }) => {
   const job = jobData.find((job) => job.jobNumber === "DEF456");
@@ -117,19 +116,12 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
         </Grid>
       </Card>
       {/* side stepper component */}
-      <Features />
-      <Card
-        sx={{
-          boxShadow: "none",
-          borderRadius: "10px",
-          p: "25px",
-          mb: "15px",
-        }}
-      >
-        <Grid container spacing={2}>
-          <BasicTabs />
-        </Grid>
-      </Card>
+      <div>
+        <div className="col">
+          <CustomizedAccordions />
+        </div>
+        <div className="col-3"></div>
+      </div>
     </>
   );
 };

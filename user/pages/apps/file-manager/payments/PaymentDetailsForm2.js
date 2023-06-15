@@ -12,8 +12,25 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
+import { styled } from "@mui/system";
 
-export default function SignUpForm() {
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: "white",
+  width: "80%",
+  height: "50px",
+  borderRadius: "40px",
+  marginTop: "20px",
+  marginBottom: "30px",
+  background: "#00ACF6",
+  "&:hover": {
+    background: "#00ACF6",
+  },
+  textTransform: "none",
+  fontSize: "14px",
+  fontWeight: "400",
+}));
+
+export default function SignUpForm2() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -29,21 +46,8 @@ export default function SignUpForm() {
         sx={{
           boxShadow: "none",
           borderRadius: "10px",
-          p: "25px",
-          mb: "15px",
         }}
       >
-        <Typography
-          as="h3"
-          sx={{
-            fontSize: 18,
-            fontWeight: 500,
-            mb: "10px",
-          }}
-        >
-          Sign Up
-        </Typography>
-
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -53,14 +57,6 @@ export default function SignUpForm() {
               alignItems: "center",
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-
-            <Typography component="h1" variant="h5">
-              Sign up
-            </Typography>
-
             <Box
               component="form"
               noValidate
@@ -68,14 +64,14 @@ export default function SignUpForm() {
               sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
-                    name="firstName"
+                    name="street"
                     required
                     fullWidth
-                    id="firstName"
-                    label="First Name"
+                    id="street"
+                    label="Street"
                     autoFocus
                   />
                 </Grid>
@@ -84,10 +80,19 @@ export default function SignUpForm() {
                   <TextField
                     required
                     fullWidth
-                    id="lastName"
-                    label="Last Name"
-                    name="lastName"
-                    autoComplete="family-name"
+                    id="town"
+                    label="Town"
+                    name="town"
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="postcode"
+                    label="Post Code"
+                    name="postcode"
                   />
                 </Grid>
 
@@ -95,44 +100,15 @@ export default function SignUpForm() {
                   <TextField
                     required
                     fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
+                    name="country"
+                    label="Country"
+                    id="country"
                   />
                 </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="new-password"
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
-                    }
-                    label="I want to receive inspiration, marketing promotions and updates via email."
-                  />
+                <Grid item xs={12} sm={6}>
+                  <ColorButton>Save</ColorButton>
                 </Grid>
               </Grid>
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2, color: "#fff !important" }}
-                size="large"
-              >
-                Sign Up
-              </Button>
             </Box>
           </Box>
         </Container>
