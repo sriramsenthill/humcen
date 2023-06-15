@@ -48,46 +48,48 @@ export default function PaymentDetails() {
           boxShadow: "none",
           borderRadius: "10px",
           mb: "15px",
+          display: "flex",
+          flexDirection: "row",
         }}
       >
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            display="inline-flex"
+            flexDirection="row"
           >
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <FormControl>
-                    <RadioGroup
-                      row
-                      aria-labelledby="demo-row-radio-buttons-group-label"
-                      name="row-radio-buttons-group"
-                    >
-                      <FormControlLabel
-                        value="Natural Person"
-                        control={<Radio color="success" />}
-                        label="Natural Person"
-                      />
-                      <FormControlLabel
-                        value="Entity"
-                        control={<Radio color="success" />}
-                        label="Entity"
-                      />
-                    </RadioGroup>
-                  </FormControl>
-                </Grid>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FormControl>
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                  >
+                    <FormControlLabel
+                      value="Natural Person"
+                      control={<Radio color="success" />}
+                      label="Natural Person"
+                      sx={{
+                        marginRight: "40px",
+                        fontSize: "24",
+                      }}
+                    />
+                    <FormControlLabel
+                      value="Entity"
+                      control={<Radio color="success" />}
+                      label="Entity"
+                    />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
-            </Box>
+              <Grid item xs={12} sm={6}>
+                <ColorButton>Next</ColorButton>
+              </Grid>
+            </Grid>
           </Box>
         </Container>
       </Card>

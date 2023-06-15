@@ -13,7 +13,7 @@ const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   border: "none",
-  width: "60%",
+  width: "100%",
   borderRadius: "24px",
   p: "12px",
   marginBottom: "12px",
@@ -57,6 +57,7 @@ export default function CustomizedAccordions() {
               fontSize: "24px",
               lineHeight: "36px",
               color: expanded === "panel1" ? "#333333" : "#4F4F4F",
+              margin: "10px",
             }}
           >
             Applicant Details
@@ -79,6 +80,7 @@ export default function CustomizedAccordions() {
               fontSize: "24px",
               lineHeight: "36px",
               color: expanded === "panel2" ? "#333333" : "#4F4F4F",
+              margin: "10px",
             }}
           >
             Personal Information
@@ -101,6 +103,7 @@ export default function CustomizedAccordions() {
               fontSize: "24px",
               lineHeight: "36px",
               color: expanded === "panel3" ? "#333333" : "#4F4F4F",
+              margin: "10px",
             }}
           >
             Address for Communications

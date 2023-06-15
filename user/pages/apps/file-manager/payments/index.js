@@ -12,6 +12,7 @@ import { jobData } from "../ongoingPatents/patentData";
 import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
 import AlternativeLabel from "@/components/UIElements/Stepper/AlternativeLabel";
 import CustomizedAccordions from "./PaymentAccordion";
+import Checkout from "./Checkout";
 
 const PatentDeliveryStatus = ({ jobNumber }) => {
   const job = jobData.find((job) => job.jobNumber === "DEF456");
@@ -116,12 +117,14 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
         </Grid>
       </Card>
       {/* side stepper component */}
-      <div>
-        <div className="col">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={8} md={8} style={{ flexBasis: "60%" }}>
           <CustomizedAccordions />
-        </div>
-        <div className="col-3"></div>
-      </div>
+        </Grid>
+        <Grid item xs={12} sm={6} md={6} style={{ flexBasis: "40%" }}>
+          <Checkout />
+        </Grid>
+      </Grid>
     </>
   );
 };
