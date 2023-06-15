@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/Patents.module.css';
 import style from '@/styles/PageTitle.module.css';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { jobData } from './patentData';
-import TrackOrder from '@/components/eCommerce/OrderDetails/TrackOrder';
-import AlternativeLabel from '@/components/UIElements/Stepper/AlternativeLabel';
-import Features from './Features';
 import CrossAssign from './CrossAssign';
+import Features from './Features';
 
 const PatentDeliveryStatus = () => {
-  const job = jobData[0]; // Access the first job object in the jobData array
+  const [job, setJob] = useState(null); // Initialize job state as null
+  const [isComponentLoaded, setComponentLoaded] = useState(false);
+
+  useEffect(() => {
+    setJob(jobData[0]); // Set the first job object from jobData as the state
+
+    // Clean up the effect by returning a function
+    return () => {
+      setJob(null); // Reset the job state when the component is unmounted
+    };
+  }, []);
 
   if (!job) {
     return <div>No job found with the provided job number.</div>;
@@ -32,8 +39,6 @@ const PatentDeliveryStatus = () => {
     budget,
     status,
   } = job;
-
-  const [isComponentLoaded, setComponentLoaded] = useState(false);
 
   const loadComponent = () => {
     import('./CrossAssign').then(() => {

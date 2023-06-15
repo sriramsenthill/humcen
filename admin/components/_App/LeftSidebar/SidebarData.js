@@ -37,6 +37,13 @@ export const SidebarData = [
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
+  }, 
+   {
+    title: "On Going Patents",
+    path: "/onGoingPatents/#",
+    icon: <LayersIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Patent History",
