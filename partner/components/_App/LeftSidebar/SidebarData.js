@@ -39,6 +39,13 @@ export const SidebarData = [
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
+    title: "Activity Timeline",
+    path: "/timeline",
+    icon: <CopyAllIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
+  },
+  {
     title: "My Income",
     path: "/contact-list/",
     icon: <PostAddIcon />,
