@@ -12,9 +12,9 @@ import { styled } from "@mui/system"; // Import styled from "@mui/system" instea
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
-  width: "18%",
+  width: "80%",
   height: "60px",
-  borderRadius: "100px",
+  borderRadius: "30px",
   marginBottom: "30px",
   background: "linear-gradient(270deg, #02E1B9 0%, #00ACF6 100%)",
   "&:hover": {
@@ -61,7 +61,11 @@ export default function Inbox() {
           professionals will help you navigate the complex world of patents and
           provide tailored solutions to safeguard your ideas and inventions.
         </p>
-        <ColorButton>Schedule A Consultation</ColorButton>
+        <Link
+          href="/apps/file-manager/consultationform"
+        >
+          <ColorButton>Schedule A Consultation</ColorButton>
+        </Link>
       </div>
     </>
   );
