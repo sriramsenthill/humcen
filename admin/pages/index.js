@@ -22,7 +22,7 @@ export default function eCommerce() {
     <>
       {/* Page title */}
       <div className={styles.pageTitle}>
-      <h1>Hey Bibin Mathew!</h1>
+      <h1>Hey Bibin Admin!</h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>

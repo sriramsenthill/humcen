@@ -12,7 +12,7 @@ import { styled } from "@mui/system"; // Import styled from "@mui/system" instea
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
-  width: "20%",
+  width: "130%",
   height: "60px",
   borderRadius: "100px",
   marginBottom: "30px",
@@ -62,7 +62,11 @@ export default function Inbox() {
           you turn your ideas into profitable assets with our reliable patent
           filing service.
         </p>
-        <ColorButton>Apply Now</ColorButton>
+        <Link href="/apps/file-manager/filing-form/">
+        
+          <ColorButton>Apply Now</ColorButton>
+
+        </Link>
       </div>
     </>
   );

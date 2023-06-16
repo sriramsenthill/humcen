@@ -21,7 +21,7 @@ export default function eCommerce() {
     <>
       {/* Page title */}
       <div className={styles.pageTitle}>
-      <h1>Welcome Back, Daniel!</h1>
+      <h1>Welcome Back, Partner!</h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>

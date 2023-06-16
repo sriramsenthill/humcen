@@ -6,6 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
+import CompletedOrders from "@/components/Dashboard/eCommerce/CompletedOrders";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -78,7 +79,7 @@ export default function BasicTabs({ no, items }) {
               <RecentOrders />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <RecentOrders />
+              <CompletedOrders />
             </TabPanel>
           </Box>
         </Card>
