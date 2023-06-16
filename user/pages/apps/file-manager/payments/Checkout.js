@@ -47,7 +47,9 @@ export default function Checkout() {
           borderRadius: "10px",
           mb: "15px",
           display: "flex",
+          p: "12px 12px",
           flexDirection: "column",
+          background: "#F3F4F5",
         }}
       >
         <Typography
@@ -66,6 +68,7 @@ export default function Checkout() {
           component={Paper}
           sx={{
             boxShadow: "none",
+            background: "#F3F4F5",
           }}
         >
           <Table aria-label="simple table" className="dark-table">
@@ -84,7 +87,7 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  Sub Total :
+                  Service Fee
                 </TableCell>
 
                 <TableCell
@@ -96,7 +99,7 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  $760.00
+                  $1500
                 </TableCell>
               </TableRow>
 
@@ -111,7 +114,7 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  Discount :
+                  Discount 10%
                 </TableCell>
 
                 <TableCell
@@ -123,7 +126,7 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  $60.00
+                  - $150
                 </TableCell>
               </TableRow>
 
@@ -138,7 +141,7 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  Shipping Charge :
+                  Administrative Fee
                 </TableCell>
 
                 <TableCell
@@ -150,9 +153,13 @@ export default function Checkout() {
                     fontWeight: "500",
                   }}
                 >
-                  $50.00
+                  $200
                 </TableCell>
               </TableRow>
+
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              ></TableRow>
 
               <TableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -160,36 +167,9 @@ export default function Checkout() {
                 <TableCell
                   sx={{
                     borderBottom: "1px solid #F7FAFF",
-                    fontSize: "12px",
+                    fontSize: "18px",
                     padding: "8px 10px",
-                    fontWeight: "500",
-                  }}
-                >
-                  Estimated Tax :
-                </TableCell>
-
-                <TableCell
-                  align="right"
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "12px",
-                    padding: "8px 10px",
-                    fontWeight: "500",
-                  }}
-                >
-                  $00.00
-                </TableCell>
-              </TableRow>
-
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell
-                  sx={{
-                    borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13px",
-                    padding: "8px 10px",
-                    fontWeight: "500",
+                    fontWeight: "800",
                     color: "#000",
                   }}
                 >
@@ -200,13 +180,20 @@ export default function Checkout() {
                   align="right"
                   sx={{
                     borderBottom: "1px solid #F7FAFF",
-                    fontSize: "13px",
+                    fontSize: "18px",
                     padding: "8px 10px",
-                    fontWeight: "500",
+                    fontWeight: "800",
                     color: "#000",
                   }}
                 >
-                  $750.00
+                  $1550
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center" colSpan={2}>
+                  <ColorButton sx={{ background: "#00ACF6", width: "100%" }}>
+                    Checkout
+                  </ColorButton>
                 </TableCell>
               </TableRow>
             </TableBody>
