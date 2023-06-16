@@ -35,10 +35,15 @@ const ColorButton = styled(Button)(({ theme }) => ({
   fontWeight: "400",
 }));
 
-export default function PaymentDetails() {
+export default function PaymentDetails({ onChangeUpdate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+  };
+
+  const handleButtonClick = (event) => {
+    const newLabel = "panel2";
+    onChangeUpdate(newLabel);
   };
 
   return (
@@ -87,7 +92,7 @@ export default function PaymentDetails() {
                 </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <ColorButton>Next</ColorButton>
+                <ColorButton onClick={handleButtonClick}>Next</ColorButton>
               </Grid>
             </Grid>
           </Box>

@@ -45,8 +45,10 @@ export default function Inbox() {
   const [name, setName] = useState("");
   const [domain, setDomain] = useState("");
   const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [budget, setBudget] = useState("");
+  const [time, setTime] = useState("");
   const [country, setCountry] = useState("");
+  const [fcountry, setFCountry] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [] = useState("");
 
@@ -118,8 +120,8 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: country === "India" ? "#68BDFD" : "#F8FCFF",
+                color: country === "India" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -133,8 +135,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: country === "United States" ? "#68BDFD" : "#F8FCFF",
+                color: country === "United States" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -148,8 +150,8 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: country === "Germany" ? "#68BDFD" : "#F8FCFF",
+                color: country === "Germany" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
@@ -308,15 +310,15 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: fcountry === "India" ? "#68BDFD" : "#F8FCFF",
+                color: fcountry === "India" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
               }}
               onClick={() => {
-                setCountry("India");
+                setFCountry("India");
               }}
             >
               <img
@@ -327,15 +329,16 @@ export default function Inbox() {
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background:
+                  fcountry === "United States" ? "#68BDFD" : "#F8FCFF",
+                color: fcountry === "United States" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
               }}
               onClick={() => {
-                setCountry("United States");
+                setFCountry("United States");
               }}
             >
               <img
@@ -365,48 +368,60 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "250-500$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "250-500$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("250-500$");
               }}
             >
               250-500$
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "500-1000$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "500-1000$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("500-1000$");
               }}
             >
               500-1000$
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "1000-1500$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "1000-1500$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("1000-1500$");
               }}
             >
               1000-1500$
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: budget === "1500-2000$" ? "#68BDFD" : "#F8FCFF",
+                color: budget === "1500-2000$" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setBudget("1500-2000$");
               }}
             >
               1500-2000$
@@ -432,36 +447,45 @@ export default function Inbox() {
             </Typography>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "1-2 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "1-2 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setTime("1-2 days");
               }}
             >
               1-2 days
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "3-5 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "3-5 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setTime("3-5 days");
               }}
             >
               3-5 days
             </Button>
             <Button
               style={{
-                background: "#68BDFD",
-                color: "white",
+                background: time === "5-7 days" ? "#68BDFD" : "#F8FCFF",
+                color: time === "5-7 days" ? "white" : "#BFBFBF",
                 width: "15%",
                 marginRight: "2%",
                 height: "40px",
                 textTransform: "none",
+              }}
+              onClick={() => {
+                setTime("5-7 days");
               }}
             >
               5-7 days

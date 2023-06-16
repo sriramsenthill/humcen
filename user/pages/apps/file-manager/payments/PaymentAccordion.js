@@ -64,7 +64,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <PaymentDetails />
+          <PaymentDetails onChangeUpdate={handleChange} />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -87,7 +87,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <SignUpForm1 />
+          <SignUpForm1 onChangeUpdate={handleChange} />
         </AccordionDetails>
       </Accordion>
       <Accordion
@@ -110,7 +110,7 @@ export default function CustomizedAccordions() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <SignUpForm2 />
+          <SignUpForm2 onChangeUpdate={handleChange} />
         </AccordionDetails>
       </Accordion>
     </div>

@@ -30,10 +30,15 @@ const ColorButton = styled(Button)(({ theme }) => ({
   fontWeight: "400",
 }));
 
-export default function SignUpForm1() {
+export default function SignUpForm1({ onChangeUpdate }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+  };
+
+  const handleButtonClick = (event) => {
+    const newLabel = "panel3";
+    onChangeUpdate(newLabel);
   };
 
   return (
@@ -113,7 +118,7 @@ export default function SignUpForm1() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <ColorButton>Submit</ColorButton>
+                  <ColorButton onClick={handleButtonClick}>Submit</ColorButton>
                 </Grid>
               </Grid>
             </Box>
