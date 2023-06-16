@@ -1,155 +1,207 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import { styled } from "@mui/system";
+
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+
+const ColorButton = styled(Button)(({ theme }) => ({
+  color: "white",
+  width: "80%",
+  height: "50px",
+  borderRadius: "40px",
+  marginTop: "20px",
+  marginBottom: "30px",
+  background: "#00ACF6",
+  "&:hover": {
+    background: "#00ACF6",
+  },
+  textTransform: "none",
+  fontSize: "14px",
+  fontWeight: "400",
+}));
 
 export default function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     });
   };
 
   return (
     <>
-      <Box>
-        <Box
+      <Card
+        sx={{
+          boxShadow: "none",
+          borderRadius: "10px",
+          mb: "15px",
+          display: "flex",
+          p: "12px 12px",
+          flexDirection: "column",
+          background: "white",
+        }}
+      >
+        <Typography
           sx={{
-            borderBottom: '1px solid #eee',
-            paddingBottom: '10px'
+            fontFamily: "Inter",
+            fontStyle: "normal",
+            fontWeight: "400",
+            fontSize: "24px",
+            lineHeight: "140%",
           }}
-          className="for-dark-bottom-border"
         >
-          <Typography component="h1" fontWeight="500" fontSize="18px">
-            Profile
-          </Typography>
+          Summary
+        </Typography>
+        <br />
+        <TableContainer
+          component={Paper}
+          sx={{
+            boxShadow: "none",
+            background: "white",
+          }}
+        >
+          <Table aria-label="simple table" className="dark-table">
+            <TableHead></TableHead>
 
-          <Typography fontSize="13px">
-            Update your photo and personal details here.
-          </Typography>
-        </Box>
-
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <Typography
-                component="label"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "10px",
-                  display: "block",
-                }}
+            <TableBody>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                First Name
-              </Typography>
-              <TextField
-                autoComplete="given-name"
-                name="firstName"
-                fullWidth
-                id="firstName" 
-                autoFocus
-              />
-            </Grid>
+                <TableCell
+                  align="left"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Service Fee
+                </TableCell>
 
-            <Grid item xs={12} sm={6}>
-              <Typography
-                component="label"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "10px",
-                  display: "block",
-                }}
+                <TableCell
+                  align="right"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  $1500
+                </TableCell>
+              </TableRow>
+
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                Last Name
-              </Typography>
+                <TableCell
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Discount 10%
+                </TableCell>
 
-              <TextField
-                fullWidth
-                id="lastName"
-                name="lastName"
-                autoComplete="family-name"
-              />
-            </Grid>
+                <TableCell
+                  align="right"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  - $150
+                </TableCell>
+              </TableRow>
 
-            <Grid item xs={12}>
-              <Typography
-                component="label"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "10px",
-                  display: "block",
-                }}
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                Email Address
-              </Typography>
+                <TableCell
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  Administrative Fee
+                </TableCell>
 
-              <TextField
-                fullWidth
-                id="email"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
+                <TableCell
+                  align="right"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "12px",
+                    padding: "8px 10px",
+                    fontWeight: "500",
+                  }}
+                >
+                  $200
+                </TableCell>
+              </TableRow>
 
-            <Grid item xs={12}>
-              <Typography
-                component="label"
-                sx={{
-                  fontWeight: "500",
-                  fontSize: "14px",
-                  mb: "10px",
-                  display: "block",
-                }}
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              ></TableRow>
+
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                Upload Image
-              </Typography>
-              
-              <TextField
-                required
-                fullWidth
-                name="file"
-                type="file"
-                id="file"
-                autoComplete="file"
-              />
+                <TableCell
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "18px",
+                    padding: "8px 10px",
+                    fontWeight: "800",
+                    color: "#000",
+                  }}
+                >
+                  Total (USD) :
+                </TableCell>
 
-              <Box mt={1}>
-                <img 
-                  src="/images/user1.png" 
-                  alt="profile" 
-                  className="borRadius100"
-                  width="50px"
-                  height="50px"
-                />
-              </Box>
-            </Grid>
-          </Grid>
-
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              mt: 2,
-              textTransform: "capitalize",
-              borderRadius: "8px",
-              fontWeight: "500",
-              fontSize: "14px",
-              padding: "12px 30px",
-              color: "#fff !important"
-            }}
-          >
-            Update
-          </Button>
-        </Box>
-      </Box> 
-    </> 
+                <TableCell
+                  align="right"
+                  sx={{
+                    borderBottom: "1px solid #F7FAFF",
+                    fontSize: "18px",
+                    padding: "8px 10px",
+                    fontWeight: "800",
+                    color: "#000",
+                  }}
+                >
+                  $1550
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center" colSpan={2}>
+                  <ColorButton sx={{ background: "#00ACF6", width: "100%" }}>
+                    Checkout
+                  </ColorButton>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Card>
+    </>
   );
 }

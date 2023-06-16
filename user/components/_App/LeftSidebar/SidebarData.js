@@ -46,33 +46,10 @@ export const SidebarData = [
   },
   {
     title: "Settings",
-    path: "/settings/account/",
+    path: "/settings/",
     icon: <SettingsIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
-
-    subNav: [
-      {
-        title: "Account",
-        path: "/settings/account/",
-      },
-      {
-        title: "Security",
-        path: "/settings/security/",
-      },
-      {
-        title: "Privacy Policy",
-        path: "/settings/privacy-policy/",
-      },
-      {
-        title: "Terms & Conditions",
-        path: "/pages/terms-conditions/",
-      },
-      {
-        title: "Logout",
-        path: "/authentication/logout/",
-      },
-    ],
   },
   {
     title: "Help & Support",
