@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Box,
   Typography,
@@ -173,7 +174,12 @@ function RecentOrders() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow key={row._id.job_no}>
-                    <TableCell>{row._id.job_no}</TableCell>
+                    <TableCell>
+                    <Link href={`onGoingPatents/${row._id.job_no}`} passHref>
+                      {row._id.job_no}
+                    </Link>
+
+                    </TableCell>
                     <TableCell>{row.service}</TableCell>
                     <TableCell>{row.country}</TableCell>
                     <TableCell>{formatDate(row.start_date)}</TableCell>
