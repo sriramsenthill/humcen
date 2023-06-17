@@ -7,7 +7,7 @@ import LeftSidebar from "@/components/Apps/FileManager/LeftSidebar";
 import MyDrive from "@/components/Apps/FileManager/MyDrive";
 import RecentFiles from "@/components/Apps/FileManager/RecentFiles";
 import Files from "@/components/Apps/FileManager/Files";
-import Card from "@/components/UIElements/Cards/Media";
+import Card from "./Cards";
 
 const serviceList = [
   {

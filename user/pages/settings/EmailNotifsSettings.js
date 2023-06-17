@@ -83,14 +83,7 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Profile() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const [editMode, setEditMode] = React.useState(false);
 
   return (
     <>
@@ -149,7 +142,13 @@ export default function Profile() {
                           position: "relative",
                           float: "right",
                         }}
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        control={
+                          <IOSSwitch
+                            sx={{ m: 1 }}
+                            disabled={!editMode}
+                            defaultChecked
+                          />
+                        }
                       />
                     </TableCell>
                   </TableRow>
@@ -185,7 +184,13 @@ export default function Profile() {
                           position: "relative",
                           float: "right",
                         }}
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        control={
+                          <IOSSwitch
+                            sx={{ m: 1 }}
+                            disabled={!editMode}
+                            defaultChecked
+                          />
+                        }
                       />
                     </TableCell>
                   </TableRow>
@@ -221,7 +226,13 @@ export default function Profile() {
                           position: "relative",
                           float: "right",
                         }}
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        control={
+                          <IOSSwitch
+                            sx={{ m: 1 }}
+                            disabled={!editMode}
+                            defaultChecked
+                          />
+                        }
                       />
                     </TableCell>
                   </TableRow>
@@ -256,7 +267,13 @@ export default function Profile() {
                           position: "relative",
                           float: "right",
                         }}
-                        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+                        control={
+                          <IOSSwitch
+                            sx={{ m: 1 }}
+                            disabled={!editMode}
+                            defaultChecked
+                          />
+                        }
                       />
                     </TableCell>
                   </TableRow>
@@ -280,6 +297,10 @@ export default function Profile() {
                 width: "56px",
                 height: "56px",
                 backgroundColor: "#ECFCFF",
+              }}
+              onClick={() => {
+                if (editMode) setEditMode(false);
+                else setEditMode(true);
               }}
             >
               <EditIcon style={{ color: "#79E0F3" }} />

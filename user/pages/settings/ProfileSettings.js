@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
@@ -38,6 +39,8 @@ export default function Profile() {
       password: data.get("password"),
     });
   };
+
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <>
@@ -90,7 +93,17 @@ export default function Profile() {
                         color: "#828282",
                       }}
                     >
-                      Bibin
+                      {editMode ? (
+                        <TextField
+                          required
+                          fullWidth
+                          id="name"
+                          label="Name"
+                          name="name"
+                        />
+                      ) : (
+                        <Typography>Bibin</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
 
@@ -119,7 +132,17 @@ export default function Profile() {
                         color: "#828282",
                       }}
                     >
-                      Matthew
+                      {editMode ? (
+                        <TextField
+                          required
+                          fullWidth
+                          id="surname"
+                          label="Surname"
+                          name="surname"
+                        />
+                      ) : (
+                        <Typography>Matthew</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
 
@@ -148,7 +171,19 @@ export default function Profile() {
                         color: "#828282",
                       }}
                     >
-                      trademark.humcenglobal@gmail.com
+                      {editMode ? (
+                        <TextField
+                          required
+                          fullWidth
+                          id="email"
+                          label="Email"
+                          name="email"
+                        />
+                      ) : (
+                        <Typography>
+                          trademark.humcenglobal@gmail.com
+                        </Typography>
+                      )}
                     </TableCell>
                   </TableRow>
 
@@ -181,7 +216,17 @@ export default function Profile() {
                         color: "#828282",
                       }}
                     >
-                      +91 81242-81241
+                      {editMode ? (
+                        <TextField
+                          required
+                          fullWidth
+                          id="phno"
+                          label="Phone"
+                          name="phno"
+                        />
+                      ) : (
+                        <Typography>+91 81242-81241</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -204,6 +249,13 @@ export default function Profile() {
                 width: "56px",
                 height: "56px",
                 backgroundColor: "#ECFCFF",
+              }}
+              onClick={() => {
+                if (editMode === true) {
+                  setEditMode(false);
+                } else {
+                  setEditMode(true);
+                }
               }}
             >
               <EditIcon style={{ color: "#79E0F3" }} />

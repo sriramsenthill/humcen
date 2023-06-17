@@ -39,6 +39,8 @@ export default function Profile() {
     });
   };
 
+  const [editMode, setEditMode] = React.useState(false);
+
   return (
     <>
       <Card
@@ -90,7 +92,18 @@ export default function Profile() {
                         color: "#828282",
                       }}
                     >
-                      ********
+                      {editMode ? (
+                        <TextField
+                          required
+                          fullWidth
+                          id="pwd"
+                          label="Password"
+                          name="pwd"
+                          type="password"
+                        />
+                      ) : (
+                        <Typography>********</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -113,6 +126,10 @@ export default function Profile() {
                 width: "56px",
                 height: "56px",
                 backgroundColor: "#ECFCFF",
+              }}
+              onClick={() => {
+                if (editMode) setEditMode(false);
+                else setEditMode(true);
               }}
             >
               <EditIcon style={{ color: "#79E0F3" }} />
