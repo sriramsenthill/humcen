@@ -3,8 +3,13 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import RoundedButtons from "@/components/UIElements/Buttons/RoundedButtons";
 import Ratings from "./Ratings";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Impressions = () => {
+  const theme = useTheme("");
+  const isScreenSmall = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <>
       <Box
@@ -17,10 +22,11 @@ const Impressions = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          flexDirection: isScreenSmall ? "column" : "row",
         }}
         className="for-dark-impressions"
       >
-        <div>
+        <Box sx={{ width: isScreenSmall ? "100%" : "40%" }}>
           <Typography
             color="black"
             fontSize="13px"
@@ -51,7 +57,7 @@ const Impressions = () => {
           >
             02 Days{" "}
           </Typography>
-          <div style={{ width: "130%", marginTop: "20px" }}>
+          <div style={{ width: "100%", marginTop: "20px" }}>
             <table style={{ width: "100%" }}>
               <thead>
                 <tr style={{ color: "#828282" }}>
@@ -82,10 +88,15 @@ const Impressions = () => {
           <div style={{ marginTop: "10px" }}>
             <RoundedButtons />
           </div>
-        </div>
-        <div style={{ width: "50%" }}>
+        </Box>
+        <Box
+          sx={{
+            width: isScreenSmall ? "100%" : "50%",
+            marginTop: isScreenSmall ? "30px" : "none",
+          }}
+        >
           <Ratings />
-        </div>
+        </Box>
       </Box>
     </>
   );
