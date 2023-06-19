@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import Grid from "@mui/material/Grid";
-import Link from 'next/link';
-import styles from '@/styles/PageTitle.module.css'
+import Link from "next/link";
+import styles from "@/styles/PageTitle.module.css";
 import Features from "@/components/Dashboard/eCommerce/Features";
 import Ratings from "@/components/Dashboard/eCommerce/Ratings";
 import AudienceOverview from "@/components/Dashboard/eCommerce/AudienceOverview";
@@ -22,21 +22,29 @@ export default function eCommerce() {
     <>
       {/* Page title */}
       <div className={styles.pageTitle}>
-      <h1>Hey Bibin Admin!</h1>
+        <h1
+          style={{
+            fontStyle: "normal",
+            fontWeight: "500",
+            fontSize: "24px",
+            lineHeight: "29px",
+          }}
+        >
+          Hey Bibin Matthew!
+        </h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>
           </li>
-          <li>
-            home
-          </li>
+          <li>home</li>
         </ul>
       </div>
-      <p style={{ textAlign: 'left' }}>We have some quick updates for you today!</p>
+      <p style={{ textAlign: "left", fontSize: "18" }}>
+        We have some quick updates for you today!
+      </p>
 
-  
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
-        <Grid item xs={12} md={12} lg={12} xl={8}>
+        <Grid item xs={12} md={12} lg={12}>
           <Grid container columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
             <Grid container spacing={1}>
               <Grid item xs={12} sm={6} md={3}>
@@ -50,13 +58,15 @@ export default function eCommerce() {
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
                 <Impressions />
-             </Grid>
-            </Grid>    
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid>
-              <BasicTabs />
-            </Grid> 
-        </Grid> 
+        </Grid>
+        <Grid>
+          <Grid item xs={12} md={12} lg={12} xl={6}>
+            <BasicTabs />
+          </Grid>
+        </Grid>
       </Grid>
     </>
   );

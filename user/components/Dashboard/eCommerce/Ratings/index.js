@@ -70,12 +70,11 @@ const Ratings = () => {
               <tr style={{ color: "#828282", fontWeight: "500" }}>
                 <td style={{ textAlign: "left" }}>
                   <CalendarTodayIcon />
-                  &nbsp;10:00 a.m. - 10.30 a.m. <br /> Friday, May 5, 2023
+                  &nbsp;10:00 a.m. - 10.30 a.m. Friday, May 5, 2023
                 </td>
                 <td style={{ textAlign: "left" }}>
                   <VideocamIcon />
-                  &nbsp;Web Conferencing link will be <br /> highlighted before
-                  meeting
+                  &nbsp;Web Conferencing link will be highlighted before meeting
                 </td>
               </tr>
             </thead>
