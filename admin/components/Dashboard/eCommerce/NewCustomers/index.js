@@ -5,7 +5,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import styles from "@/components/Dashboard/eCommerce/NewCustomers/NewCustomers.module.css"
+import styles from "@/components/Dashboard/eCommerce/NewCustomers/NewCustomers.module.css";
 
 const NewCustomersData = [
   {
@@ -39,7 +39,7 @@ const NewCustomersData = [
     userName: "@jstevenson5c",
     price: "$289.50",
     order: "15 Orders",
-  }
+  },
 ];
 
 const NewCustomers = () => {
@@ -60,6 +60,7 @@ const NewCustomers = () => {
           borderRadius: "10px",
           p: "25px 20px",
           mb: "15px",
+          background: "#DFF1FF",
         }}
       >
         <Box
@@ -129,9 +130,9 @@ const NewCustomers = () => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem sx={{ fontSize: '14px' }}>Last 15 Days</MenuItem>
-            <MenuItem sx={{ fontSize: '14px' }}>Last Month</MenuItem>
-            <MenuItem sx={{ fontSize: '14px' }}>Last Year</MenuItem>
+            <MenuItem sx={{ fontSize: "14px" }}>Last 15 Days</MenuItem>
+            <MenuItem sx={{ fontSize: "14px" }}>Last Month</MenuItem>
+            <MenuItem sx={{ fontSize: "14px" }}>Last Year</MenuItem>
           </Menu>
         </Box>
 
@@ -142,15 +143,7 @@ const NewCustomers = () => {
                 <img src={customer.image} alt="user" />
                 <div>
                   <h3>{customer.name}</h3>
-                  <p>{customer.userName}</p>
-                </div>
-              </div>
-              <div className={styles.rightContent}>
-                <div className={styles.price}>
-                  {customer.price}
-                </div>
-                <div className={styles.order}>
-                  {customer.order}
+                  <p>Patent Consultation</p>
                 </div>
               </div>
             </div>

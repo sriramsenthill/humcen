@@ -167,6 +167,7 @@ function RecentOrders() {
                 <TableCell>Partner Name</TableCell>
                 <TableCell>Job Title</TableCell>
                 <TableCell>Job Description</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -174,18 +175,18 @@ function RecentOrders() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow key={row._id.job_no}>
-                    <TableCell>
-                    <Link href={`onGoingPatents/${row._id.job_no}`} passHref>
-                      {row._id.job_no}
-                    </Link>
-
-                    </TableCell>
+                    <TableCell>{row._id.job_no}</TableCell>
                     <TableCell>{row.service}</TableCell>
                     <TableCell>{row.country}</TableCell>
                     <TableCell>{formatDate(row.start_date)}</TableCell>
                     <TableCell>{formatDate(row.end_date)}</TableCell>
                     <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
+                    <TableCell
+                      style={{
+                        color: getStatusColor(row.status),
+                        fontWeight: "bold",
+                      }}
+                    >
                       {row.status}
                     </TableCell>
                     <TableCell>{row.userID || "To be assigned"}</TableCell>
@@ -194,6 +195,11 @@ function RecentOrders() {
                     <TableCell>{row.partnerName || "To be assigned"}</TableCell>
                     <TableCell>{row.job_title || "To be assigned"}</TableCell>
                     <TableCell>{row.job_desc || "To be assigned"}</TableCell>
+                    <TableCell>
+                      <Link href={`onGoingPatents/${row._id.job_no}`} passHref>
+                        Details
+                      </Link>
+                    </TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (

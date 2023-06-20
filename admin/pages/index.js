@@ -6,7 +6,11 @@ import Features from "@/components/Dashboard/eCommerce/Features";
 import Ratings from "@/components/Dashboard/eCommerce/Ratings";
 import AudienceOverview from "@/components/Dashboard/eCommerce/AudienceOverview";
 import VisitsByDay from "@/components/Dashboard/eCommerce/VisitsByDay";
-import Impressions from "@/components/Dashboard/eCommerce/Impressions";
+import Impression1 from "@/components/Dashboard/eCommerce/Impression1";
+import Impression2 from "@/components/Dashboard/eCommerce/Impression2";
+import Impression3 from "@/components/Dashboard/eCommerce/Impression3";
+import Impression4 from "@/components/Dashboard/eCommerce/Impression4";
+
 import ActivityTimeline from "@/components/Dashboard/eCommerce/ActivityTimeline";
 import Performance from "@/components/Dashboard/eCommerce/Performance";
 import SalesByCountries from "@/components/Dashboard/eCommerce/SalesByCountries";
@@ -25,7 +29,7 @@ export default function eCommerce() {
         <h1
           style={{
             fontStyle: "normal",
-            fontWeight: "500",
+            fontWeight: "800",
             fontSize: "24px",
             lineHeight: "29px",
           }}
@@ -48,23 +52,28 @@ export default function eCommerce() {
           <Grid container columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
             <Grid container spacing={1}>
               <Grid item xs={12} sm={6} md={3}>
-                <Impressions />
+                <Impression1 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Impressions />
+                <Impression2 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Impressions />
+                <Impression3 />
               </Grid>
               <Grid item xs={12} sm={6} md={3}>
-                <Impressions />
+                <Impression4 />
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-        <Grid>
-          <Grid item xs={12} md={12} lg={12} xl={6}>
-            <BasicTabs />
+          <Grid container columnSpacing={{ xs: 1, sm: 2, md: 2 }}>
+            <Grid container spacing={1}>
+              <Grid item xs={12} md={12} lg={12} xl={9}>
+                <BasicTabs />
+              </Grid>
+              <Grid item xs={12} md={12} lg={12} xl={3}>
+                <NewCustomers />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
