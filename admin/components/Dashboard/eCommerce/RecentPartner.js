@@ -20,6 +20,8 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
+import Rating from "@mui/material/Rating";
 
 function formatDate(date) {
   const options = { month: "long", day: "numeric", year: "numeric" };
@@ -36,6 +38,13 @@ function getStatusColor(status) {
   }
   return ""; // Default color if the status value is not matched
 }
+
+const StyledRating = styled(Rating)({
+  "& .MuiRating-iconFilled": {
+    color: "#68BDFD",
+    fontSize: "10",
+  },
+});
 
 function RecentPartner(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -169,6 +178,7 @@ function RecentPartners() {
                 <TableCell>Expertise In</TableCell>
                 <TableCell>Can Handle</TableCell>
                 <TableCell>Jobs</TableCell>
+                <TableCell>Ratings</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -192,6 +202,9 @@ function RecentPartners() {
                     <TableCell>{row.expertise_in}</TableCell>
                     <TableCell>{row.can_handle}</TableCell>
                     <TableCell>{row.jobs.join(", ")}</TableCell>
+                    <TableCell>
+                      <StyledRating name="read-only" value="2.5" readOnly />
+                    </TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (
