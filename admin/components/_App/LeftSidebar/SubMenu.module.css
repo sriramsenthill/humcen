@@ -16,9 +16,6 @@
   position: relative;
   top: 2px;
 }
-.sidebarLink:hover {
-  background: linear-gradient(90deg, rgba(172, 169, 255, 0.6) 0%, rgba(172, 169, 255, 0.37) 91.25%);
-}
 .sidebarLink2 {
   display: block;
   color: white;
@@ -33,7 +30,7 @@
 }
 .sidebarLink2::before {
   content: "";
-  background-color: #818093;
+  background-color: red;
   width: 6px;
   height: 6px;
   border-radius: 100%;
@@ -45,7 +42,6 @@
   background-color: #fff;
 }
 .sidebarLink2:hover {
-  background: #757FEF;
   color: #fff;
 }
 
