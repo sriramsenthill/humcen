@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
@@ -10,12 +10,46 @@ import Checkbox from "@mui/material/Checkbox";
 import styles from "@/components/Authentication/Authentication.module.css";
 
 const SignUpForm = () => {
-  const handleSubmit = (event) => {
+  const [formData, setFormData] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: ""
+  });
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    
+    try {
+      const response = await fetch("http://localhost:3000/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        console.log("User data saved successfully");
+        // Reset the form data
+        setFormData({
+          email: "",
+          first_name: "",
+          last_name: "",
+          password: ""
+        });
+      } else {
+        console.error("Failed to save user data");
+      }
+    } catch (error) {
+      console.error("Error saving user data:", error);
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
     });
   };
 
@@ -34,7 +68,7 @@ const SignUpForm = () => {
           <Grid item xs={12} md={12} lg={12} xl={12}>
             <Box>
               <Typography as="h1" fontSize="28px" fontWeight="700" mb="5px">
-                Get’s started.{" "}
+                Get started.{" "}
                 <img
                   src="/images/favicon.png"
                   alt="favicon"
@@ -99,7 +133,7 @@ const SignUpForm = () => {
 
                       <TextField
                         autoComplete="given-name"
-                        name="firstName"
+                        name="first_name"
                         required
                         fullWidth
                         id="firstName"
@@ -108,6 +142,8 @@ const SignUpForm = () => {
                         InputProps={{
                           style: { borderRadius: 8 },
                         }}
+                        value={formData.first_name}
+                        onChange={handleChange}
                       />
                     </Grid>
 
@@ -129,11 +165,13 @@ const SignUpForm = () => {
                         fullWidth
                         id="lastName"
                         label="Last Name"
-                        name="lastName"
+                        name="last_name"
                         autoComplete="family-name"
                         InputProps={{
                           style: { borderRadius: 8 },
                         }}
+                        value={formData.last_name}
+                        onChange={handleChange}
                       />
                     </Grid>
 
@@ -160,6 +198,8 @@ const SignUpForm = () => {
                         InputProps={{
                           style: { borderRadius: 8 },
                         }}
+                        value={formData.email}
+                        onChange={handleChange}
                       />
                     </Grid>
 
@@ -187,6 +227,8 @@ const SignUpForm = () => {
                         InputProps={{
                           style: { borderRadius: 8 },
                         }}
+                        value={formData.password}
+                        onChange={handleChange}
                       />
                     </Grid>
                   </Grid>
