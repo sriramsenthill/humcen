@@ -1,55 +1,44 @@
 import React from "react";
 import Card from "@mui/material/Card";
 import { Typography } from "@mui/material";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function DefaultSelect() {
-
-  const [age, setAge] = React.useState('');
+  const [filter, setFilter] = React.useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setFilter(event.target.value);
   };
 
   return (
     <>
-      <Card
+      <FormControl
         sx={{
-          boxShadow: "none",
-          borderRadius: "10px",
-          p: "25px",
-          mb: "15px",
+          height: "50%",
+          width: "10%",
+          borderRadius: "40%",
+          margin: "none",
         }}
       >
-        <Typography
-          as="h3"
-          sx={{
-            fontSize: 18,
-            fontWeight: 500,
-            mb: '10px'
+        <InputLabel id="">All Patents</InputLabel>
+        <Select
+          labelId=""
+          id=""
+          value={filter}
+          onChange={handleChange}
+          style={{
+            height: "50%",
+            marginLeft: "0",
           }}
         >
-          Default Select
-        </Typography>
- 
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-        </FormControl>
-      </Card>
+          <MenuItem value={"All Patents"}>All Patents</MenuItem>
+          <MenuItem value={"Sort by date"}>Sort by date</MenuItem>
+          <MenuItem value={"Sort by completion"}>Sort by completion</MenuItem>
+        </Select>
+      </FormControl>
     </>
   );
 }

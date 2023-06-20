@@ -14,7 +14,6 @@ const Search = styled("div")(({ theme }) => ({
   marginLeft: "15px",
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginRight: theme.spacing(1),
     width: "auto",
   },
 }));
@@ -51,7 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Search() {
+export default function SearchFormInner() {
   return (
     <>
       <Search className="search-form">
