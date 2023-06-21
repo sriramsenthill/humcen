@@ -111,57 +111,29 @@ app.post('/api/job_order', async (req, res) => {
 });
 
 // API route to fetch all customers
-app.get('/api/customer', async (req, res) => {
-  try {
-    const customers = await Customer.find({});
-    console.log(customers); // Log the data to the console
-    res.send(customers);
-  } catch (error) {
-    console.error('Error fetching customers:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// Create a new customer
 app.post('/api/customer', async (req, res) => {
   try {
     const customerData = req.body;
 
-    // Create a new Customer instance using the received data
-    const customer = new Customer(customerData);
+    const existingCustomer = await Customer.findOne({ email: customerData.email });
 
-    // Save the customer to the database
-    const savedCustomer = await customer.save();
+    if (existingCustomer) {
+      // Update the existing customer with new data
+      existingCustomer.first_name = customerData.first_name;
+      existingCustomer.last_name = customerData.last_name;
+      existingCustomer.password = customerData.password;
 
-    res.status(200).json(savedCustomer);
+      const updatedCustomer = await existingCustomer.save();
+      res.status(200).json(updatedCustomer);
+    } else {
+      // Create a new customer
+      const newCustomer = new Customer(customerData);
+      const savedCustomer = await newCustomer.save();
+      res.status(201).json(savedCustomer);
+    }
   } catch (error) {
-    console.error('Error creating customer:', error);
-    res.status(500).send('Error creating customer');
-  }
-});
-
-// Handle sign-up form submission
-app.post('/api/signup', async (req, res) => {
-  try {
-    const userData = req.body;
-
-    // Save the user data to the database
-    // Replace 'Customer' with your MongoDB collection name
-    const Customer = mongoose.model('customer', {
-      email: String,
-      first_name: String,
-      last_name: String,
-      password: String
-    });
-
-    const newCustomer = new Customer(userData);
-    const savedCustomer = await newCustomer.save();
-
-    console.log(savedCustomer);
-    res.json(savedCustomer);
-  } catch (error) {
-    console.error('Error saving user data:', error);
-    res.status(500).json({ error: 'Failed to save user data' });
+    console.error('Error creating/updating customer:', error);
+    res.status(500).send('Error creating/updating customer');
   }
 });
 
