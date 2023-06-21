@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
@@ -10,13 +12,29 @@ import Checkbox from "@mui/material/Checkbox";
 import styles from "@/components/Authentication/Authentication.module.css";
 
 const SignInForm = () => {
-  const handleSubmit = (event) => {
+  const router = useRouter();
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const useremail = data.get("email");
+    const userpassword = data.get("password");
+
+    try {
+      const response = await axios.post("http://localhost:3000/api/auth", {
+        email: useremail,
+        password: userpassword,
+      });
+
+      if (response.status === 200) {
+        router.push("/");
+      } else {
+        setError("Incorrect email or password");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -61,12 +79,12 @@ const SignInForm = () => {
                 }}
               >
                 <Link href="#" className={styles.googleBtn}>
-                  <img src="/images/google-icon.png" />
+                  <img src="/images/google-icon.png" alt="Google" />
                   Sign in with Google
                 </Link>
 
                 <Link href="#" className={styles.fbBtn}>
-                  <img src="/images/fb-icon.png" />
+                  <img src="/images/fb-icon.png" alt="Facebook" />
                   Sign in with Facebook
                 </Link>
               </Box>
@@ -140,6 +158,17 @@ const SignInForm = () => {
                     </Grid>
                   </Grid>
                 </Box>
+
+                {error && (
+                  <Typography
+                    variant="body2"
+                    color="error"
+                    align="center"
+                    sx={{ mb: 2 }}
+                  >
+                    {error}
+                  </Typography>
+                )}
 
                 <Grid container alignItems="center" spacing={2}>
                   <Grid item xs={6} sm={6}>

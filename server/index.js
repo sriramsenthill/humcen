@@ -5,6 +5,7 @@ const Admin = require('./admin'); // Import the Admin model
 const Partner = require('./partner'); // Import the Partner model
 const User = require('./user'); // Import the User model
 const Customer = require('./customer'); // Import the Customer model
+const bcrypt = require('bcrypt'); // Import the bcrypt library
 const cors = require('cors');
 
 const app = express();
@@ -30,7 +31,7 @@ mongoose
 app.get('/api/job_order', async (req, res) => {
   try {
     const jobOrders = await JobOrder.find({});
-    console.log(jobOrders); // Log the data to the console
+
     res.send(jobOrders);
   } catch (error) {
     console.error('Error fetching job orders:', error);
@@ -110,7 +111,7 @@ app.post('/api/job_order', async (req, res) => {
   }
 });
 
-// API route to fetch all customers
+// API route to create a new customer
 app.post('/api/customer', async (req, res) => {
   try {
     const customerData = req.body;
@@ -121,15 +122,57 @@ app.post('/api/customer', async (req, res) => {
       // Email already exists, return an error response
       return res.status(400).json({ error: 'User already exists. Try creating with another email.' });
     }
+    const saltRounds = 10;
+    bcrypt.genSalt(saltRounds, (err, salt) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error creating/updating customer');
+      }
 
-    // Create a new customer
-    const newCustomer = new Customer(customerData);
-    const savedCustomer = await newCustomer.save();
-    res.status(201).json(savedCustomer);
-    console.log(savedCustomer);
+      bcrypt.hash(customerData.password, salt, async (err, hashedPassword) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send('Error creating/updating customer');
+        }
+
+        customerData.password = hashedPassword;
+
+        const newCustomer = new Customer(customerData);
+        const savedCustomer = await newCustomer.save();
+
+        res.status(201).json(savedCustomer);
+        console.log(savedCustomer);
+      });
+    });
   } catch (error) {
     console.error('Error creating/updating customer:', error);
     res.status(500).send('Error creating/updating customer');
+  }
+});
+
+app.post('/api/auth', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    // console.log(email);
+    const user = await Customer.findOne({ email: email });
+
+    if (!user) {
+      // User not found, return an error response
+      return res.status(400).json({ error: 'Invalid email or password.' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      // Incorrect password, return an error response
+      return res.status(400).json({ error: 'Invalid email or password.' });
+    }
+
+    // Authentication successful, return a success response
+    res.status(200).json({ message: 'Authentication successful.' });
+  } catch (error) {
+    console.error('Error authenticating user:', error);
+    res.status(500).send('Error authenticating user');
   }
 });
 
