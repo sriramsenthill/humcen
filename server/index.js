@@ -118,19 +118,15 @@ app.post('/api/customer', async (req, res) => {
     const existingCustomer = await Customer.findOne({ email: customerData.email });
 
     if (existingCustomer) {
-      // Update the existing customer with new data
-      existingCustomer.first_name = customerData.first_name;
-      existingCustomer.last_name = customerData.last_name;
-      existingCustomer.password = customerData.password;
-
-      const updatedCustomer = await existingCustomer.save();
-      res.status(200).json(updatedCustomer);
-    } else {
-      // Create a new customer
-      const newCustomer = new Customer(customerData);
-      const savedCustomer = await newCustomer.save();
-      res.status(201).json(savedCustomer);
+      // Email already exists, return an error response
+      return res.status(400).json({ error: 'User already exists. Try creating with another email.' });
     }
+
+    // Create a new customer
+    const newCustomer = new Customer(customerData);
+    const savedCustomer = await newCustomer.save();
+    res.status(201).json(savedCustomer);
+    console.log(savedCustomer);
   } catch (error) {
     console.error('Error creating/updating customer:', error);
     res.status(500).send('Error creating/updating customer');
