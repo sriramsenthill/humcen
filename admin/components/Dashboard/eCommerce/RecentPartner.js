@@ -22,6 +22,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Rating from "@mui/material/Rating";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 function formatDate(date) {
   const options = { month: "long", day: "numeric", year: "numeric" };
@@ -179,6 +180,8 @@ function RecentPartners() {
                 <TableCell>Can Handle</TableCell>
                 <TableCell>Jobs</TableCell>
                 <TableCell>Ratings</TableCell>
+                <TableCell>Current Status</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -204,6 +207,12 @@ function RecentPartners() {
                     <TableCell>{row.jobs.join(", ")}</TableCell>
                     <TableCell>
                       <StyledRating name="read-only" value="2.5" readOnly />
+                    </TableCell>
+                    <TableCell>Completed</TableCell>
+                    <TableCell>
+                      <IconButton>
+                        <MoreVertIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}

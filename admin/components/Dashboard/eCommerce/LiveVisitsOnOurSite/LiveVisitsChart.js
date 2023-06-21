@@ -9,20 +9,13 @@ class LiveVisitsChart extends Component {
     super(props);
 
     this.state = {
-      series: [72, 56],
+      series: [70, 20, 10],
       options: {
         chart: {
           type: "donut",
         },
-        labels: ["Domestic", "International"],
-        colors: ["#757FEF", "#EE368C"],
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return "" + val + "%";
-            },
-          },
-        },
+        labels: ["Success", "In Progress", "Delayed"],
+        colors: ["#27AE60", "#FFB638", "#F14242"],
         legend: {
           offsetY: 2,
           position: "bottom",
@@ -41,6 +34,9 @@ class LiveVisitsChart extends Component {
             },
           },
         ],
+        dataLabels: {
+          enabled: false,
+        },
       },
     };
   }
