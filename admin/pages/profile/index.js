@@ -3,14 +3,15 @@ import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import RoundedButtons from "@/components/UIElements/Buttons/RoundedButtons";
 import { useTheme } from "@mui/material/styles";
-
 import styled from "@emotion/styled";
 import Rating from "@mui/material/Rating";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Card, CardContent, Grid } from "@mui/material";
 
 import { FormControlLabel } from "@mui/material";
 import Switch from "@mui/material/Switch";
-import LiveVisitsChart from "@/components/Dashboard/eCommerce/LiveVisitsOnOurSite/LiveVisitsChart";
+import LiveVisitsOnOurSite from "@/components/Dashboard/eCommerce/LiveVisitsOnOurSite";
+import SimpleLineChart from "@/components/Pages/Charts/Recharts/LineChart/SimpleLineChart";
 
 const StyledRating = styled(Rating)({
   border: "none",
@@ -230,8 +231,14 @@ const Impressions = () => {
           </table>
         </Box>
       </Box>
-      <Box></Box>
-      <LiveVisitsChart />
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={7}>
+          <LiveVisitsOnOurSite />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <SimpleLineChart />
+        </Grid>
+      </Grid>
     </>
   );
 };

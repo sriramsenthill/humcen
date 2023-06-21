@@ -43,18 +43,6 @@ const data = [
     pv: 4800,
     amt: 2181,
   },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
 ];
 
 const SimpleLineChart = () => {
@@ -62,10 +50,13 @@ const SimpleLineChart = () => {
     <>
       <Card
         sx={{
+          margin: "10px",
           boxShadow: "none",
           borderRadius: "10px",
-          p: "25px",
+          p: "30px",
           mb: "15px",
+          border: "1px solid black",
+          width: "100%",
         }}
       >
         <Typography
@@ -79,13 +70,26 @@ const SimpleLineChart = () => {
           }}
           className="for-dark-bottom-border"
         >
-          Simple Line Chart
+          Revenue
         </Typography>
-
+        <Typography
+          sx={{
+            fontStyle: "normal",
+            fontWeight: "500",
+            fontSize: "40px",
+            color: "#00002B",
+          }}
+        >
+          9,580
+          <sup style={{ fontSize: "16px" }}>USD</sup>
+        </Typography>
+        <Typography sx={{ marginBottom: "15px" }}>
+          <span style={{ color: "red" }}>↓ 2.4%</span> Lesser than last week
+        </Typography>
         <ResponsiveContainer width="100%" aspect={2.0 / 0.9}>
           <LineChart
-            width={500}
-            height={300}
+            width={400}
+            height={800}
             data={data}
             margin={{
               top: 5,
