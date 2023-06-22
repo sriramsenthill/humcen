@@ -1,13 +1,13 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const JobOrder = require('./job_order'); // Import the JobOrder model
-const Admin = require('./admin'); // Import the Admin model
-const Partner = require('./partner'); // Import the Partner model
-const User = require('./user'); // Import the User model
-const Customer = require('./customer'); // Import the Customer model
-const bcrypt = require('bcrypt'); // Import the bcrypt library
-const cors = require('cors');
-const Consultation = require('./consultation');
+const express = require("express");
+const mongoose = require("mongoose");
+const JobOrder = require("./job_order"); // Import the JobOrder model
+const Admin = require("./admin"); // Import the Admin model
+const Partner = require("./partner"); // Import the Partner model
+const User = require("./user"); // Import the User model
+const Customer = require("./customer"); // Import the Customer model
+const bcrypt = require("bcrypt"); // Import the bcrypt library
+const cors = require("cors");
+const Consultation = require("./consultation");
 
 const app = express();
 app.use(express.json());
@@ -17,81 +17,84 @@ const port = 3000;
 
 // Connect to your MongoDB database
 mongoose
-  .connect('mongodb+srv://sriram:password12345@humcen.iaiznbp.mongodb.net/humcen?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://sriram:password12345@humcen.iaiznbp.mongodb.net/humcen?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
   })
   .catch((error) => {
-    console.error('Error connecting to MongoDB:', error);
+    console.error("Error connecting to MongoDB:", error);
   });
 
 // API route to fetch all job orders
-app.get('/api/job_order', async (req, res) => {
+app.get("/api/job_order", async (req, res) => {
   try {
     const jobOrders = await JobOrder.find({});
 
     res.send(jobOrders);
   } catch (error) {
-    console.error('Error fetching job orders:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching job orders:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // API route to fetch all users
-app.get('/api/user', async (req, res) => {
+app.get("/api/user", async (req, res) => {
   try {
     const users = await User.find({});
     console.log(users); // Log the data to the console
     res.send(users);
   } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // API route to fetch all partners
-app.get('/api/partner', async (req, res) => {
+app.get("/api/partner", async (req, res) => {
   try {
     const partners = await Partner.find({});
     console.log(partners); // Log the data to the console
     res.send(partners);
   } catch (error) {
-    console.error('Error fetching partners:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching partners:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // API route to fetch all admins
-app.get('/api/admin', async (req, res) => {
+app.get("/api/admin", async (req, res) => {
   try {
     const admins = await Admin.find({});
     console.log(admins); // Log the data to the console
     res.send(admins);
   } catch (error) {
-    console.error('Error fetching admins:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error fetching admins:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
 // Create a new job order
-app.post('/api/job_order', async (req, res) => {
+app.post("/api/job_order", async (req, res) => {
   try {
     const jobOrderData = req.body;
 
     // Set default values
-    jobOrderData.service = 'Patent Drafting';
+    jobOrderData.service = "Patent Drafting";
     jobOrderData.start_date = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 7); // Add 7 days
     jobOrderData.end_date = endDate;
-    jobOrderData.status = 'In Progress';
+    jobOrderData.status = "In Progress";
 
     // Fetch the latest job_no from the database
     const latestJobOrder = await JobOrder.findOne()
-      .sort({ '_id.job_no': -1 })
+      .sort({ "_id.job_no": -1 })
       .limit(1)
       .exec();
 
@@ -107,15 +110,14 @@ app.post('/api/job_order', async (req, res) => {
 
     res.status(200).json(savedJobOrder);
   } catch (error) {
-    console.error('Error creating job order:', error);
-    res.status(500).send('Error creating job order');
+    console.error("Error creating job order:", error);
+    res.status(500).send("Error creating job order");
   }
 });
 
-
 app.post("/api/consultation", async (req, res) => {
   try {
-    const { userID, service,email, meeting_date_time } = req.body;
+    const { userID, service, email, meeting_date_time } = req.body;
 
     // Store the data in MongoDB
     const consultation = await Consultation.create({
@@ -131,22 +133,21 @@ app.post("/api/consultation", async (req, res) => {
     res.status(500).json({ error: "Failed to schedule consultation." });
   }
 });
-
-app.post('/api/patent_filing', async (req, res) => {
+app.post("/api/patent_filing", async (req, res) => {
   try {
     const jobOrderData = req.body;
 
     // Set default values
-    jobOrderData.service = 'Patent Filing';
+    jobOrderData.service = "Patent Filing";
     jobOrderData.start_date = new Date();
     const endDate = new Date();
     endDate.setDate(endDate.getDate() + 7); // Add 7 days
     jobOrderData.end_date = endDate;
-    jobOrderData.status = 'In Progress';
+    jobOrderData.status = "In Progress";
 
     // Fetch the latest job_no from the database
     const latestJobOrder = await JobOrder.findOne()
-      .sort({ '_id.job_no': -1 })
+      .sort({ "_id.job_no": -1 })
       .limit(1)
       .exec();
 
@@ -162,34 +163,37 @@ app.post('/api/patent_filing', async (req, res) => {
 
     res.status(200).json(savedJobOrder);
   } catch (error) {
-    console.error('Error creating job order:', error);
-    res.status(500).send('Error creating job order');
+    console.error("Error creating job order:", error);
+    res.status(500).send("Error creating job order");
   }
 });
 
-
 // API route to create a new customer
-app.post('/api/customer', async (req, res) => {
+app.post("/api/customer", async (req, res) => {
   try {
     const customerData = req.body;
 
-    const existingCustomer = await Customer.findOne({ email: customerData.email });
+    const existingCustomer = await Customer.findOne({
+      email: customerData.email,
+    });
 
     if (existingCustomer) {
       // Email already exists, return an error response
-      return res.status(400).json({ error: 'User already exists. Try creating with another email.' });
+      return res.status(400).json({
+        error: "User already exists. Try creating with another email.",
+      });
     }
     const saltRounds = 10;
     bcrypt.genSalt(saltRounds, (err, salt) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error creating/updating customer');
+        return res.status(500).send("Error creating/updating customer");
       }
 
       bcrypt.hash(customerData.password, salt, async (err, hashedPassword) => {
         if (err) {
           console.error(err);
-          return res.status(500).send('Error creating/updating customer');
+          return res.status(500).send("Error creating/updating customer");
         }
 
         customerData.password = hashedPassword;
@@ -202,12 +206,12 @@ app.post('/api/customer', async (req, res) => {
       });
     });
   } catch (error) {
-    console.error('Error creating/updating customer:', error);
-    res.status(500).send('Error creating/updating customer');
+    console.error("Error creating/updating customer:", error);
+    res.status(500).send("Error creating/updating customer");
   }
 });
 
-app.post('/api/auth', async (req, res) => {
+app.post("/api/auth", async (req, res) => {
   try {
     const { email, password } = req.body;
     // console.log(email);
@@ -215,21 +219,21 @@ app.post('/api/auth', async (req, res) => {
 
     if (!user) {
       // User not found, return an error response
-      return res.status(400).json({ error: 'Invalid email or password.' });
+      return res.status(400).json({ error: "Invalid email or password." });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       // Incorrect password, return an error response
-      return res.status(400).json({ error: 'Invalid email or password.' });
+      return res.status(400).json({ error: "Invalid email or password." });
     }
 
     // Authentication successful, return a success response
-    res.status(200).json({ message: 'Authentication successful.' });
+    res.status(200).json({ message: "Authentication successful." });
   } catch (error) {
-    console.error('Error authenticating user:', error);
-    res.status(500).send('Error authenticating user');
+    console.error("Error authenticating user:", error);
+    res.status(500).send("Error authenticating user");
   }
 });
 

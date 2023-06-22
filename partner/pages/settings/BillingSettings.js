@@ -31,16 +31,54 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function BillingSettings() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const [editMode, setEditMode] = useState(false);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    bankName: "",
+    accountNumber: "",
+    accountName: "",
+    branch: "",
+    ifscCode: "",
+    address: "",
+    town: "",
+    postcode: "",
+    country: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [editMode, setEditMode] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(e);
+    console.log("inside handleSubmit");
+    setEditMode(false);
+
+    try {
+      await axios.post("/update-partner", formData);
+
+      alert("Partner information updated successfully");
+
+      setFormData({
+        email: "",
+        bankName: "",
+        accountNumber: "",
+        accountName: "",
+        branch: "",
+        ifscCode: "",
+        address: "",
+        town: "",
+        postcode: "",
+        country: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred");
+    }
+  };
 
   return (
     <>
@@ -57,365 +95,664 @@ export default function BillingSettings() {
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={8} md={8} style={{ flexBasis: "60%" }}>
-            <TableContainer
-              component={Paper}
-              sx={{
-                boxShadow: "none",
-                background: "white",
-              }}
-            >
-              <Table aria-label="simple table" className="dark-table">
-                <TableHead></TableHead>
+            {editMode ? (
+              <form onSubmit={handleSubmit}>
+                <TableContainer
+                  component={Paper}
+                  sx={{
+                    boxShadow: "none",
+                    background: "white",
+                  }}
+                >
+                  <Table aria-label="simple table" className="dark-table">
+                    <TableHead></TableHead>
 
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                    <TableBody>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Bank Name
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="bank_name"
+                            label="Bank Name"
+                            name="bank_name"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Account Number
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="acc_no"
+                            label="Account Number"
+                            name="acc_no"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Account Name
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="acc_name"
+                            label="Account Name"
+                            name="acc_name"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Branch
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="branch"
+                            label="Branch Name"
+                            name="branch"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          IFSC Code
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="ifsc"
+                            label="IFSC Code"
+                            name="ifsc"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Address
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="address"
+                            label="Address"
+                            name="address"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Town
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="town"
+                            label="Town"
+                            name="town"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Postcode
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="postcode"
+                            label="Postcode"
+                            name="postcode"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        >
+                          Country
+                        </TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "2px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <TextField
+                            required
+                            fullWidth
+                            id="country"
+                            label="Country"
+                            name="country"
+                          />
+                        </TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "600",
+                            color: "#223345",
+                          }}
+                        ></TableCell>
+
+                        <TableCell
+                          align="left"
+                          sx={{
+                            borderBottom: "1px solid #F7FAFF",
+                            fontSize: "14px",
+                            padding: "8px 10px",
+                            fontWeight: "400",
+                            color: "#828282",
+                          }}
+                        >
+                          <Button type="submit">Submit Changes</Button>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </form>
+            ) : (
+              <TableContainer
+                component={Paper}
+                sx={{
+                  boxShadow: "none",
+                  background: "white",
+                }}
+              >
+                <Table aria-label="simple table" className="dark-table">
+                  <TableHead></TableHead>
+
+                  <TableBody>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Bank Name
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Bank Name
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="bank_name"
-                          label="Bank Name"
-                          name="bank_name"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>XYZ Bank</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Account Number
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Account Number
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="acc_no"
-                          label="Account Number"
-                          name="acc_no"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>123456789710345</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Account Name
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Account Name
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="acc_name"
-                          label="Account Name"
-                          name="acc_name"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>Bibin Matthew</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Branch
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Branch
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="branch"
-                          label="Branch Name"
-                          name="branch"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>Ambattur</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      IFSC Code
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        IFSC Code
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="ifsc"
-                          label="IFSC Code"
-                          name="ifsc"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>1246XYZ314</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Address
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Address
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="address"
-                          label="Address"
-                          name="address"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>
                           Olympia Technology Park, Level 2,Altius Block,No.1,
                           SIDCO Industrial Estate
                         </Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Town
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Town
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="town"
-                          label="Town"
-                          name="town"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>Chennai</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Postcode
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Postcode
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="postcode"
-                          label="Postcode"
-                          name="postcode"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>600032</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
+                      </TableCell>
+                    </TableRow>
+                    <TableRow
                       sx={{
-                        borderBottom: "1px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "600",
-                        color: "#223345",
+                        "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      Country
-                    </TableCell>
+                      <TableCell
+                        sx={{
+                          borderBottom: "1px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "600",
+                          color: "#223345",
+                        }}
+                      >
+                        Country
+                      </TableCell>
 
-                    <TableCell
-                      align="left"
-                      sx={{
-                        borderBottom: "2px solid #F7FAFF",
-                        fontSize: "14px",
-                        padding: "8px 10px",
-                        fontWeight: "400",
-                        color: "#828282",
-                      }}
-                    >
-                      {editMode ? (
-                        <TextField
-                          required
-                          fullWidth
-                          id="country"
-                          label="Country"
-                          name="country"
-                        />
-                      ) : (
+                      <TableCell
+                        align="left"
+                        sx={{
+                          borderBottom: "2px solid #F7FAFF",
+                          fontSize: "14px",
+                          padding: "8px 10px",
+                          fontWeight: "400",
+                          color: "#828282",
+                        }}
+                      >
                         <Typography>India</Typography>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
           </Grid>
           <Grid
             item
@@ -436,7 +773,7 @@ export default function BillingSettings() {
               }}
               onClick={() => {
                 if (editMode === true) {
-                  setEditMode(false);
+                  handleSubmit;
                 } else {
                   setEditMode(true);
                 }
