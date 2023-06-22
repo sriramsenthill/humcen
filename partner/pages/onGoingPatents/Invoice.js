@@ -36,33 +36,24 @@ const ColorButton = styled(Button)(({ theme }) => ({
   fontWeight: "400",
 }));
 
-const Verifications = ({ jobNumber }) => {
-  const job = jobData.find((job) => job.jobNumber === "DEF456");
+const Invoice = ({ jobdata }) => {
+  const job = jobdata;
 
   if (!job) {
     return <div>No job found with the provided job number.</div>;
   }
 
   const {
-    jobName,
-    patentType,
-    customerName,
+    job_no,
+    start_date,
+    job_title,
+    service,
+    userName,
     partnerName,
-    location,
+    country,
     budget,
-    assigned,
     status,
   } = job;
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -86,13 +77,10 @@ const Verifications = ({ jobNumber }) => {
             <tbody>
               <tr>
                 <td className={styles.label} style={{ padding: "5px" }}>
+                  Job No
+                </td>
+                <td className={styles.label} style={{ padding: "5px" }}>
                   Patent Type
-                </td>
-                <td className={styles.label} style={{ padding: "5px" }}>
-                  Customer Name
-                </td>
-                <td className={styles.label} style={{ padding: "5px" }}>
-                  Partner Name
                 </td>
                 <td className={styles.label} style={{ padding: "5px" }}>
                   Location
@@ -101,13 +89,10 @@ const Verifications = ({ jobNumber }) => {
                   Budget
                 </td>
                 <td className={styles.label} style={{ padding: "5px" }}>
-                  Assigned
+                  Verification
                 </td>
                 <td className={styles.label} style={{ padding: "5px" }}>
                   Status
-                </td>
-                <td className={styles.label} style={{ padding: "5px" }}>
-                  Approval
                 </td>
                 <td
                   className={styles.label}
@@ -124,53 +109,25 @@ const Verifications = ({ jobNumber }) => {
                       textTransform: "none",
                     }}
                   >
-                    Download Drafts
+                    Pay Invoice
                   </Button>
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: "5px" }}>{patentType}</td>
-                <td style={{ padding: "5px" }}>{customerName}</td>
-                <td style={{ padding: "5px" }}>{partnerName}</td>
-                <td style={{ padding: "5px" }}>{location}</td>
+                <td style={{ padding: "5px" }}>{job._id.job_no}</td>
+                <td style={{ padding: "5px" }}>{service}</td>
+                <td style={{ padding: "5px" }}>{country}</td>
                 <td style={{ padding: "5px" }}>{budget}</td>
-                <td style={{ padding: "5px" }}>{assigned}</td>
+                <td style={{ padding: "5px" }}>Done</td>
                 <td style={{ padding: "5px" }}>{status}</td>
-                <td style={{ padding: "5px" }}>
-                  <CheckCircleIcon color="success" />
-                  <CancelIcon
-                    sx={{ color: "#D9000D" }}
-                    onClick={handleClickOpen}
-                  />
-                </td>
               </tr>
             </tbody>
           </table>
         </Grid>
       </Card>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Type your reasons to inform the IP Partner</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-            placeholder="Type your reasons"
-          />
-        </DialogContent>
-        <DialogActions>
-          <ColorButton sx={{ width: "15%" }} onClick={handleClose}>
-            Submit
-          </ColorButton>
-        </DialogActions>
-      </Dialog>
       ;
     </>
   );
 };
 
-export default Verifications;
+export default Invoice;

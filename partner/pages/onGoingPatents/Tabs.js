@@ -42,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ no, items }) {
+export default function BasicTabs({ jobData }) {
   const [value, setValue] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
@@ -79,10 +79,10 @@ export default function BasicTabs({ no, items }) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Invoice />
+              <Invoice jobdata={jobData} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <Verifications />
+              <Verifications jobdata={jobData} />
             </TabPanel>
             <TabPanel value={value} index={2}>
               <TrackOrder />

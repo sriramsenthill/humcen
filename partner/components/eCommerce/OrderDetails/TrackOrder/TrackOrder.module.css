@@ -5,11 +5,13 @@
   padding-bottom: 16px;
   border-bottom: 1px solid #F7FAFF;
 }
+
 .timelineList .tList:last-child {
   border: none;
   padding-bottom: 0;
   margin-bottom: 0;
 }
+
 .timelineList .tList::before {
   content: '';
   background: linear-gradient(149.1deg, #99B8F3 14.61%, #177FCB 130.18%);
@@ -21,6 +23,7 @@
   top: 4px;
   left: 0;
 }
+
 .timelineList .tList::after {
   content: '';
   background: #F7FAFF;
@@ -31,16 +34,19 @@
   top: 18px;
   left: 3px;
 }
+
 .timelineList .tList h4 {
   font-weight: 500;
   font-size: 14px;
   margin: 0 0 10px;
 }
+
 .timelineList .tList .date {
   color: #A9A9C8;
   font-size: 12px;
   margin: 0;
 }
+
 .timelineList .tList .text {
   margin: 10px 0 0;
   font-size: 13px;
@@ -52,10 +58,12 @@
   padding-left: 0;
   padding-right: 20px;
 }
+
 [dir="rtl"] .timelineList .tList::before {
   left: auto;
   right: 0;
 }
+
 [dir="rtl"] .timelineList .tList::after {
   left: auto;
   right: 3px;
@@ -65,9 +73,18 @@
 [class="dark"] .timelineList .tList {
   border-bottom: 1px solid var(--borderColor);
 }
+
 [class="dark"] .timelineList .tList:last-child {
   border-bottom: none;
 }
+
 .timelineList .tList::after {
   background: var(--borderColor);
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  gap: 500px;
+  /* Adjust the gap value to add spacing between the elements */
 }

@@ -6,27 +6,53 @@ import styles from "@/components/eCommerce/OrderDetails/TrackOrder/TrackOrder.mo
 const ActivityTimelineData = [
   {
     id: "1",
-    title: "Order Placed",
-    date: "April 21 2019 07:22 AM",
-    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered.",
+    title: "Order Placement",
+    date: "April 14, 2023",
   },
   {
     id: "2",
-    title: "Packed",
-    date: "April 22 2019 12:16 AM",
-    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered.",
+    title: "Invention Disclosure received",
+    date: "April 14, 2023",
   },
   {
     id: "3",
-    title: "Shipped",
-    date: "April 22 2019 05:16 PM",
-    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered.",
+    title: "IP Partner Assigned",
+    date: "April 14, 2023",
   },
   {
     id: "4",
-    title: "Delivered",
-    date: "Estimated Delivery Within 3 Days",
-    text: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered.",
+    title: "Payment",
+    date: "April 15, 2023",
+  },
+  {
+    id: "5",
+    title: "Draft Completed",
+    date: "April 16, 2023",
+  },
+  {
+    id: "4",
+    title: "Quality Check Completed",
+    date: "April 16, 2023",
+  },
+  {
+    id: "5",
+    title: "Draft Sent for Client Approval",
+    date: "April 18, 2023",
+  },
+  {
+    id: "6",
+    title: "Client Feedback",
+    date: "April 19, 2023",
+  },
+  {
+    id: "7",
+    title: "Revisions and Finalization",
+    date: "April 20, 2023",
+  },
+  {
+    id: "8",
+    title: "Final Draft Delivery",
+    date: "April 21, 2023",
   },
 ];
 
@@ -37,84 +63,60 @@ const TrackOrder = () => {
         sx={{
           boxShadow: "none",
           borderRadius: "10px",
-          p: "25px 20px",
+          p: "25px 100px",
           mb: "15px",
         }}
       >
         <Typography
-          as="h3"
+          as="h1"
           sx={{
-            fontSize: 16,
+            fontSize: "36",
             fontWeight: 500,
             mb: "20px",
           }}
         >
-          Track Order
+          Apple Watch: Design Patent
         </Typography>
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            mb: "20px"
-          }}
-        >
-          <Box>
-            <Typography
-              as="h3"
-              sx={{
-                fontSize: 14,
-                fontWeight: 500,
-                mb: "5px",
-              }}
-            >
-              Order ID:
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: 13,
-                fontWeight: 500,
-              }}
-            >
-              #VL2667
-            </Typography>
-          </Box>
-
-          <Box>
-            <Typography
-              as="h3"
-              sx={{
-                fontSize: 14,
-                fontWeight: 500,
-                mb: "5px",
-              }}
-            >
-              Tracking ID:
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: 13,
-                fontWeight: 500,
-              }}
-            >
-              1004152012012
-            </Typography>
-          </Box>
-        </Box>
-      
-        <div className={styles.timelineList}>
-          {ActivityTimelineData.slice(0, 4).map((timeline) => (
-            <div className={styles.tList} key={timeline.id}>
-              <h4>{timeline.title}</h4>
-              <p className={styles.date}>{timeline.date}</p>
-              <p className={styles.text}>
-                {timeline.text}
-              </p>
-            </div>
-          ))}
+        <ul className={styles.list}>
+          <li>
+            <h3 className={styles.emailheading}>Status</h3>
+          </li>
+          <li>
+            <p className={styles.email}>Verification Pending</p>
+          </li>
+        </ul>
+        <hr className={styles.line} style={{ width: "100%" }}></hr>
+        <ul className={styles.list}>
+          <li>
+            <h3 className={styles.emailheading}>Country</h3>
+          </li>
+          <li>
+            <p className={styles.email}>United Kingdom</p>
+          </li>
+        </ul>
+        <hr className={styles.line} style={{ width: "100%" }}></hr>
+        <ul className={styles.list}>
+          <li>
+            <h3 className={styles.emailheading}>Activity Timeline</h3>
+          </li>
+          <li>
+            <p className={styles.email}>
+              Expected Completion
+              <br /> April 18, 2023
+            </p>
+          </li>
+        </ul>
+        <div style={{ marginLeft: "30%" }}>
+          <div className={styles.timelineList}>
+            {ActivityTimelineData.slice(0, 10).map((timeline) => (
+              <div className={styles.tList} key={timeline.id}>
+                <h4>{timeline.title}</h4>
+                <p className={styles.date}>{timeline.date}</p>
+                <p className={styles.text}>{timeline.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Card>
     </>

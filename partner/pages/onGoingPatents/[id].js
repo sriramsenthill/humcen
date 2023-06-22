@@ -1,36 +1,86 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styles from "@/styles/Patents.module.css";
 import style from "@/styles/PageTitle.module.css";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { Box } from "@mui/material";
-import { useState } from "react";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { jobData } from "../onGoingPatents/patentData";
-import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
-import AlternativeLabel from "@/components/UIElements/Stepper/AlternativeLabel";
+import CrossAssign from "./CrossAssign";
 import Features from "./Features";
-import BasicTabs from "../onGoingPatents/Tabs";
 
-const PatentDeliveryStatus = ({ jobNumber }) => {
-  const job = jobData.find((job) => job.jobNumber === "DEF456");
+import BasicTabs from "./Tabs";
+
+export default function DynamicPage() {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const [job, setJob] = useState(null); // Initialize job state as null
+  const [isComponentLoaded, setComponentLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchJobData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/job_order");
+        const data = await response.json();
+
+        // Find the specific job object you want to return
+        const specificJob = data.find((job) => job._id.job_no === Number(id));
+
+        if (specificJob) {
+          setJob(specificJob);
+        } else {
+          console.log("No job found with the provided job number:", id);
+          setJob(null);
+        }
+      } catch (error) {
+        console.error("Error fetching job order data:", error);
+        setJob(null);
+      }
+    };
+
+    fetchJobData();
+
+    // Clean up the effect by resetting the job state when the component is unmounted
+    return () => {
+      setJob(null);
+    };
+  }, [id]); // Add 'id' as a dependency
+
+  console.log(job);
+
+  console.log(job);
 
   if (!job) {
     return <div>No job found with the provided job number.</div>;
   }
 
   const {
-    jobName,
-    patentType,
-    customerName,
+    job_no,
+    start_date,
+    job_title,
+    service,
+    userName,
     partnerName,
-    location,
+    country,
     budget,
-    assigned,
     status,
   } = job;
+
+  const loadComponent = () => {
+    import("./CrossAssign").then(() => {
+      setComponentLoaded(true);
+    });
+  };
+
+  // Format the start_date
+  const formattedStartDate = new Date(start_date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <>
@@ -55,7 +105,7 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
       >
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={6}>
-            <h1>Figma To Adobe XD: Design Patent</h1>
+            <h1>{job_title}</h1>
           </Grid>
           <Grid
             item
@@ -67,7 +117,7 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
           >
             <h2>
               <span className={styles.label1}>Job no : </span>
-              {job.jobNumber}
+              {job._id.job_no}
             </h2>
           </Grid>
         </Grid>
@@ -104,18 +154,36 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
                 </td>
               </tr>
               <tr>
-                <td style={{ padding: "10px" }}>{patentType}</td>
-                <td style={{ padding: "10px" }}>{customerName}</td>
+                <td style={{ padding: "10px" }}>{service}</td>
+                <td style={{ padding: "10px" }}>{userName}</td>
                 <td style={{ padding: "10px" }}>{partnerName}</td>
-                <td style={{ padding: "10px" }}>{location}</td>
+                <td style={{ padding: "10px" }}>{country}</td>
                 <td style={{ padding: "10px" }}>{budget}</td>
-                <td style={{ padding: "10px" }}>{assigned}</td>
+                <td style={{ padding: "10px" }}>{formattedStartDate}</td>
                 <td style={{ padding: "10px" }}>{status}</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "10px" }}></td>
+                <td style={{ padding: "10px" }}>
+                  <Link href="/">Mail</Link>
+                </td>
+                <td style={{ padding: "10px" }}>
+                  <Link href="/">Mail</Link>
+                </td>
+                <td style={{ padding: "10px" }}></td>
+                <td style={{ padding: "10px" }}></td>
+                <td style={{ padding: "10px" }}></td>
+                <td style={{ padding: "10px" }}>
+                  <Link href="#" onClick={loadComponent}>
+                    Cross-Assign
+                  </Link>
+                </td>
               </tr>
             </tbody>
           </table>
         </Grid>
       </Card>
+      <div>{isComponentLoaded && <CrossAssign />}</div>
       {/* side stepper component */}
       <Features />
       <Card
@@ -127,11 +195,9 @@ const PatentDeliveryStatus = ({ jobNumber }) => {
         }}
       >
         <Grid container spacing={2}>
-          <BasicTabs />
+          <BasicTabs jobData={job} />
         </Grid>
       </Card>
     </>
   );
-};
-
-export default PatentDeliveryStatus;
+}
