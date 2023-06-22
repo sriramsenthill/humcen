@@ -122,7 +122,6 @@ async function fetchJobOrders() {
     return [];
   }
 }
-
 function RecentOrders() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -132,8 +131,9 @@ function RecentOrders() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchJobOrders();
-      setCount(data.length);
-      setRows(data.reverse()); // Reverse the data array to display in descending order
+      const sortedData = data.sort((a, b) => b._id.job_no - a._id.job_no); // Sort by job_no in descending order
+      setCount(sortedData.length);
+      setRows(sortedData);
     };
 
     fetchData();
@@ -150,7 +150,7 @@ function RecentOrders() {
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage);
-
+    
   return (
     <Box>
       <TableContainer component={Paper}>

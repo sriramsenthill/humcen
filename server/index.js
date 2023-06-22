@@ -7,6 +7,7 @@ const User = require('./user'); // Import the User model
 const Customer = require('./customer'); // Import the Customer model
 const bcrypt = require('bcrypt'); // Import the bcrypt library
 const cors = require('cors');
+const Consultation = require('./consultation');
 
 const app = express();
 app.use(express.json());
@@ -111,6 +112,25 @@ app.post('/api/job_order', async (req, res) => {
   }
 });
 
+
+app.post("/api/consultation", async (req, res) => {
+  try {
+    const { userID, service,email, meeting_date_time } = req.body;
+
+    // Store the data in MongoDB
+    const consultation = await Consultation.create({
+      userID,
+      service,
+      email,
+      meeting_date_time,
+    });
+
+    res.status(201).json(consultation);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to schedule consultation." });
+  }
+});
 
 app.post('/api/patent_filing', async (req, res) => {
   try {
