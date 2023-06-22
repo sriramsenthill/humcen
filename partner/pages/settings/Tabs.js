@@ -9,6 +9,7 @@ import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
 import ProfileSettings from "./ProfileSettings";
 import EmailNotifsSettings from "./EmailNotifsSettings";
 import ChangePassword from "./ChangePassword";
+import BillingSettings from "./BillingSettings";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -99,7 +100,7 @@ export default function BasicTabs({ no, items }) {
                     textTransform: "none",
                     marginRight: "10px",
                   }}
-                  label="E-mail Preferences"
+                  label="Bank Details"
                   {...a11yProps(1)}
                 />
                 <Tab
@@ -107,8 +108,16 @@ export default function BasicTabs({ no, items }) {
                     textTransform: "none",
                     marginRight: "10px",
                   }}
-                  label="Security"
+                  label="E-mail Preferences"
                   {...a11yProps(2)}
+                />
+                <Tab
+                  sx={{
+                    textTransform: "none",
+                    marginRight: "10px",
+                  }}
+                  label="Security"
+                  {...a11yProps(3)}
                 />
               </Tabs>
             </Box>
@@ -116,9 +125,12 @@ export default function BasicTabs({ no, items }) {
               <ProfileSettings />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <EmailNotifsSettings />
+              <BillingSettings />
             </TabPanel>
             <TabPanel value={value} index={2}>
+              <EmailNotifsSettings />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
               <ChangePassword />
             </TabPanel>
           </Box>
