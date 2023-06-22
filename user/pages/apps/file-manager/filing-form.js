@@ -1,20 +1,12 @@
 import React, { useState } from "react";
-import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import style from "@/styles/PageTitle.module.css";
-import LeftSidebar from "@/components/Email/LeftSidebar";
-import EmailLists from "@/components/Email/EmailLists";
-import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
-import SearchForm from "@/components/_App/TopNavbar/SearchForm";
-import styles from "@/styles/patent-job.module.css";
 import { Button, ButtonProps, Card, InputLabel } from "@mui/material";
 import { styled } from "@mui/system";
-import { Route } from "react-router-dom";
 import DefaultSelect from "@/components/Forms/AdvancedElements/DefaultSelect";
 import { Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import UploadMultipleFiles from "@/components/Forms/FileUploader/UploadMultipleFiles";
-import { Checkbox } from "@mui/material/Checkbox";
 import { FormControlLabel } from "@mui/material";
 import { CheckBox } from "@mui/icons-material";
 import Dialog from "@mui/material/Dialog";
@@ -23,8 +15,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
+import FileBase64 from "react-file-base64";
+
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
@@ -42,27 +34,75 @@ const ColorButton = styled(Button)(({ theme }) => ({
 }));
 
 export default function Inbox() {
-  const [name, setName] = useState("");
   const [domain, setDomain] = useState("");
-  const [title, setTitle] = useState("");
-  const [budget, setBudget] = useState("");
-  const [time, setTime] = useState("");
   const [country, setCountry] = useState("");
-  const [fcountry, setFCountry] = useState("");
+  const [applicationType, setApplicatonType] = useState("");
+  const [title, setTitle] = useState("");
+  const [detailsFile, setDetailsFile] = useState(null);
+  const [applicantsFile, setApplicantsFile] = useState(null);
+  const [investorsFile, setInvestorsFile] = useState(null);
+  const [time, setTime] = useState("");
+  const [budget, setBudget] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [] = useState("");
 
   const handleDomainChange = (value) => {
     setDomain(value);
   };
 
-  const handleSubmit = (e) => {
-    console.log("submitted form");
-    console.log("Domain: ", domain);
-    console.log("Country: ", country);
-    console.log("Title: ", title);
+  const handleApplicationTypeChange = (value) => {
+    setApplicatonType(event.target.value);
+  };
 
-    setIsSubmitted(true);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value); // Update the title state on input change
+  };
+
+  const handleDetailsFileChange = (files) => {
+    setDetailsFile(files);
+  };
+
+  const handleApplicantsFileChange = (files) => {
+    setApplicantsFile(files);
+  };
+
+  const handleInvestorsFileChange = (files) => {
+    setInvestorsFile(files);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      domain: domain, // Use the actual domain value from the state
+      country: country,
+      job_title: title,
+      budget: budget,
+      time_of_delivery: time,
+      service_specific_files: {
+        application_type: applicationType,
+        details: detailsFile,
+        applicants: applicantsFile,
+        investors: investorsFile
+      }
+    };
+
+    try {
+      const response = await fetch("http://localhost:3000/api/patent_filing", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data); // handle the response data as needed
+
+      console.log("Form submitted successfully");
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   const handleOk = () => {
@@ -96,7 +136,7 @@ export default function Inbox() {
       >
         Let's get started with the Invention Disclosure submission
       </p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Card variant="outlined">
           <DefaultSelect domain={domain} onDomainChange={handleDomainChange} />
 
@@ -183,22 +223,23 @@ export default function Inbox() {
               Select your application type
             </Typography>
             <RadioGroup
-              row
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="Complete"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel
-                value="Provisional"
-                control={<Radio />}
-                label="Provisional Application"
-              />
-              <FormControlLabel
-                value="Complete"
-                control={<Radio />}
-                label="Complete Application"
-              />
-            </RadioGroup>
+            row
+            aria-labelledby="demo-radio-buttons-group-label"
+            value={applicationType}
+            name="radio-buttons-group"
+            onChange={handleApplicationTypeChange}
+          >
+            <FormControlLabel
+              value="Provisional"
+              control={<Radio />}
+              label="Provisional Application"
+            />
+            <FormControlLabel
+              value="Complete"
+              control={<Radio />}
+              label="Complete Application"
+            />
+          </RadioGroup>
           </Card>
           <Card
             sx={{
@@ -208,28 +249,27 @@ export default function Inbox() {
               mb: "10px",
             }}
           >
-            <Typography
-              as="h3"
-              sx={{
-                fontSize: 18,
-                fontWeight: 500,
-                mb: "10px",
-              }}
-            >
-              Enter your proposed invention title
-            </Typography>
-            <TextField
+          <Typography
+            as="h3"
+            sx={{
+              fontSize: 18,
+              fontWeight: 500,
+              mb: "10px",
+            }}
+          >
+            Enter your proposed invention title
+          </Typography>
+          <TextField
               fullWidth
               id="name"
               label="Name"
               name="name"
-              value=""
               autoComplete="name"
               InputProps={{
                 style: { borderRadius: 8 },
               }}
+              onChange={handleTitleChange} // Provide the onChange event handler
             />
-          </Card>
           <Card
             sx={{
               boxShadow: "none",
@@ -248,7 +288,7 @@ export default function Inbox() {
             >
               Upload your invention details
             </Typography>
-            <UploadMultipleFiles />
+            <FileBase64 multiple={true} onDone={handleDetailsFileChange} />{" "}
           </Card>
           <Card
             sx={{
@@ -268,7 +308,7 @@ export default function Inbox() {
             >
               Upload your list of applicants
             </Typography>
-            <UploadMultipleFiles />
+            <FileBase64 multiple={true} onDone={handleApplicantsFileChange} />{" "}
           </Card>
           <Card
             sx={{
@@ -288,65 +328,8 @@ export default function Inbox() {
             >
               Upload your list of investors (if applicable)
             </Typography>
-            <UploadMultipleFiles />
+            <FileBase64 multiple={true} onDone={handleInvestorsFileChange} />{" "}
           </Card>
-          <Card
-            sx={{
-              boxShadow: "none",
-              borderRadius: "10px",
-              p: "25px",
-              mb: "10px",
-            }}
-          >
-            <Typography
-              as="h3"
-              sx={{
-                fontSize: 18,
-                fontWeight: 500,
-                mb: "10px",
-              }}
-            >
-              Select your preferred country format
-            </Typography>
-            <Button
-              style={{
-                background: fcountry === "India" ? "#68BDFD" : "#F8FCFF",
-                color: fcountry === "India" ? "white" : "#BFBFBF",
-                width: "15%",
-                marginRight: "2%",
-                height: "40px",
-                textTransform: "none",
-              }}
-              onClick={() => {
-                setFCountry("India");
-              }}
-            >
-              <img
-                src="https://hatscripts.github.io/circle-flags/flags/in.svg"
-                width="24"
-              />
-              &nbsp;&nbsp;India
-            </Button>
-            <Button
-              style={{
-                background:
-                  fcountry === "United States" ? "#68BDFD" : "#F8FCFF",
-                color: fcountry === "United States" ? "white" : "#BFBFBF",
-                width: "15%",
-                marginRight: "2%",
-                height: "40px",
-                textTransform: "none",
-              }}
-              onClick={() => {
-                setFCountry("United States");
-              }}
-            >
-              <img
-                src="https://hatscripts.github.io/circle-flags/flags/us.svg"
-                width="24"
-              />
-              &nbsp;&nbsp;United States
-            </Button>
           </Card>
           <Card
             sx={{
