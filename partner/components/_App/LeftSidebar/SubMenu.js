@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const SidebarLabel = styled("span")(({ theme }) => ({
   position: "relative",
   top: "-3px",
-  color: "white"
+  color: "white",
 }));
 
 const SubMenu = ({ item }) => {
@@ -42,21 +42,6 @@ const SubMenu = ({ item }) => {
             : null}
         </div>
       </Link>
-      {subnav &&
-        item.subNav.map((item, index) => {
-          return (
-            <Link
-              href={item.path}
-              key={index}
-              className={`${styles.sidebarLink2} ${
-                currentPath == item.path && "sidebarLinkActive2"
-              }`}
-            >
-              {item.icon}
-              {item.title}
-            </Link>
-          );
-        })}
     </>
   );
 };
