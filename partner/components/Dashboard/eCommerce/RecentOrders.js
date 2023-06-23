@@ -20,6 +20,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import PropTypes from "prop-types";
+import Link from "next/link";
 
 function formatDate(date) {
   const options = { month: "long", day: "numeric", year: "numeric" };
@@ -31,8 +32,7 @@ function getStatusColor(status) {
     return "Gold"; // Set the color to yellow for "in progress" status
   } else if (status === "Completed") {
     return "Green"; // Set the color to green for "completed" status
-  }
-  else if (status === "Pending") {
+  } else if (status === "Pending") {
     return "Red"; // Set the color to Red for "Pending" status
   }
   return ""; // Default color if the status value is not matched
@@ -161,7 +161,8 @@ function RecentOrders() {
                 <TableCell>Submitted Date</TableCell>
                 <TableCell>Delivery Date</TableCell>
                 <TableCell>Budget</TableCell>
-                <TableCell>Verification</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -175,8 +176,18 @@ function RecentOrders() {
                     <TableCell>{formatDate(row.start_date)}</TableCell>
                     <TableCell>{formatDate(row.end_date)}</TableCell>
                     <TableCell>{row.budget}</TableCell>
-                    <TableCell style={{ color: getStatusColor(row.status), fontWeight: 'bold' }}>
+                    <TableCell
+                      style={{
+                        color: getStatusColor(row.status),
+                        fontWeight: "bold",
+                      }}
+                    >
                       {row.status}
+                    </TableCell>
+                    <TableCell>
+                      <Link href={`/onGoingPatents/${row._id.job_no}`} passHref>
+                        Details
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}

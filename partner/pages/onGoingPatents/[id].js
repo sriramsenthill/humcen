@@ -8,7 +8,6 @@ import Card from "@mui/material/Card";
 import { Box } from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import CrossAssign from "./CrossAssign";
 import Features from "./Features";
 
 import BasicTabs from "./Tabs";
@@ -68,12 +67,6 @@ export default function DynamicPage() {
     budget,
     status,
   } = job;
-
-  const loadComponent = () => {
-    import("./CrossAssign").then(() => {
-      setComponentLoaded(true);
-    });
-  };
 
   // Format the start_date
   const formattedStartDate = new Date(start_date).toLocaleDateString("en-US", {
@@ -162,28 +155,10 @@ export default function DynamicPage() {
                 <td style={{ padding: "10px" }}>{formattedStartDate}</td>
                 <td style={{ padding: "10px" }}>{status}</td>
               </tr>
-              <tr>
-                <td style={{ padding: "10px" }}></td>
-                <td style={{ padding: "10px" }}>
-                  <Link href="/">Mail</Link>
-                </td>
-                <td style={{ padding: "10px" }}>
-                  <Link href="/">Mail</Link>
-                </td>
-                <td style={{ padding: "10px" }}></td>
-                <td style={{ padding: "10px" }}></td>
-                <td style={{ padding: "10px" }}></td>
-                <td style={{ padding: "10px" }}>
-                  <Link href="#" onClick={loadComponent}>
-                    Cross-Assign
-                  </Link>
-                </td>
-              </tr>
             </tbody>
           </table>
         </Grid>
       </Card>
-      <div>{isComponentLoaded && <CrossAssign />}</div>
       {/* side stepper component */}
       <Features />
       <Card

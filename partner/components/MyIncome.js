@@ -26,7 +26,6 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString(undefined, options);
 }
 
-
 function MyIncomes(props) {
   const { count, page, rowsPerPage, onPageChange } = props;
   const theme = useTheme();
@@ -101,7 +100,9 @@ async function fetchJobOrders() {
     const response = await fetch("http://localhost:3000/api/job_order");
     const data = await response.json();
     console.log(data);
-    return data;
+    const newData = data.filter((a) => a.partnerID == "u1234");
+    console.log(newData);
+    return newData;
   } catch (error) {
     console.error("Error fetching job orders:", error);
     return [];
@@ -109,11 +110,11 @@ async function fetchJobOrders() {
 }
 
 function getPayStatusColor(payStatus) {
-    if (payStatus === "unpaid") {
-      return "red"; // Set the color to red for unpaid status
-    }
-    return "green"; // Set the color to green for paid status
+  if (payStatus === "unpaid") {
+    return "red"; // Set the color to red for unpaid status
   }
+  return "green"; // Set the color to green for paid status
+}
 
 function MyIncome() {
   const [page, setPage] = useState(0);
@@ -139,8 +140,6 @@ function MyIncome() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage);
@@ -171,10 +170,12 @@ function MyIncome() {
                     <TableCell>{row.country}</TableCell>
                     <TableCell>{row.amount}</TableCell>
                     <TableCell>{formatDate(row.end_date)}</TableCell>
-                    <TableCell style={{ color: getPayStatusColor(row.pay_status) }}>
-                     {row.pay_status}
+                    <TableCell
+                      style={{ color: getPayStatusColor(row.pay_status) }}
+                    >
+                      {row.pay_status}
                     </TableCell>
-                     </TableRow>
+                  </TableRow>
                 ))}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 53 * emptyRows }}>
