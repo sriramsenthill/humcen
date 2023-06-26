@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
 import Grid from "@mui/material/Grid";
-import Link from 'next/link';
-import styles from '@/styles/PageTitle.module.css'
-import LeftSidebar from '@/components/Email/LeftSidebar';
-import EmailLists from '@/components/Email/EmailLists';
-import RecentOrders from '@/components/Dashboard/eCommerce/RecentOrders';
- 
+import Link from "next/link";
+import styles from "@/styles/PageTitle.module.css";
+import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
+
 export default function Inbox() {
   return (
     <>
@@ -18,8 +16,7 @@ export default function Inbox() {
           <li>Job Order</li>
         </ul>
       </div>
-      <RecentOrders/>
-
+      <RecentOrders />
     </>
   );
 }
