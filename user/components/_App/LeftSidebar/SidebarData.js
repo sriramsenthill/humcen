@@ -26,7 +26,7 @@ export const SidebarData = [
   },
   {
     title: "My Patent",
-    path: "/email/inbox/",
+    path: "/my-patents/",
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
@@ -54,7 +54,7 @@ export const SidebarData = [
   },
   {
     title: "Help & Support",
-    path: "/ecommerce/products/",
+    path: "/help-and-support/",
     icon: <ShoppingCartCheckoutIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
