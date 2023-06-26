@@ -73,7 +73,7 @@ export default function Inbox() {
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
           <li>Patent Consultation</li>
         </ul>
@@ -95,11 +95,13 @@ export default function Inbox() {
             marginBottom: "45px",
           }}
         >
-          Gain valuable insights and expert guidance in safeguarding your intellectual property through our patent
-          consultation service. Our team of seasoned professionals specializes in the intricate realm of patents,
-          offering personalized solutions to protect your innovative ideas and inventions. Let us navigate the
-          complexities for you, ensuring your intellectual assets are shielded in the ever-evolving landscape of
-          intellectual property.
+          Gain valuable insights and expert guidance in safeguarding your
+          intellectual property through our patent consultation service. Our
+          team of seasoned professionals specializes in the intricate realm of
+          patents, offering personalized solutions to protect your innovative
+          ideas and inventions. Let us navigate the complexities for you,
+          ensuring your intellectual assets are shielded in the ever-evolving
+          landscape of intellectual property.
         </p>
         <form onSubmit={handleSubmit}>
           <h1>Choose Your Flexible Date</h1>
@@ -122,18 +124,18 @@ export default function Inbox() {
           />
           <h1>Choose Service Type</h1>
 
-              <TextField
-      select
-      value={serviceType}
-      onChange={(e) => setServiceType(e.target.value)}
-      fullWidth
-      margin="normal"
-      required
->
-  <option value="Patent Drafting">Patent Drafting</option>
-  <option value="Patent Filing">Patent Filing</option>
-  <option value="Patent Marketplace">Patent Marketplace</option>
-</TextField>
+          <TextField
+            select
+            value={serviceType}
+            onChange={(e) => setServiceType(e.target.value)}
+            fullWidth
+            margin="normal"
+            required
+          >
+            <option value="Patent Drafting">Patent Drafting</option>
+            <option value="Patent Filing">Patent Filing</option>
+            <option value="Patent Marketplace">Patent Marketplace</option>
+          </TextField>
           <h1>Provide Your Email Address</h1>
           <TextField
             type="email"

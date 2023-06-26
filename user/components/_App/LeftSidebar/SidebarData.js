@@ -19,7 +19,7 @@ export const SidebarData = [
   },
   {
     title: "Patent Services",
-    path: "/apps/file-manager/",
+    path: "/patent-services/",
     icon: <LayersIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
@@ -40,7 +40,7 @@ export const SidebarData = [
   },
   {
     title: "About Us",
-    path: "/projects/",
+    path: "/about-us/",
     icon: <CopyAllIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,

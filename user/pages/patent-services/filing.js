@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
-import style from '@/styles/PageTitle.module.css';
+import style from "@/styles/PageTitle.module.css";
 import LeftSidebar from "@/components/Email/LeftSidebar";
 import EmailLists from "@/components/Email/EmailLists";
 import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
@@ -36,11 +36,9 @@ export default function Inbox() {
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
-          <li>
-            Patent Filing
-          </li>
+          <li>Patent Filing</li>
         </ul>
       </div>
 
@@ -62,10 +60,8 @@ export default function Inbox() {
           you turn your ideas into profitable assets with our reliable patent
           filing service.
         </p>
-        <Link href="/apps/file-manager/filing-form/">
-        
+        <Link href="/patent-services/filing-form/">
           <ColorButton>Apply Now</ColorButton>
-
         </Link>
       </div>
     </>

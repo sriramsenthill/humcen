@@ -3,13 +3,13 @@ import Link from "next/link";
 import style from "@/styles/PageTitle.module.css";
 import styles from "@/styles/patent-job.module.css";
 import { Button, ButtonProps } from "@mui/material";
-import { styled } from "@mui/system";
+import { styled } from "@mui/system"; // Import styled from "@mui/system" instead of "@mui/material/styles"
 
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
-  width: "120%",
+  width: "80%",
   height: "60px",
-  borderRadius: "100px",
+  borderRadius: "30px",
   marginBottom: "30px",
   background: "linear-gradient(270deg, #02E1B9 0%, #00ACF6 100%)",
   "&:hover": {
@@ -25,20 +25,20 @@ export default function Inbox() {
     <>
       {/* Page title */}
       <div className={style.pageTitle}>
-        <h1>Patent Drafting</h1>
+        <h1>Patent Consultation</h1>
         <ul>
           <li>
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
           <li>Patent Consultation</li>
         </ul>
       </div>
       <div className={styles.container}>
         <img
-          src="/images/patent_drafting.png"
+          src="/images/patent_consult.png"
           style={{ marginBottom: "10px" }}
         />
         <p
@@ -49,17 +49,13 @@ export default function Inbox() {
             marginBottom: "45px",
           }}
         >
-          Patent drafting is the key to protecting your innovative ideas and
-          inventions. Our expert patent drafters can help you secure your
-          intellectual property rights and provide you with a competitive edge
-          in the market. Trust us to craft a high-quality patent that will
-          safeguard your invention and give you peace of mind.
+          Get expert advice and guidance on protecting your intellectual
+          property with our patent consultation service. Our team of experienced
+          professionals will help you navigate the complex world of patents and
+          provide tailored solutions to safeguard your ideas and inventions.
         </p>
-        <Link
-          href="/apps/file-manager/drafting-form"
-          style={{ textDecoration: "none" }}
-        >
-          <ColorButton>Apply Now</ColorButton>
+        <Link href="/patent-services/consultationform">
+          <ColorButton>Schedule A Consultation</ColorButton>
         </Link>
       </div>
     </>

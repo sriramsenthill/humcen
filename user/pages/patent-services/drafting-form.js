@@ -99,7 +99,7 @@ export default function Inbox() {
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
           <li>Patent Drafting</li>
         </ul>
@@ -439,7 +439,7 @@ export default function Inbox() {
             }}
           >
             <Link
-              href="/apps/file-manager/drafting-form"
+              href="/patent-services/drafting-form"
               style={{ textDecoration: "none" }}
             >
               <ColorButton

@@ -17,7 +17,6 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FileBase64 from "react-file-base64";
 
-
 const ColorButton = styled(Button)(({ theme }) => ({
   color: "white",
   width: "120%",
@@ -82,8 +81,8 @@ export default function Inbox() {
         application_type: applicationType,
         details: detailsFile,
         applicants: applicantsFile,
-        investors: investorsFile
-      }
+        investors: investorsFile,
+      },
     };
 
     try {
@@ -119,7 +118,7 @@ export default function Inbox() {
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
           <li>Patent Filing</li>
         </ul>
@@ -223,23 +222,23 @@ export default function Inbox() {
               Select your application type
             </Typography>
             <RadioGroup
-            row
-            aria-labelledby="demo-radio-buttons-group-label"
-            value={applicationType}
-            name="radio-buttons-group"
-            onChange={handleApplicationTypeChange}
-          >
-            <FormControlLabel
-              value="Provisional"
-              control={<Radio />}
-              label="Provisional Application"
-            />
-            <FormControlLabel
-              value="Complete"
-              control={<Radio />}
-              label="Complete Application"
-            />
-          </RadioGroup>
+              row
+              aria-labelledby="demo-radio-buttons-group-label"
+              value={applicationType}
+              name="radio-buttons-group"
+              onChange={handleApplicationTypeChange}
+            >
+              <FormControlLabel
+                value="Provisional"
+                control={<Radio />}
+                label="Provisional Application"
+              />
+              <FormControlLabel
+                value="Complete"
+                control={<Radio />}
+                label="Complete Application"
+              />
+            </RadioGroup>
           </Card>
           <Card
             sx={{
@@ -249,17 +248,17 @@ export default function Inbox() {
               mb: "10px",
             }}
           >
-          <Typography
-            as="h3"
-            sx={{
-              fontSize: 18,
-              fontWeight: 500,
-              mb: "10px",
-            }}
-          >
-            Enter your proposed invention title
-          </Typography>
-          <TextField
+            <Typography
+              as="h3"
+              sx={{
+                fontSize: 18,
+                fontWeight: 500,
+                mb: "10px",
+              }}
+            >
+              Enter your proposed invention title
+            </Typography>
+            <TextField
               fullWidth
               id="name"
               label="Name"
@@ -270,66 +269,66 @@ export default function Inbox() {
               }}
               onChange={handleTitleChange} // Provide the onChange event handler
             />
-          <Card
-            sx={{
-              boxShadow: "none",
-              borderRadius: "10px",
-              p: "25px",
-              mb: "10px",
-            }}
-          >
-            <Typography
-              as="h3"
+            <Card
               sx={{
-                fontSize: 18,
-                fontWeight: 500,
+                boxShadow: "none",
+                borderRadius: "10px",
+                p: "25px",
                 mb: "10px",
               }}
             >
-              Upload your invention details
-            </Typography>
-            <FileBase64 multiple={true} onDone={handleDetailsFileChange} />{" "}
-          </Card>
-          <Card
-            sx={{
-              boxShadow: "none",
-              borderRadius: "10px",
-              p: "25px",
-              mb: "10px",
-            }}
-          >
-            <Typography
-              as="h3"
+              <Typography
+                as="h3"
+                sx={{
+                  fontSize: 18,
+                  fontWeight: 500,
+                  mb: "10px",
+                }}
+              >
+                Upload your invention details
+              </Typography>
+              <FileBase64 multiple={true} onDone={handleDetailsFileChange} />{" "}
+            </Card>
+            <Card
               sx={{
-                fontSize: 18,
-                fontWeight: 500,
+                boxShadow: "none",
+                borderRadius: "10px",
+                p: "25px",
                 mb: "10px",
               }}
             >
-              Upload your list of applicants
-            </Typography>
-            <FileBase64 multiple={true} onDone={handleApplicantsFileChange} />{" "}
-          </Card>
-          <Card
-            sx={{
-              boxShadow: "none",
-              borderRadius: "10px",
-              p: "25px",
-              mb: "10px",
-            }}
-          >
-            <Typography
-              as="h3"
+              <Typography
+                as="h3"
+                sx={{
+                  fontSize: 18,
+                  fontWeight: 500,
+                  mb: "10px",
+                }}
+              >
+                Upload your list of applicants
+              </Typography>
+              <FileBase64 multiple={true} onDone={handleApplicantsFileChange} />{" "}
+            </Card>
+            <Card
               sx={{
-                fontSize: 18,
-                fontWeight: 500,
+                boxShadow: "none",
+                borderRadius: "10px",
+                p: "25px",
                 mb: "10px",
               }}
             >
-              Upload your list of investors (if applicable)
-            </Typography>
-            <FileBase64 multiple={true} onDone={handleInvestorsFileChange} />{" "}
-          </Card>
+              <Typography
+                as="h3"
+                sx={{
+                  fontSize: 18,
+                  fontWeight: 500,
+                  mb: "10px",
+                }}
+              >
+                Upload your list of investors (if applicable)
+              </Typography>
+              <FileBase64 multiple={true} onDone={handleInvestorsFileChange} />{" "}
+            </Card>
           </Card>
           <Card
             sx={{
@@ -497,7 +496,7 @@ export default function Inbox() {
             }}
           >
             <Link
-              href="/apps/file-manager/drafting-form"
+              href="/patent-services/drafting-form"
               style={{ textDecoration: "none" }}
             >
               <ColorButton

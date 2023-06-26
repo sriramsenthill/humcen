@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import styles from '@/styles/PageTitle.module.css';
+import React from "react";
+import Link from "next/link";
+import styles from "@/styles/PageTitle.module.css";
 
 const SearchPage = () => {
   return (
@@ -13,11 +13,9 @@ const SearchPage = () => {
             <Link href="/">Dashboard</Link>
           </li>
           <li>
-            <Link href="/apps/file-manager">My Patent Services</Link>
+            <Link href="/patent-services">My Patent Services</Link>
           </li>
-          <li>
-            Patent Search
-          </li>
+          <li>Patent Search</li>
         </ul>
       </div>
 
