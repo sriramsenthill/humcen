@@ -4,13 +4,7 @@ import styles from "@/styles/Patents.module.css";
 import style from "@/styles/PageTitle.module.css";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import { Box } from "@mui/material";
-import { useState } from "react";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { jobData } from "../onGoingPatents/patentData";
-import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
-import AlternativeLabel from "@/components/UIElements/Stepper/AlternativeLabel";
 import Features from "./Features";
 import BasicTabs from "../onGoingPatents/Tabs";
 
