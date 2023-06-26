@@ -33,7 +33,7 @@ export const SidebarData = [
   },
   {
     title: "My Patent NFTs",
-    path: "/projects/clients/",
+    path: "/ecommerce/product-details/",
     icon: <RequestPageIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
