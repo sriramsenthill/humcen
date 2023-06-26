@@ -3,17 +3,11 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import GridViewIcon from "@mui/icons-material/GridView";
 import LayersIcon from "@mui/icons-material/Layers";
-import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import LockIcon from "@mui/icons-material/Lock";
 import SettingsIcon from "@mui/icons-material/Settings";
-import PostAddIcon from "@mui/icons-material/PostAdd";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import AddchartIcon from "@mui/icons-material/Addchart";
 import CopyAllIcon from "@mui/icons-material/CopyAll";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import RequestPageIcon from "@mui/icons-material/RequestPage";
 
 export const SidebarData = [
   {
@@ -34,6 +28,13 @@ export const SidebarData = [
     title: "My Patent",
     path: "/email/inbox/",
     icon: <MailOutlineIcon />,
+    iconClosed: <KeyboardArrowRightIcon />,
+    iconOpened: <KeyboardArrowDownIcon />,
+  },
+  {
+    title: "My Patent NFTs",
+    path: "/",
+    icon: <RequestPageIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
