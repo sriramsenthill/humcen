@@ -2,23 +2,12 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Link from "next/link";
 import styles from "@/styles/PageTitle.module.css";
-import Features from "@/components/Dashboard/eCommerce/Features";
-import Ratings from "@/components/Dashboard/eCommerce/Ratings";
-import AudienceOverview from "@/components/Dashboard/eCommerce/AudienceOverview";
-import VisitsByDay from "@/components/Dashboard/eCommerce/VisitsByDay";
 import Impression1 from "@/components/Dashboard/eCommerce/Impression1";
 import Impression2 from "@/components/Dashboard/eCommerce/Impression2";
 import Impression3 from "@/components/Dashboard/eCommerce/Impression3";
 import Impression4 from "@/components/Dashboard/eCommerce/Impression4";
 
-import ActivityTimeline from "@/components/Dashboard/eCommerce/ActivityTimeline";
-import Performance from "@/components/Dashboard/eCommerce/Performance";
-import SalesByCountries from "@/components/Dashboard/eCommerce/SalesByCountries";
 import NewCustomers from "@/components/Dashboard/eCommerce/NewCustomers";
-import RecentOrders from "@/components/Dashboard/eCommerce/RecentOrders";
-import TeamMembersList from "@/components/Dashboard/eCommerce/TeamMembersList";
-import BestSellingProducts from "@/components/Dashboard/eCommerce/BestSellingProducts";
-import LiveVisitsOnOurSite from "@/components/Dashboard/eCommerce/LiveVisitsOnOurSite";
 import BasicTabs from "@/components/UIElements/Tabs/BasicTabs";
 
 export default function eCommerce() {

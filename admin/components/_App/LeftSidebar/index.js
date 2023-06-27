@@ -6,7 +6,6 @@ import SubMenu from "./SubMenu";
 import Link from "next/link";
 import ClearIcon from "@mui/icons-material/Clear";
 import IconButton from "@mui/material/IconButton";
-import Color from "@/components/UIElements/Checkbox/Color";
 
 const SidebarNav = styled("nav")(({ theme }) => ({
   background: "#00002B",
