@@ -25,14 +25,14 @@ export const SidebarData = [
   },
   {
     title: "Patent Services",
-    path: "/apps/file-manager/",
+    path: "/my-patent-services/",
     icon: <LayersIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Job Order",
-    path: "/email/inbox/",
+    path: "/job-order/",
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
@@ -46,14 +46,14 @@ export const SidebarData = [
   },
   {
     title: "My Income",
-    path: "/contact-list/",
+    path: "/my-income/",
     icon: <PostAddIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Why Us?",
-    path: "/projects/",
+    path: "/why-us/",
     icon: <CopyAllIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
@@ -61,7 +61,7 @@ export const SidebarData = [
 
   {
     title: "Help & Support",
-    path: "/ecommerce/products/",
+    path: "/help-and-support/",
     icon: <ShoppingCartCheckoutIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
