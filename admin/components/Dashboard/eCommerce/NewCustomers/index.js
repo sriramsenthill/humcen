@@ -144,6 +144,13 @@ const NewCustomers = () => {
                 <div>
                   <h3>{customer.name}</h3>
                   <p>Patent Consultation</p>
+                  <Typography
+                    sx={{
+                      color: "#27AE60",
+                    }}
+                  >
+                    Completion in 2 days
+                  </Typography>
                 </div>
               </div>
             </div>

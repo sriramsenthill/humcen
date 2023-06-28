@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import { CiTimer } from "react-icons/ci";
+import { FaRocket } from "react-icons/fa";
 
 const Impression1 = () => {
   return (
@@ -24,7 +24,7 @@ const Impression1 = () => {
             textAlign: "center center",
           }}
         >
-          <CiTimer size="40" color="black" textDecoration="bold" />
+          <FaRocket size="40" color="#FFB638" textDecoration="bold" />
         </Box>
         <Box width="70%">
           <Typography
@@ -34,13 +34,13 @@ const Impression1 = () => {
               fontWeight: "300",
             }}
           >
-            Patent Currently in Progress
+            New Customers On-boarded
           </Typography>
           <Typography
             as="h2"
             sx={{ color: "black", fontSize: 36, fontWeight: 300 }}
           >
-            028
+            3,230
           </Typography>
         </Box>
       </Box>
