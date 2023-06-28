@@ -18,60 +18,37 @@ export const SidebarData = [
   },
   {
     title: "Patent Services",
-    path: "/apps/file-manager/",
+    path: "/patent-services/",
     icon: <LayersIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Job Listing",
-    path: "/email/inbox/",
+    path: "/job-listing/",
     icon: <MailOutlineIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Patent History",
-    path: "/contact-list/",
+    path: "/ongoing-patents/",
     icon: <PostAddIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Partners",
-    path: "/projects/",
+    path: "/partners/",
     icon: <CopyAllIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
   },
   {
     title: "Settings",
-    path: "/settings/account/",
+    path: "/settings/",
     icon: <SettingsIcon />,
     iconClosed: <KeyboardArrowRightIcon />,
     iconOpened: <KeyboardArrowDownIcon />,
-
-    subNav: [
-      {
-        title: "Account",
-        path: "/settings/account/",
-      },
-      {
-        title: "Security",
-        path: "/settings/security/",
-      },
-      {
-        title: "Privacy Policy",
-        path: "/settings/privacy-policy/",
-      },
-      {
-        title: "Terms & Conditions",
-        path: "/pages/terms-conditions/",
-      },
-      {
-        title: "Logout",
-        path: "/authentication/logout/",
-      },
-    ],
   },
 ];
