@@ -1,41 +1,51 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
+import { CiTimer } from "react-icons/ci";
 
-const Impression2 = () => {
+const Impression1 = () => {
   return (
     <>
       <Box
         sx={{
-          background:
-            "linear-gradient(104.54deg, #00ACF6 -38.83%, #01ADF5 52.84%, #02E1B9 127.84%)",
-          backgroundBlendMode: "multiply",
+          background: "white",
           borderRadius: "10px",
           padding: "20px 25px",
           mb: "15px",
+          display: "flex",
+          flexDirection: "row",
         }}
-        className="for-dark-impressions"
       >
-        <Typography color="#fff" fontSize="13px" mb="5px">
-          New Order Requests
-        </Typography>
-
-        <Typography
-          as="h2"
-          sx={{ color: "#fff", fontSize: 26, fontWeight: 700, mb: "5px" }}
+        <Box
+          width="30%"
+          alignContent="center"
+          sx={{
+            verticalAlign: "center",
+            textAlign: "center center",
+          }}
         >
-          $12,875{" "}
-          <Typography component="span" fontSize="14px" className="successColor">
-            <i className="ri-arrow-up-s-fill"></i> 10%
+          <CiTimer size="40" color="black" textDecoration="bold" />
+        </Box>
+        <Box width="70%">
+          <Typography
+            sx={{
+              color: "black",
+              fontSize: "24",
+              fontWeight: "300",
+            }}
+          >
+            Patent Currently in Progress
           </Typography>
-        </Typography>
-
-        <Typography color="#fff" fontSize="13px">
-          Compared to $21,490 last year
-        </Typography>
+          <Typography
+            as="h2"
+            sx={{ color: "black", fontSize: 36, fontWeight: 300 }}
+          >
+            028
+          </Typography>
+        </Box>
       </Box>
     </>
   );
 };
 
-export default Impression2;
+export default Impression1;

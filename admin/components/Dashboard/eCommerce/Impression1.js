@@ -1,7 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import { FaClock } from "react-icons/fa";
+import { CiTimer } from "react-icons/ci";
 
 const Impression1 = () => {
   return (
@@ -14,15 +14,38 @@ const Impression1 = () => {
           borderRadius: "10px",
           padding: "20px 25px",
           mb: "15px",
+          display: "flex",
+          flexDirection: "row",
         }}
         className="for-dark-impressions"
       >
-        <div style={{ width: "50%" }}>
-          <FaClock />
-        </div>
-        <div style={{ width: "50%" }}>
-          <Typography>Patent Currently in Progress</Typography>
-        </div>
+        <Box
+          width="30%"
+          alignContent="center"
+          sx={{
+            verticalAlign: "center",
+            textAlign: "center center",
+          }}
+        >
+          <CiTimer size="40" color="white" textDecoration="bold" />
+        </Box>
+        <Box width="70%">
+          <Typography
+            sx={{
+              color: "white",
+              fontSize: "24",
+              fontWeight: "300",
+            }}
+          >
+            Patent Currently in Progress
+          </Typography>
+          <Typography
+            as="h2"
+            sx={{ color: "#fff", fontSize: 36, fontWeight: 300 }}
+          >
+            028
+          </Typography>
+        </Box>
       </Box>
     </>
   );
