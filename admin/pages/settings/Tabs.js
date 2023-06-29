@@ -9,6 +9,8 @@ import TrackOrder from "@/components/eCommerce/OrderDetails/TrackOrder";
 import ProfileSettings from "./ProfileSettings";
 import EmailNotifsSettings from "./EmailNotifsSettings";
 import ChangePassword from "./ChangePassword";
+import BillingSettings from "./BillingSettings";
+import ApplicantDetails from "./ApplicantDetails";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -99,7 +101,7 @@ export default function BasicTabs({ no, items }) {
                     textTransform: "none",
                     marginRight: "10px",
                   }}
-                  label="E-mail Preferences"
+                  label="Billing Information"
                   {...a11yProps(1)}
                 />
                 <Tab
@@ -107,8 +109,24 @@ export default function BasicTabs({ no, items }) {
                     textTransform: "none",
                     marginRight: "10px",
                   }}
-                  label="Security"
+                  label="Applicant Details"
                   {...a11yProps(2)}
+                />
+                <Tab
+                  sx={{
+                    textTransform: "none",
+                    marginRight: "10px",
+                  }}
+                  label="E-mail Preferences"
+                  {...a11yProps(3)}
+                />
+                <Tab
+                  sx={{
+                    textTransform: "none",
+                    marginRight: "10px",
+                  }}
+                  label="Security"
+                  {...a11yProps(4)}
                 />
               </Tabs>
             </Box>
@@ -116,9 +134,15 @@ export default function BasicTabs({ no, items }) {
               <ProfileSettings />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <EmailNotifsSettings />
+              <BillingSettings />
             </TabPanel>
             <TabPanel value={value} index={2}>
+              <ApplicantDetails />
+            </TabPanel>
+            <TabPanel value={value} index={3}>
+              <EmailNotifsSettings />
+            </TabPanel>
+            <TabPanel value={value} index={4}>
               <ChangePassword />
             </TabPanel>
           </Box>

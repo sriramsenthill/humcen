@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import styles from "@/components/Dashboard/eCommerce/NewCustomers/NewCustomers.module.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const NewCustomersData = [
   {
@@ -140,7 +141,27 @@ const NewCustomers = () => {
           {NewCustomersData.slice(0, 4).map((customer) => (
             <div className={styles.newCustomerList} key={customer.id}>
               <div className={styles.leftContent}>
-                <img src={customer.image} alt="user" />
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      m: 1,
+                      position: "relative",
+                    }}
+                  >
+                    <CircularProgress
+                      position="absolute"
+                      variant="determinate"
+                      value={75}
+                    />
+                    <img src={customer.image} alt="user" />
+                  </Box>
+                </Box>
+
                 <div>
                   <h3>{customer.name}</h3>
                   <p>Patent Consultation</p>
@@ -148,6 +169,7 @@ const NewCustomers = () => {
                     sx={{
                       color: "#27AE60",
                     }}
+                    style={{ color: "#27AE60" }}
                   >
                     Completion in 2 days
                   </Typography>
