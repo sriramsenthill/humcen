@@ -30,10 +30,7 @@ function RecentAdmin(props) {
   };
 
   const handleLastPageButtonClick = (event) => {
-    onPageChange(
-      event,
-      Math.max(0, Math.ceil(count / rowsPerPage) - 1)
-    );
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   const handleNextButtonClick = (event) => {
@@ -51,11 +48,7 @@ function RecentAdmin(props) {
         disabled={page === 0}
         aria-label="first page"
       >
-        {theme.direction === "rtl" ? (
-          <LastPageIcon />
-        ) : (
-          <FirstPageIcon />
-        )}
+        {theme.direction === "rtl" ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handlePrevButtonClick}
@@ -84,11 +77,7 @@ function RecentAdmin(props) {
         disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        {theme.direction === "rtl" ? (
-          <FirstPageIcon />
-        ) : (
-          <LastPageIcon />
-        )}
+        {theme.direction === "rtl" ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
     </Box>
   );
@@ -145,7 +134,7 @@ function RecentAdmins() {
     <Card>
       <Box sx={{ p: 2 }}>
         <TableContainer component={Paper}>
-          <Table>
+          <Table aria-label="custom pagination table" className="dark-table">
             <TableHead>
               <TableRow>
                 <TableCell>Name</TableCell>

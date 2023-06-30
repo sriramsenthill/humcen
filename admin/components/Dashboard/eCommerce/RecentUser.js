@@ -150,7 +150,7 @@ function RecentUsers() {
     <Card>
       <Box sx={{ p: 2 }}>
         <TableContainer component={Paper}>
-          <Table>
+          <Table aria-label="custom pagination table" className="dark-table">
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>
@@ -185,17 +185,23 @@ function RecentUsers() {
                     <TableCell>{row.city}</TableCell>
                     <TableCell>{row.state}</TableCell>
                     <TableCell>{row.zipcode}</TableCell>
-                    <TableCell>
-                      {JSON.stringify(row.pref, null, 2)}
-                    </TableCell>
+                    <TableCell>{JSON.stringify(row.pref, null, 2)}</TableCell>
                     <TableCell>{row.user_specific_data.tax_ID}</TableCell>
-                    <TableCell>{row.user_specific_data.website || "To be assigned"}</TableCell>
-                    <TableCell>{row.user_specific_data.ind_sec || "To be assigned"}</TableCell>
-                    <TableCell>{row.user_specific_data.emp_name || "To be assigned"}</TableCell>
+                    <TableCell>
+                      {row.user_specific_data.website || "To be assigned"}
+                    </TableCell>
+                    <TableCell>
+                      {row.user_specific_data.ind_sec || "To be assigned"}
+                    </TableCell>
+                    <TableCell>
+                      {row.user_specific_data.emp_name || "To be assigned"}
+                    </TableCell>
                     <TableCell>
                       {row.user_specific_data.emp_surname || "To be assigned"}
                     </TableCell>
-                    <TableCell>{row.user_specific_data.emp_pos || "To be assigned"}</TableCell>
+                    <TableCell>
+                      {row.user_specific_data.emp_pos || "To be assigned"}
+                    </TableCell>
                   </TableRow>
                 ))}
               {emptyRows > 0 && (

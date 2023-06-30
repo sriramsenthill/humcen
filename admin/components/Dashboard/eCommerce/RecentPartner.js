@@ -23,6 +23,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Rating from "@mui/material/Rating";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function formatDate(date) {
   const options = { month: "long", day: "numeric", year: "numeric" };
@@ -160,7 +161,7 @@ function RecentPartners() {
     <Card>
       <Box sx={{ p: 2 }}>
         <TableContainer component={Paper}>
-          <Table>
+          <Table aria-label="custom pagination table" className="dark-table">
             <TableHead>
               <TableRow>
                 <TableCell>User ID</TableCell>

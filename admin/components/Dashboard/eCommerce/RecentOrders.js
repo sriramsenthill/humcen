@@ -151,7 +151,7 @@ function RecentOrders() {
     <Card>
       <Box sx={{ p: 2 }}>
         <TableContainer component={Paper}>
-          <Table>
+          <Table aria-label="custom pagination table" className="dark-table">
             <TableHead>
               <TableRow>
                 <TableCell>Job No</TableCell>
