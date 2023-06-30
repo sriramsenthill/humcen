@@ -152,7 +152,7 @@ function RecentOrders() {
       <Box sx={{ p: 2 }}>
         <Typography variant="h5">Job Orders</Typography>
         <TableContainer component={Paper}>
-          <Table>
+          <Table aria-label="custom pagination table" className="dark-table">
             <TableHead>
               <TableRow>
                 <TableCell>Job No</TableCell>
