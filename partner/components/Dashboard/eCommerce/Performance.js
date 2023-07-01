@@ -10,6 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import styles from "@/styles/Patents.module.css";
 
 const RevenuStatus = () => {
   // Select Form
@@ -150,7 +151,54 @@ const RevenuStatus = () => {
             </FormControl>
           </Box>
         </Box>
-
+        <Box>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
+          >
+            <tbody>
+              <tr>
+                <td style={{ padding: "5px" }}>Avg. Job Order in a week</td>
+                <td style={{ padding: "5px" }}>Avg. Job Order in a month</td>
+                <td style={{ padding: "5px" }}>Avg. Job Order in a year</td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "24px",
+                  }}
+                >
+                  425
+                </td>
+                <td
+                  style={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "24px",
+                  }}
+                >
+                  655
+                </td>
+                <td
+                  style={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: "black",
+                    fontSize: "24px",
+                  }}
+                >
+                  5933
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Box>
         <Chart options={options} series={series} type="area" height={285} />
       </Card>
     </>
