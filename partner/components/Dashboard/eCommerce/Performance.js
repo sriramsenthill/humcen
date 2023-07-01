@@ -35,23 +35,35 @@ const RevenuStatus = () => {
       enabled: false,
     },
     stroke: {
-      curve: "smooth",
+      curve: "straight",
     },
-    colors: ["#757FEF"],
+    fill: {
+      type: "gradient",
+      gradient: {
+        type: "vertical",
+        shadeIntensity: 0.5,
+        gradientToColors: ["#00ACF6", "#02E1B9"], // optional, if not defined - uses the shades of same color in series
+        inverseColors: true,
+        opacityFrom: 0.9,
+        opacityTo: 0.3,
+        stops: [0, 50, 100],
+        colorStops: [],
+      },
+    },
     xaxis: {
       categories: [
-        "1 Jan",
-        "2 Jan",
-        "3 Jan",
-        "4 Jan",
-        "5 Jan",
-        "6 Jan",
-        "7 Jan",
-        "8 Jan",
-        "9 Jan",
-        "10 Jan",
-        "11 Jan",
-        "12 Jan",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ],
       labels: {
         style: {
@@ -103,25 +115,37 @@ const RevenuStatus = () => {
               fontWeight: 500,
             }}
           >
-              Performance
-         </Typography>
+            Performance
+          </Typography>
           <Box>
             <FormControl sx={{ minWidth: 120 }} size="small">
-              <InputLabel id="demo-select-small" sx={{ fontSize: '14px' }}>Select</InputLabel>
+              <InputLabel id="demo-select-small" sx={{ fontSize: "14px" }}>
+                Select
+              </InputLabel>
               <Select
                 labelId="demo-select-small"
                 id="demo-select-small"
                 value={select}
                 label="Select"
-                onChange={handleChange} 
-                sx={{ fontSize: '14px' }}
+                onChange={handleChange}
+                sx={{ fontSize: "14px" }}
                 className="select"
               >
-                <MenuItem value={0} sx={{ fontSize: '14px' }}>Today</MenuItem>
-                <MenuItem value={1} sx={{ fontSize: '14px' }}>Last 7 Days</MenuItem>
-                <MenuItem value={2} sx={{ fontSize: '14px' }}>Last Month</MenuItem>
-                <MenuItem value={3} sx={{ fontSize: '14px' }}>Last 12 Months</MenuItem>
-                <MenuItem value={4} sx={{ fontSize: '14px' }}>All Time</MenuItem>
+                <MenuItem value={0} sx={{ fontSize: "14px" }}>
+                  Today
+                </MenuItem>
+                <MenuItem value={1} sx={{ fontSize: "14px" }}>
+                  Last 7 Days
+                </MenuItem>
+                <MenuItem value={2} sx={{ fontSize: "14px" }}>
+                  Last Month
+                </MenuItem>
+                <MenuItem value={3} sx={{ fontSize: "14px" }}>
+                  Last 12 Months
+                </MenuItem>
+                <MenuItem value={4} sx={{ fontSize: "14px" }}>
+                  All Time
+                </MenuItem>
               </Select>
             </FormControl>
           </Box>
